@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Anjani Raj</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0b0b0f;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background image */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: 
+        linear-gradient(
+          rgba(11,11,15,0.85),
+          rgba(11,11,15,0.85)
+        ),
+        url('hero.jpg') center / cover no-repeat;
+      z-index: -1;
+      animation: slowZoom 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    /* Layout */
+    .container {
+      max-width: 900px;
+      padding: 120px 24px;
+      margin: auto;
+    }
+
+    /* Hero text */
+    h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .subtitle {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #bdbdbd;
+      max-width: 600px;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.2s;
+    }
+
+    .line {
+      margin-top: 32px;
+      font-size: 1.1rem;
+      color: #d6d6d6;
+      max-width: 620px;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Navigation */
+    .nav {
+      margin-top: 60px;
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .nav a {
+      position: relative;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      padding-bottom: 4px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 120px;
+      font-size: 0.85rem;
+      color: #888;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.8s;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding-top: 100px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg"></div>
+
+  <div class="container">
+    <h1>Anjani Raj</h1>
+
+    <p class="subtitle">
+      Engineer by instinct. Entrepreneur by action.
+    </p>
+
+    <p class="line">
+      I build quietly, think long-term, and work toward independence.
+      This is a living identity — not a finished story.
+    </p>
+
+    <div class="nav">
+      <a href="#">About</a>
+      <a href="#">Principles</a>
+      <a href="#">Now</a>
+      <a href="#">Connect</a>
+    </div>
+
+    <footer>
+      © 2026 Anjani Raj · Built intentionally
+    </footer>
+  </div>
+</body>
+</html>
