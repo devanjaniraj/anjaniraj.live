@@ -5,7 +5,7 @@
   <title>Anjani Raj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Fonts -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -13,25 +13,22 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Inter', sans-serif;
       background: #0b0b0f;
       color: #ffffff;
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* Background image */
+    /* Background */
     .bg {
       position: fixed;
       inset: 0;
-      background: 
-        linear-gradient(
-          rgba(11,11,15,0.85),
-          rgba(11,11,15,0.85)
-        ),
+      background:
+        linear-gradient(rgba(11,11,15,0.85), rgba(11,11,15,0.85)),
         url('hero.jpg') center / cover no-repeat;
       z-index: -1;
       animation: slowZoom 30s ease-in-out infinite alternate;
@@ -45,76 +42,56 @@
     /* Layout */
     .container {
       max-width: 900px;
-      padding: 120px 24px;
       margin: auto;
+      padding: 120px 24px;
     }
 
-    /* Hero text */
+    section {
+      margin-bottom: 140px;
+    }
+
     h1 {
       font-size: clamp(3rem, 6vw, 5rem);
       font-weight: 700;
       letter-spacing: -0.04em;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards;
     }
 
-    .subtitle {
-      margin-top: 20px;
-      font-size: 1.2rem;
-      color: #bdbdbd;
-      max-width: 600px;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards;
-      animation-delay: 0.2s;
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
     }
 
-    .line {
-      margin-top: 32px;
+    p {
       font-size: 1.1rem;
+      line-height: 1.7;
       color: #d6d6d6;
-      max-width: 620px;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards;
-      animation-delay: 0.4s;
+      max-width: 680px;
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Navigation */
+    /* Nav */
     .nav {
-      margin-top: 60px;
+      position: fixed;
+      top: 32px;
+      right: 32px;
       display: flex;
-      gap: 28px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards;
-      animation-delay: 0.6s;
+      gap: 24px;
+      z-index: 10;
     }
 
     .nav a {
-      position: relative;
-      text-decoration: none;
       color: #ffffff;
+      text-decoration: none;
       font-weight: 500;
-      padding-bottom: 4px;
+      position: relative;
     }
 
     .nav a::after {
       content: "";
       position: absolute;
       left: 0;
-      bottom: 0;
-      height: 2px;
+      bottom: -4px;
       width: 0;
+      height: 2px;
       background: #ffffff;
       transition: width 0.3s ease;
     }
@@ -123,19 +100,39 @@
       width: 100%;
     }
 
-    /* Footer */
+    /* Buttons */
+    .links {
+      margin-top: 32px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      padding: 10px 18px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background: #ffffff;
+      color: #0b0b0f;
+    }
+
     footer {
-      margin-top: 120px;
       font-size: 0.85rem;
       color: #888;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards;
-      animation-delay: 0.8s;
+      margin-top: 120px;
     }
 
     @media (max-width: 600px) {
-      .container {
-        padding-top: 100px;
+      .nav {
+        top: 16px;
+        right: 16px;
+        gap: 16px;
       }
     }
   </style>
@@ -144,28 +141,52 @@
 <body>
   <div class="bg"></div>
 
-  <div class="container">
-    <h1>Anjani Raj</h1>
-
-    <p class="subtitle">
-      Engineer by instinct. Entrepreneur by action.
-    </p>
-
-    <p class="line">
-      I build quietly, think long-term, and work toward independence.
-      This is a living identity — not a finished story.
-    </p>
-
-    <div class="nav">
-      <a href="#">About</a>
-      <a href="#">Principles</a>
-      <a href="#">Now</a>
-      <a href="#">Connect</a>
-    </div>
-
-    <footer>
-      © 2026 Anjani Raj · Built intentionally
-    </footer>
+  <!-- Navigation -->
+  <div class="nav">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#principles">Principles</a>
+    <a href="#now">Now</a>
+    <a href="#connect">Connect</a>
   </div>
-</body>
-</html>
+
+  <div class="container">
+
+    <!-- HOME -->
+    <section id="home">
+      <h1>Anjani Raj</h1>
+      <p style="margin-top:20px;">
+        Engineer by instinct. Entrepreneur by action.
+      </p>
+      <p style="margin-top:24px;">
+        I build quietly, think long-term, and work toward independence.
+        This is a living identity — not a finished story.
+      </p>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        I am driven by the need to build — systems, businesses, and foundations
+        that remove dependency and create long-term freedom.
+        I prefer execution over explanation and results over attention.
+      </p>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <section id="principles">
+      <h2>Principles</h2>
+      <p>• One life. No rehearsals.</p>
+      <p>• Work to be remembered, not noticed.</p>
+      <p>• Crowds dilute thinking.</p>
+      <p>• The only real competition is myself.</p>
+      <p>• Every real game is I vs I.</p>
+    </section>
+
+    <!-- NOW -->
+    <section id="now">
+      <h2>Now</h2>
+      <p>
+        Currently focused on private, long-term goals.
+        Learning deeply. Preparing quietly. Execut
