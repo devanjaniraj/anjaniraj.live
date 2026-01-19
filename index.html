@@ -1,192 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Anjani Raj</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Anjani Raj</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0b0b0f;color:#fff;overflow-x:hidden}
+.bg{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),url('hero.jpg') center/cover no-repeat;z-index:-1}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0b0b0f;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
+.nav{position:fixed;top:30px;right:30px;display:flex;gap:22px;z-index:10}
+.nav a{color:#fff;text-decoration:none;font-weight:500;cursor:pointer}
+.nav a:hover{opacity:.7}
 
-    /* Background */
-    .bg {
-      position: fixed;
-      inset: 0;
-      background:
-        linear-gradient(rgba(11,11,15,0.85), rgba(11,11,15,0.85)),
-        url('hero.jpg') center / cover no-repeat;
-      z-index: -1;
-      animation: slowZoom 30s ease-in-out infinite alternate;
-    }
+.container{max-width:900px;margin:auto;padding:120px 24px}
+section{margin-bottom:160px}
 
-    @keyframes slowZoom {
-      from { transform: scale(1); }
-      to { transform: scale(1.08); }
-    }
+h1{font-size:clamp(3rem,6vw,5rem);font-weight:700}
+p{margin-top:20px;font-size:1.1rem;color:#d0d0d0;max-width:650px}
 
-    /* Layout */
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 120px 24px;
-    }
+button{margin-top:40px;padding:14px 22px;border-radius:10px;border:none;background:#fff;color:#000;font-weight:600;cursor:pointer}
+button:hover{opacity:.85}
 
-    section {
-      margin-bottom: 140px;
-    }
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:20}
+.modal-content{background:#111;padding:40px;border-radius:16px;display:flex;gap:30px}
+.modal-content a{font-size:28px;color:#fff}
+.modal-content a:hover{color:#aaa}
+.close{position:absolute;top:30px;right:40px;font-size:28px;cursor:pointer}
 
-    h1 {
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
-    }
-
-    h2 {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: #d6d6d6;
-      max-width: 680px;
-    }
-
-    /* Nav */
-    .nav {
-      position: fixed;
-      top: 32px;
-      right: 32px;
-      display: flex;
-      gap: 24px;
-      z-index: 10;
-    }
-
-    .nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-    }
-
-    .nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 2px;
-      background: #ffffff;
-      transition: width 0.3s ease;
-    }
-
-    .nav a:hover::after {
-      width: 100%;
-    }
-
-    /* Buttons */
-    .links {
-      margin-top: 32px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .links a {
-      padding: 10px 18px;
-      border: 1px solid #444;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #ffffff;
-      transition: all 0.3s ease;
-    }
-
-    .links a:hover {
-      background: #ffffff;
-      color: #0b0b0f;
-    }
-
-    footer {
-      font-size: 0.85rem;
-      color: #888;
-      margin-top: 120px;
-    }
-
-    @media (max-width: 600px) {
-      .nav {
-        top: 16px;
-        right: 16px;
-        gap: 16px;
-      }
-    }
-  </style>
+footer{margin-top:120px;font-size:.85rem;color:#888}
+</style>
 </head>
 
 <body>
-  <div class="bg"></div>
+<div class="bg"></div>
 
-  <!-- Navigation -->
-  <div class="nav">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#principles">Principles</a>
-    <a href="#now">Now</a>
-    <a href="#connect">Connect</a>
+<div class="nav">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#principles">Principles</a>
+  <a onclick="openModal()">Connect</a>
+</div>
+
+<div class="container">
+
+<section id="home">
+<h1>Anjani Raj</h1>
+<p>Engineer by instinct. Entrepreneur by action.</p>
+<p>I build quietly, think long-term, and work toward independence.</p>
+<button onclick="openModal()">Connect with me</button>
+</section>
+
+<section id="about">
+<h2>About</h2>
+<p>I build systems, businesses, and foundations that remove dependency and create long-term freedom.</p>
+</section>
+
+<section id="principles">
+<h2>Principles</h2>
+<p>• One life. No rehearsals.<br>
+• Work to be remembered, not noticed.<br>
+• Crowds dilute thinking.<br>
+• I vs I.</p>
+</section>
+
+<footer>© 2026 Anjani Raj</footer>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="connectModal">
+  <div class="close" onclick="closeModal()">×</div>
+  <div class="modal-content">
+    <a href="https://www.linkedin.com/in/anjaniraj" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:Kanjanikumar52@gmail.com"><i class="fas fa-envelope"></i></a>
+    <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://discordapp.com/users/1125265439564513315" target="_blank"><i class="fab fa-discord"></i></a>
   </div>
+</div>
 
-  <div class="container">
+<script>
+function openModal(){document.getElementById('connectModal').style.display='flex'}
+function closeModal(){document.getElementById('connectModal').style.display='none'}
+</script>
 
-    <!-- HOME -->
-    <section id="home">
-      <h1>Anjani Raj</h1>
-      <p style="margin-top:20px;">
-        Engineer by instinct. Entrepreneur by action.
-      </p>
-      <p style="margin-top:24px;">
-        I build quietly, think long-term, and work toward independence.
-        This is a living identity — not a finished story.
-      </p>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        I am driven by the need to build — systems, businesses, and foundations
-        that remove dependency and create long-term freedom.
-        I prefer execution over explanation and results over attention.
-      </p>
-    </section>
-
-    <!-- PRINCIPLES -->
-    <section id="principles">
-      <h2>Principles</h2>
-      <p>• One life. No rehearsals.</p>
-      <p>• Work to be remembered, not noticed.</p>
-      <p>• Crowds dilute thinking.</p>
-      <p>• The only real competition is myself.</p>
-      <p>• Every real game is I vs I.</p>
-    </section>
-
-    <!-- NOW -->
-    <section id="now">
-      <h2>Now</h2>
-      <p>
-        Currently focused on private, long-term goals.
-        Learning deeply. Preparing quietly. Execut
+</body>
+</html>
