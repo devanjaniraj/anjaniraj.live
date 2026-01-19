@@ -1,93 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Anjani Raj</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:#0b0b0f;color:#fff;overflow-x:hidden}
-.bg{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.85),rgba(0,0,0,.85)),url('hero.jpg') center/cover no-repeat;z-index:-1}
+:root{
+  --bg:#0b0d12;
+  --text:#ffffff;
+  --muted:#cfcfcf;
+  --accent:#6cf2c2;
+}
 
-.nav{position:fixed;top:30px;right:30px;display:flex;gap:22px;z-index:10}
-.nav a{color:#fff;text-decoration:none;font-weight:500;cursor:pointer}
-.nav a:hover{opacity:.7}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 
-.container{max-width:900px;margin:auto;padding:120px 24px}
-section{margin-bottom:160px}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
 
-h1{font-size:clamp(3rem,6vw,5rem);font-weight:700}
-p{margin-top:20px;font-size:1.1rem;color:#d0d0d0;max-width:650px}
+/* BACKGROUND */
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(108,242,194,.12), transparent 40%),
+    linear-gradient(180deg, rgba(11,13,18,.9), rgba(11,13,18,.97)),
+    url('hero.jpg') center/cover no-repeat;
+  z-index:-1;
+  animation:slowZoom 40s ease-in-out infinite alternate;
+}
 
-button{margin-top:40px;padding:14px 22px;border-radius:10px;border:none;background:#fff;color:#000;font-weight:600;cursor:pointer}
-button:hover{opacity:.85}
+@keyframes slowZoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
 
-/* MODAL */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:20}
-.modal-content{background:#111;padding:40px;border-radius:16px;display:flex;gap:30px}
-.modal-content a{font-size:28px;color:#fff}
-.modal-content a:hover{color:#aaa}
-.close{position:absolute;top:30px;right:40px;font-size:28px;cursor:pointer}
+/* NAV */
+.nav{
+  position:fixed;
+  top:24px;
+  right:24px;
+  display:flex;
+  gap:26px;
+  z-index:10;
+}
 
-footer{margin-top:120px;font-size:.85rem;color:#888}
+.nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:500;
+  opacity:.75;
+  transition:.25s;
+}
+
+.nav a:hover{
+  opacity:1;
+  color:var(--accent);
+}
+
+/* LAYOUT */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:160px 24px;
+}
+
+section{
+  margin-bottom:180px;
+  border-left:2px solid rgba(255,255,255,.06);
+  padding-left:32px;
+}
+
+/* TYPOGRAPHY */
+h1{
+  font-size:clamp(3.8rem,7vw,6.2rem);
+  font-weight:800;
+  letter-spacing:-0.05em;
+  line-height:1.03;
+}
+
+.gradient{
+  background:linear-gradient(90deg,var(--accent),#8fd3ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+h2{
+  font-size:2.5rem;
+  margin-bottom:24px;
+}
+
+p{
+  font-size:1.12rem;
+  line-height:1.75;
+  color:var(--muted);
+  max-width:760px;
+  margin-top:18px;
+}
+
+/* CTA */
+.cta{
+  margin-top:48px;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:15px 28px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  backdrop-filter:blur(10px);
+  transition:.25s;
+}
+
+.btn.primary{
+  background:var(--accent);
+  color:#000;
+  border:none;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+/* SOCIAL */
+.social{
+  margin-top:40px;
+  display:flex;
+  gap:34px;
+}
+
+.social a{
+  font-size:30px;
+  color:#fff;
+  opacity:.7;
+  transition:.25s;
+}
+
+.social a:hover{
+  opacity:1;
+  color:var(--accent);
+  transform:scale(1.25);
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .9s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CURSOR GLOW */
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:rgba(108,242,194,.35);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  filter:blur(6px);
+  z-index:100;
+}
+
+footer{
+  margin-top:160px;
+  font-size:.85rem;
+  color:#888;
+}
+
+@media(max-width:600px){
+  section{padding-left:18px}
+}
 </style>
 </head>
 
 <body>
 <div class="bg"></div>
+<div class="cursor" id="cursor"></div>
 
 <div class="nav">
   <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#principles">Principles</a>
-  <a onclick="openModal()">Connect</a>
+  <a href="#connect">Connect</a>
 </div>
 
 <div class="container">
 
 <section id="home">
-<h1>Anjani Raj</h1>
-<p>Engineer by instinct. Entrepreneur by action.</p>
-<p>I build quietly, think long-term, and work toward independence.</p>
-<button onclick="openModal()">Connect with me</button>
+  <h1>Anjani <span class="gradient">Raj</span></h1>
+  <p><strong>Engineer by instinct. Entrepreneur by action.</strong></p>
+  <p>
+    I build quietly, think long-term, and work toward independence.
+    This website is a living identity — not a finished story.
+  </p>
+
+  <div class="cta">
+    <a href="#connect" class="btn primary">Connect</a>
+    <a href="#about" class="btn">Know more</a>
+  </div>
 </section>
 
-<section id="about">
-<h2>About</h2>
-<p>I build systems, businesses, and foundations that remove dependency and create long-term freedom.</p>
+<section id="about" class="reveal">
+  <h2>About</h2>
+  <p>
+    I’m driven by the need to build — systems, businesses, and foundations
+    that remove dependency and create long-term freedom.
+  </p>
+  <p>
+    I prefer execution over explanation and results over attention.
+  </p>
 </section>
 
-<section id="principles">
-<h2>Principles</h2>
-<p>• One life. No rehearsals.<br>
-• Work to be remembered, not noticed.<br>
-• Crowds dilute thinking.<br>
-• I vs I.</p>
+<section id="principles" class="reveal">
+  <h2>Principles</h2>
+  <p>• One life. No rehearsals.</p>
+  <p>• Work to be remembered, not noticed.</p>
+  <p>• Crowds dilute thinking.</p>
+  <p>• The only real competition is myself.</p>
+  <p>• The game is always I vs I.</p>
 </section>
 
-<footer>© 2026 Anjani Raj</footer>
+<section id="connect" class="reveal">
+  <h2>Connect</h2>
+  <p>If it makes sense, reach out.</p>
 
-</div>
-
-<!-- MODAL -->
-<div class="modal" id="connectModal">
-  <div class="close" onclick="closeModal()">×</div>
-  <div class="modal-content">
+  <div class="social">
     <a href="https://www.linkedin.com/in/anjaniraj" target="_blank"><i class="fab fa-linkedin"></i></a>
     <a href="mailto:Kanjanikumar52@gmail.com"><i class="fas fa-envelope"></i></a>
     <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank"><i class="fab fa-whatsapp"></i></a>
     <a href="https://discordapp.com/users/1125265439564513315" target="_blank"><i class="fab fa-discord"></i></a>
   </div>
+</section>
+
+<footer>
+  © 2026 Anjani Raj · Built with intent
+</footer>
+
 </div>
 
 <script>
-function openModal(){document.getElementById('connectModal').style.display='flex'}
-function closeModal(){document.getElementById('connectModal').style.display='none'}
-</script>
+/* Scroll reveal */
+const reveals=document.querySelectorAll('.reveal');
+function revealOnScroll(){
+  reveals.forEach(s=>{
+    if(s.getBoundingClientRect().top<window.innerHeight-120){
+      s.classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll',revealOnScroll);
+revealOnScroll();
 
+/* Cursor glow */
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
+});
+</script>
 </body>
 </html>
