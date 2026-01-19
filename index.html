@@ -1,177 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Anjani Raj</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anjani Raj</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
+<style>
+:root {
+  --accent: #00e5ff;
+  --dark: #0b0f14;
+  --glass: rgba(0,0,0,0.6);
+}
 
-    body {
-      color: #fff;
-      background:
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-        url('hero.jpg') center/cover no-repeat fixed;
-      min-height: 100vh;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 20px 60px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 30px;
-      background: rgba(0,0,0,0.35);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-    }
+body {
+  background: url('hero.jpg') center/cover no-repeat fixed;
+  color: #fff;
+  min-height: 100vh;
+  animation: slowZoom 20s ease-in-out infinite alternate;
+}
 
-    nav a {
-      color: #ddd;
-      text-decoration: none;
-      font-weight: 500;
-    }
+@keyframes slowZoom {
+  from { background-size: 100%; }
+  to { background-size: 105%; }
+}
 
-    nav a:hover {
-      color: #00e0ff;
-    }
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
 
-    /* HERO */
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 0 10%;
-    }
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 500;
+}
 
-    .hero-content {
-      max-width: 700px;
-    }
+nav a:hover {
+  color: var(--accent);
+}
 
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 10px;
-    }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 40px 40px;
+}
 
-    h1 span {
-      color: #00e0ff;
-    }
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(14px);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 720px;
+  animation: fadeUp 1.2s ease;
+}
 
-    .subtitle {
-      font-size: 1.1rem;
-      opacity: 0.9;
-      margin-bottom: 25px;
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .buttons {
-      display: flex;
-      gap: 15px;
-    }
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
 
-    .btn {
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: 0.3s;
-    }
+h1 span {
+  color: var(--accent);
+}
 
-    .btn-primary {
-      background: #00e0ff;
-      color: #000;
-    }
+.tagline {
+  margin: 12px 0 20px;
+  color: #ccc;
+  font-size: 1.1rem;
+}
 
-    .btn-primary:hover {
-      background: #00c4dd;
-    }
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
 
-    .btn-outline {
-      background: transparent;
-      border: 1px solid #aaa;
-      color: #fff;
-    }
+.btn {
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  transition: all 0.3s ease;
+}
 
-    .btn-outline:hover {
-      border-color: #00e0ff;
-      color: #00e0ff;
-    }
+.btn.primary {
+  background: var(--accent);
+  color: #000;
+}
 
-    /* SECTIONS */
-    section {
-      padding: 120px 10%;
-      max-width: 900px;
-    }
+.btn:hover {
+  transform: translateY(-2px);
+}
 
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
+/* SECTIONS */
+section {
+  padding: 100px 40px;
+  background: linear-gradient(to bottom, transparent, #05070a);
+}
 
-    section p {
-      line-height: 1.7;
-      opacity: 0.9;
-      margin-bottom: 15px;
-    }
+section h2 {
+  margin-bottom: 16px;
+}
 
-    /* MODAL */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-    }
+/* CONNECT MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
 
-    .modal-content {
-      background: #111;
-      padding: 40px;
-      border-radius: 14px;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
+.modal.active {
+  display: flex;
+}
 
-    .modal-content h3 {
-      margin-bottom: 25px;
-    }
+.modal-box {
+  background: #0e141b;
+  padding: 32px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+}
 
-    .connect-links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+.modal-box h3 {
+  margin-bottom: 20px;
+}
 
-    .connect-links a {
-      color: #00e0ff;
-      text-decoration: none;
-      font-weight: 600;
-    }
+.socials a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #fff;
+  background: #121a24;
+  transition: 0.3s;
+}
 
-    .connect-links a:hover {
-      text-decoration: underline;
-    }
+.socials a:hover {
+  background: var(--accent);
+  color: #000;
+}
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      opacity: 0.6;
-    }
-  </style>
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+  background: #05070a;
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 2.3rem; }
+}
+</style>
 </head>
 
 <body>
@@ -179,24 +196,21 @@
 <nav>
   <a href="#about">About</a>
   <a href="#principles">Principles</a>
-  <a href="#" onclick="openModal()">Connect</a>
+  <a href="#" onclick="openConnect()">Connect</a>
 </nav>
 
 <div class="hero">
-  <div class="hero-content">
+  <div class="card">
     <h1>Anjani <span>Raj</span></h1>
-    <p class="subtitle">
+    <p class="tagline">
       Engineer by instinct. Entrepreneur by action.<br>
       I build quietly, think long-term, and work toward independence.
     </p>
-
     <div class="buttons">
-      <button class="btn btn-primary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+      <button class="btn primary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
         Know more
       </button>
-      <button class="btn btn-outline" onclick="openModal()">
-        Connect
-      </button>
+      <button class="btn" onclick="openConnect()">Connect</button>
     </div>
   </div>
 </div>
@@ -204,57 +218,59 @@
 <section id="about">
   <h2>About</h2>
   <p>
-    I'm driven by the need to build — systems, businesses, and foundations
-    that remove dependency and create long-term freedom.
-  </p>
-  <p>
-    I prefer execution over explanation and results over attention.
+    I’m driven by building systems, businesses, and foundations that remove
+    dependency and create long-term freedom. I value execution over noise.
   </p>
 </section>
 
 <section id="principles">
   <h2>Principles</h2>
-  <p>• One life. No rehearsals.</p>
-  <p>• Work to be remembered, not noticed.</p>
-  <p>• Crowds dilute thinking.</p>
-  <p>• The only real competition is myself.</p>
-  <p>• The game is always I vs I.</p>
+  <ul>
+    <li>One life. No rehearsals.</li>
+    <li>Work to be remembered, not noticed.</li>
+    <li>Crowds dilute thinking.</li>
+    <li>The only competition is myself.</li>
+    <li>The game is always I vs I.</li>
+  </ul>
 </section>
+
+<!-- CONNECT MODAL -->
+<div class="modal" id="connectModal">
+  <div class="modal-box">
+    <h3>Connect</h3>
+    <div class="socials">
+      <a href="https://www.linkedin.com/in/anjaniraj" target="_blank">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://github.com/devanjaniraj" target="_blank">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://discordapp.com/users/1125265439564513315" target="_blank">
+        <i class="fab fa-discord"></i> Discord
+      </a>
+      <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="mailto:Kanjanikumar52@gmail.com">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+    </div>
+    <br>
+    <button class="btn" onclick="closeConnect()">Close</button>
+  </div>
+</div>
 
 <footer>
   © 2026 Anjani Raj · Built with intent
 </footer>
 
-<!-- CONNECT MODAL -->
-<div class="modal" id="connectModal" onclick="closeModal(event)">
-  <div class="modal-content">
-    <h3>Connect</h3>
-    <div class="connect-links">
-      <a href="https://www.linkedin.com/in/anjaniraj" target="_blank">LinkedIn</a>
-      <a href="https://github.com/devanjaniraj" target="_blank">GitHub</a>
-      <a href="https://discordapp.com/users/1125265439564513315" target="_blank">Discord</a>
-      <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank">WhatsApp</a>
-      <a href="mailto:Kanjanikumar52@gmail.com">Email</a>
-    </div>
-  </div>
-</div>
-
 <script>
-  function openModal() {
-    document.getElementById('connectModal').style.display = 'flex';
-  }
-
-  function closeModal(e) {
-    if (e.target.id === 'connectModal') {
-      document.getElementById('connectModal').style.display = 'none';
-    }
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      document.getElementById('connectModal').style.display = 'none';
-    }
-  });
+function openConnect() {
+  document.getElementById('connectModal').classList.add('active');
+}
+function closeConnect() {
+  document.getElementById('connectModal').classList.remove('active');
+}
 </script>
 
 </body>
