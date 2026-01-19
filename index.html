@@ -4,262 +4,257 @@
   <meta charset="UTF-8" />
   <title>Anjani Raj</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Personal identity of Anjani Raj — Engineer by instinct, Entrepreneur by action." />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg: #0b0f14;
-      --card: rgba(255, 255, 255, 0.06);
-      --text: #e6e8eb;
-      --muted: #9aa4b2;
-      --accent: #5eead4;
-      --border: rgba(255,255,255,0.12);
-    }
-
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: linear-gradient(180deg, #0b0f14, #0e141b);
-      color: var(--text);
-      line-height: 1.6;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        url('hero.jpg') center/cover no-repeat fixed;
+      min-height: 100vh;
     }
 
     /* NAV */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-      background: rgba(11,15,20,0.6);
-      border-bottom: 1px solid var(--border);
-    }
-
     nav {
-      max-width: 1100px;
-      margin: auto;
-      padding: 16px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 60px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav .logo {
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      justify-content: flex-end;
+      gap: 30px;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      z-index: 100;
     }
 
     nav a {
-      margin-left: 20px;
-      color: var(--muted);
+      color: #ddd;
       text-decoration: none;
-      position: relative;
-      transition: color 0.3s ease;
+      font-weight: 500;
     }
 
     nav a:hover {
-      color: var(--text);
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* LAYOUT */
-    main {
-      max-width: 1100px;
-      margin: auto;
-      padding: 80px 20px;
-    }
-
-    section {
-      margin-bottom: 120px;
+      color: #00e0ff;
     }
 
     /* HERO */
-    .hero h1 {
-      font-size: clamp(3rem, 6vw, 4.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 10%;
     }
 
-    .hero p {
-      color: var(--muted);
-      max-width: 65ch;
-      margin-bottom: 32px;
+    .hero-content {
+      max-width: 700px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    h1 span {
+      color: #00e0ff;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 25px;
     }
 
     .buttons {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 15px;
     }
 
-    .button {
-      padding: 10px 18px;
-      border-radius: 10px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      color: var(--text);
-      text-decoration: none;
-      transition: transform 0.2s ease, background 0.2s ease;
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s;
     }
 
-    .button:hover {
-      background: rgba(255,255,255,0.12);
-      transform: translateY(-2px);
+    .btn-primary {
+      background: #00e0ff;
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #00c4dd;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #aaa;
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      border-color: #00e0ff;
+      color: #00e0ff;
     }
 
     /* SECTIONS */
-    h2 {
+    section {
+      padding: 120px 10%;
+      max-width: 900px;
+    }
+
+    section h2 {
       font-size: 2rem;
-      margin-bottom: 16px;
-      letter-spacing: -0.02em;
+      margin-bottom: 20px;
     }
 
-    ul {
-      list-style: none;
-      padding-left: 0;
+    section p {
+      line-height: 1.7;
+      opacity: 0.9;
+      margin-bottom: 15px;
     }
 
-    ul li {
-      margin-bottom: 12px;
-      color: var(--muted);
+    /* MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
     }
 
-    /* CONNECT */
-    .connect-buttons {
+    .modal-content {
+      background: #111;
+      padding: 40px;
+      border-radius: 14px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modal-content h3 {
+      margin-bottom: 25px;
+    }
+
+    .connect-links {
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      flex-direction: column;
+      gap: 15px;
     }
 
-    /* FOOTER */
+    .connect-links a {
+      color: #00e0ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .connect-links a:hover {
+      text-decoration: underline;
+    }
+
     footer {
       text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
-
-    /* ANIMATIONS */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+      padding: 40px;
+      opacity: 0.6;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <nav>
-    <div class="logo">Anjani Raj</div>
-    <div>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#principles">Principles</a>
-      <a href="#connect">Connect</a>
-    </div>
-  </nav>
-</header>
+<nav>
+  <a href="#about">About</a>
+  <a href="#principles">Principles</a>
+  <a href="#" onclick="openModal()">Connect</a>
+</nav>
 
-<main>
-
-  <section id="home" class="hero reveal">
-    <h1>Anjani Raj</h1>
-    <p>
-      Engineer by instinct. Entrepreneur by action.<br />
+<div class="hero">
+  <div class="hero-content">
+    <h1>Anjani <span>Raj</span></h1>
+    <p class="subtitle">
+      Engineer by instinct. Entrepreneur by action.<br>
       I build quietly, think long-term, and work toward independence.
-      This website is a living identity — not a finished story.
     </p>
 
     <div class="buttons">
-      <a class="button" href="#connect">Connect</a>
-      <a class="button" href="https://github.com/devanjaniraj" target="_blank">GitHub</a>
+      <button class="btn btn-primary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+        Know more
+      </button>
+      <button class="btn btn-outline" onclick="openModal()">
+        Connect
+      </button>
     </div>
-  </section>
+  </div>
+</div>
 
-  <section id="about" class="reveal">
-    <h2>About</h2>
-    <p>
-      I’m driven by the need to build — systems, businesses, and foundations
-      that remove dependency and create long-term freedom.
-    </p>
-    <p>
-      I prefer execution over explanation and results over attention.
-      I work in silence and let outcomes speak.
-    </p>
-  </section>
+<section id="about">
+  <h2>About</h2>
+  <p>
+    I'm driven by the need to build — systems, businesses, and foundations
+    that remove dependency and create long-term freedom.
+  </p>
+  <p>
+    I prefer execution over explanation and results over attention.
+  </p>
+</section>
 
-  <section id="principles" class="reveal">
-    <h2>Principles</h2>
-    <ul>
-      <li>• One life. No rehearsals.</li>
-      <li>• Work to be remembered, not noticed.</li>
-      <li>• Crowds dilute thinking.</li>
-      <li>• The only real competition is myself.</li>
-      <li>• The game is always I vs I.</li>
-    </ul>
-  </section>
-
-  <section id="connect" class="reveal">
-    <h2>Connect</h2>
-    <p>If it makes sense, reach out.</p>
-
-    <div class="connect-buttons">
-      <a class="button" href="https://www.linkedin.com/in/anjaniraj" target="_blank">LinkedIn</a>
-      <a class="button" href="https://discordapp.com/users/1125265439564513315" target="_blank">Discord</a>
-      <a class="button" href="mailto:Kanjanikumar52@gmail.com">Email</a>
-      <a class="button" href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank">WhatsApp</a>
-      <a class="button" href="https://github.com/devanjaniraj" target="_blank">GitHub</a>
-    </div>
-  </section>
-
-</main>
+<section id="principles">
+  <h2>Principles</h2>
+  <p>• One life. No rehearsals.</p>
+  <p>• Work to be remembered, not noticed.</p>
+  <p>• Crowds dilute thinking.</p>
+  <p>• The only real competition is myself.</p>
+  <p>• The game is always I vs I.</p>
+</section>
 
 <footer>
   © 2026 Anjani Raj · Built with intent
 </footer>
 
+<!-- CONNECT MODAL -->
+<div class="modal" id="connectModal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <h3>Connect</h3>
+    <div class="connect-links">
+      <a href="https://www.linkedin.com/in/anjaniraj" target="_blank">LinkedIn</a>
+      <a href="https://github.com/devanjaniraj" target="_blank">GitHub</a>
+      <a href="https://discordapp.com/users/1125265439564513315" target="_blank">Discord</a>
+      <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank">WhatsApp</a>
+      <a href="mailto:Kanjanikumar52@gmail.com">Email</a>
+    </div>
+  </div>
+</div>
+
 <script>
-  const reveals = document.querySelectorAll('.reveal');
+  function openModal() {
+    document.getElementById('connectModal').style.display = 'flex';
+  }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
+  function closeModal(e) {
+    if (e.target.id === 'connectModal') {
+      document.getElementById('connectModal').style.display = 'none';
+    }
+  }
 
-  reveals.forEach(r => observer.observe(r));
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('connectModal').style.display = 'none';
+    }
+  });
 </script>
 
 </body>
