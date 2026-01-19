@@ -5,11 +5,8 @@
 <title>Anjani Raj</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<!-- Icons (LOCKED VERSION) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4I0ZJv5Z6V4bD5e1kJzXw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root{
@@ -62,7 +59,6 @@ body{
   font-weight:500;
   opacity:.75;
   transition:.25s;
-  padding:6px 2px;
 }
 
 .nav a:hover{
@@ -88,7 +84,6 @@ h1{
   font-size:clamp(3.8rem,7vw,6.2rem);
   font-weight:800;
   letter-spacing:-0.05em;
-  line-height:1.03;
 }
 
 .gradient{
@@ -97,10 +92,7 @@ h1{
   -webkit-text-fill-color:transparent;
 }
 
-h2{
-  font-size:2.5rem;
-  margin-bottom:24px;
-}
+h2{font-size:2.5rem;margin-bottom:24px}
 
 p{
   font-size:1.12rem;
@@ -115,7 +107,6 @@ p{
   margin-top:48px;
   display:flex;
   gap:20px;
-  flex-wrap:wrap;
 }
 
 .btn{
@@ -136,29 +127,34 @@ p{
   border:none;
 }
 
-.btn:hover{
-  transform:translateY(-3px);
-}
+.btn:hover{transform:translateY(-3px)}
 
-/* SOCIAL ICONS */
+/* SOCIAL – FIXED */
 .social{
   margin-top:40px;
   display:flex;
-  gap:34px;
+  gap:22px;
   flex-wrap:wrap;
 }
 
 .social a{
-  font-size:30px;
-  color:#fff;
-  opacity:.7;
+  width:56px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  color:#ffffff;
+  font-size:26px;
   transition:.25s;
 }
 
 .social a:hover{
-  opacity:1;
+  background:rgba(108,242,194,.2);
   color:var(--accent);
-  transform:scale(1.25);
+  transform:translateY(-4px) scale(1.1);
 }
 
 /* REVEAL */
@@ -173,7 +169,7 @@ p{
   transform:translateY(0);
 }
 
-/* CURSOR GLOW (DESKTOP ONLY) */
+/* CURSOR GLOW */
 .cursor{
   position:fixed;
   width:18px;
@@ -186,14 +182,12 @@ p{
   z-index:100;
 }
 
-/* FOOTER */
 footer{
   margin-top:160px;
   font-size:.85rem;
   color:#888;
 }
 
-/* MOBILE FIXES */
 @media(max-width:600px){
   section{padding-left:18px}
   .cursor{display:none}
@@ -217,10 +211,7 @@ footer{
 <section id="home">
   <h1>Anjani <span class="gradient">Raj</span></h1>
   <p><strong>Engineer by instinct. Entrepreneur by action.</strong></p>
-  <p>
-    I build quietly, think long-term, and work toward independence.
-    This website is a living identity — not a finished story.
-  </p>
+  <p>I build quietly, think long-term, and work toward independence.</p>
 
   <div class="cta">
     <a href="#connect" class="btn primary">Connect</a>
@@ -230,13 +221,7 @@ footer{
 
 <section id="about" class="reveal">
   <h2>About</h2>
-  <p>
-    I’m driven by the need to build — systems, businesses, and foundations
-    that remove dependency and create long-term freedom.
-  </p>
-  <p>
-    I prefer execution over explanation and results over attention.
-  </p>
+  <p>I’m driven by the need to build systems and businesses that create long-term freedom.</p>
 </section>
 
 <section id="principles" class="reveal">
@@ -244,8 +229,7 @@ footer{
   <p>• One life. No rehearsals.</p>
   <p>• Work to be remembered, not noticed.</p>
   <p>• Crowds dilute thinking.</p>
-  <p>• The only real competition is myself.</p>
-  <p>• The game is always I vs I.</p>
+  <p>• The only competition is myself.</p>
 </section>
 
 <section id="connect" class="reveal">
@@ -253,11 +237,11 @@ footer{
   <p>If it makes sense, reach out.</p>
 
   <div class="social">
-    <a href="https://www.linkedin.com/in/anjaniraj" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/devanjaniraj" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-    <a href="https://discordapp.com/users/1125265439564513315" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
-    <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="mailto:Kanjanikumar52@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://www.linkedin.com/in/anjaniraj" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/devanjaniraj" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://discordapp.com/users/1125265439564513315" target="_blank"><i class="fab fa-discord"></i></a>
+    <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:Kanjanikumar52@gmail.com"><i class="fas fa-envelope"></i></a>
   </div>
 </section>
 
@@ -280,13 +264,11 @@ function revealOnScroll(){
 window.addEventListener('scroll',revealOnScroll);
 revealOnScroll();
 
-/* Cursor glow */
+/* Cursor */
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove',e=>{
-  if(cursor){
-    cursor.style.left=e.clientX+'px';
-    cursor.style.top=e.clientY+'px';
-  }
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
 });
 </script>
 </body>
