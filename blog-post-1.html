@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Building Without Frameworks: Why Simplicity Wins — Anjani Raj</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Exploring why building with pure HTML, CSS, and JavaScript sometimes beats using frameworks. A deep dive into simplicity, performance, and developer sanity.">
+    <meta name="keywords" content="Web Development, Frameworks, HTML5, CSS3, JavaScript, Simplicity, Performance">
+    <meta name="author" content="Anjani Raj">
+    <meta property="og:title" content="Building Without Frameworks: Why Simplicity Wins">
+    <meta property="og:description" content="Exploring why building with pure HTML, CSS, and JavaScript sometimes beats using frameworks.">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNLZP70T21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GNLZP70T21');
+    </script>
+    
+    <style>
+        :root {
+            --bg: #0b0d12;
+            --bg-secondary: #1a1d26;
+            --text: #ffffff;
+            --text-secondary: #e0e0e0;
+            --muted: #cfcfcf;
+            --accent: #6cf2c2;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(255,255,255,.04);
+            --card-border: rgba(255,255,255,.06);
+        }
+
+        html[data-theme="light"] {
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text: #1a1a1a;
+            --text-secondary: #333333;
+            --muted: #666666;
+            --accent: #00a876;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(0,0,0,.04);
+            --card-border: rgba(0,0,0,.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        article {
+            padding: 4rem 0;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .article-excerpt {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            color: var(--text-secondary);
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: rgba(108,242,194,0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight strong {
+            color: var(--accent);
+        }
+
+        code {
+            background: var(--card-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: var(--text);
+        }
+
+        .article-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .related-posts {
+            margin-top: 2rem;
+        }
+
+        .related-post {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .related-post:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .related-post-title {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-post-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 0.75rem 1.25rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            article {
+                padding: 2rem 0;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <a href="/" style="font-weight: 700; font-size: 1.1rem; color: var(--accent);">AR</a>
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <div class="container fade-in">
+        <a href="/blog.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+        </a>
+
+        <article>
+            <div class="article-header">
+                <h1>Building Without Frameworks: Why Simplicity Wins</h1>
+                <p class="article-excerpt">A deep dive into why sometimes the best solution is not another framework, but pure HTML, CSS, and JavaScript. Exploring performance, maintainability, and developer happiness.</p>
+                
+                <div class="article-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <time datetime="2026-01-15">January 15, 2026</time>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        8 min read
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-tag"></i>
+                        Philosophy
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-content">
+                <h2>The Framework Paradox</h2>
+                <p>We live in an era of abundance when it comes to web frameworks. React, Vue, Angular, Svelte, Astro—the list goes on. Each promises to solve problems, increase productivity, and make development easier. But what if the problem isn't the lack of a framework, but the framework itself?</p>
+
+                <p>I've spent the last five years working with various frameworks, and I've learned something valuable: not every project needs one. Sometimes, the best solution is the simplest one.</p>
+
+                <h2>The Hidden Cost of Frameworks</h2>
+                <p>When you adopt a framework, you're not just adding a library to your project. You're committing to:</p>
+                <ul>
+                    <li><strong>Learning curve</strong> - New developers need to learn framework-specific patterns and conventions</li>
+                    <li><strong>Build complexity</strong> - Webpack, Babel, TypeScript configurations that feel like magic</li>
+                    <li><strong>Dependency management</strong> - Keeping dozens of packages up-to-date and handling breaking changes</li>
+                    <li><strong>Bundle size</strong> - Even minimal frameworks add kilobytes to your payload</li>
+                    <li><strong>Vendor lock-in</strong> - Migrating away becomes exponentially harder as your codebase grows</li>
+                </ul>
+
+                <div class="highlight">
+                    <strong>The paradox:</strong> The more we optimize for development speed, the more we complicate deployment and maintenance.
+                </div>
+
+                <h2>When Simple is Sufficient</h2>
+                <p>Consider this: my personal portfolio site (<a href="https://anjaniraj.live" style="color: var(--accent);">anjaniraj.live</a>) is built with pure HTML, CSS, and JavaScript. It's fast, responsive, and has every feature a modern portfolio needs:</p>
+                <ul>
+                    <li>Dark/light theme toggle with localStorage persistence</li>
+                    <li>Responsive design for mobile, tablet, and desktop</li>
+                    <li>Contact form with real validation</li>
+                    <li>Newsletter signup integration</li>
+                    <li>GitHub stats dashboard fetching real-time data</li>
+                    <li>Smooth animations and transitions</li>
+                    <li>Full accessibility support</li>
+                </ul>
+
+                <p>Total size: <strong>41 KB</strong>. No build process. No dependencies. No framework drama.</p>
+
+                <h2>The JavaScript You Need to Know</h2>
+                <p>Modern JavaScript (ES6+) is incredibly powerful. You don't need React's virtual DOM abstraction to:</p>
+                <ul>
+                    <li>Manage state with localStorage and data attributes</li>
+                    <li>Handle dynamic UI updates with <code>innerHTML</code> and <code>appendChild</code></li>
+                    <li>Create responsive layouts with CSS Grid and Flexbox</li>
+                    <li>Fetch and process API data with <code>fetch()</code></li>
+                    <li>Build smooth animations with CSS transitions and JavaScript timing</li>
+                </ul>
+
+                <p>The key insight: JavaScript's native APIs have improved dramatically. What required jQuery 10 years ago, you can now do with vanilla JavaScript more elegantly.</p>
+
+                <h2>Performance Matters</h2>
+                <p>Let's talk metrics. A minimal React app, even with code splitting, typically loads at:</p>
+                <ul>
+                    <li>React library: ~40 KB (minified + gzipped)</li>
+                    <li>App code: ~20-50 KB</li>
+                    <li>Other dependencies: ~50+ KB</li>
+                    <li><strong>Total: 110+ KB minimum</strong></li>
+                </ul>
+
+                <p>A vanilla JavaScript site with similar features:</p>
+                <ul>
+                    <li>HTML: ~15 KB</li>
+                    <li>CSS: ~10 KB</li>
+                    <li>JavaScript: ~8 KB</li>
+                    <li><strong>Total: 33 KB</strong></li>
+                </ul>
+
+                <p>That's a 3x size difference. On a 4G connection, that matters.</p>
+
+                <div class="highlight">
+                    <strong>Speed insight:</strong> The fastest code is the code you don't ship. Less JavaScript means faster page loads, better SEO, and happier users.
+                </div>
+
+                <h2>Maintainability Without Magic</h2>
+                <p>Here's what I've learned about maintainability: code you understand is code you can maintain. When you write vanilla JavaScript, there's no "magic" happening behind the scenes. What you see is what you get.</p>
+
+                <p>Compare debugging experiences:</p>
+                <ul>
+                    <li><strong>Framework:</strong> "Why isn't my component re-rendering?" → Check React DevTools → Check lifecycle methods → Check hooks dependency arrays → ???</li>
+                    <li><strong>Vanilla:</strong> "Why isn't my DOM updating?" → Add event listener → Update DOM → Test → Done</li>
+                </ul>
+
+                <p>Simplicity is a debugging superpower.</p>
+
+                <h2>When Frameworks Make Sense</h2>
+                <p>I'm not anti-framework. Large single-page applications with complex state management absolutely benefit from React or Vue. When you have:</p>
+                <ul>
+                    <li>Thousands of lines of JavaScript logic</li>
+                    <li>Complex state that changes frequently</li>
+                    <li>Team of multiple developers needing shared patterns</li>
+                    <li>Need for component reusability across projects</li>
+                </ul>
+
+                <p>...then frameworks shine. They provide structure, tooling, and a common language for teams.</p>
+
+                <p>But for most websites, blogs, landing pages, and even moderately complex applications? Vanilla JavaScript is not only sufficient—it's superior.</p>
+
+                <h2>The Future is Simple</h2>
+                <p>I see a trend emerging: developers are rediscovering the power of simplicity. Projects like HTMX, Alpine.js, and Astro are gaining traction because they embrace a hybrid approach—adding just enough abstraction where it helps, but keeping the fundamentals simple.</p>
+
+                <p>The future isn't about finding the perfect framework. It's about finding the minimal viable solution that solves your specific problem.</p>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li>Every framework has a cost—evaluate if the benefits outweigh it</li>
+                    <li>Modern vanilla JavaScript is powerful enough for most use cases</li>
+                    <li>Simpler code = easier to maintain, debug, and scale</li>
+                    <li>Performance matters, and fewer dependencies mean faster delivery</li>
+                    <li>Choose frameworks intentionally, not by default</li>
+                </ul>
+
+                <p style="margin-top: 2rem; font-style: italic; color: var(--text-secondary);">The best code is the code that solves problems without creating new ones. Sometimes that's a framework. Often, it's not.</p>
+            </div>
+
+            <div class="article-footer">
+                <h3>Share This Article</h3>
+                <div class="share-buttons">
+                    <a href="https://twitter.com/intent/tweet?url=https://anjaniraj.live/blog/building-without-frameworks&text=Building%20Without%20Frameworks:%20Why%20Simplicity%20Wins" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    <a href="https://linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog/building-without-frameworks" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://anjaniraj.live/blog/building-without-frameworks" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                </div>
+
+                <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Related Articles</h3>
+                <div class="related-posts">
+                    <a href="/blog/clean-code-future-you" class="related-post">
+                        <div class="related-post-title">Clean Code Isn't About Perfect Code—It's About Future You</div>
+                        <div class="related-post-excerpt">Why code clarity matters more than cleverness, and how to write code that your future self will thank you for.</div>
+                    </a>
+                    <a href="/blog/entrepreneurial-engineer" class="related-post">
+                        <div class="related-post-title">The Entrepreneurial Engineer: Building Systems for Freedom</div>
+                        <div class="related-post-excerpt">How technical skills and business thinking complement each other in building products people want.</div>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>© 2026 Anjani Raj. Built with code, coffee, and curiosity.</p>
+        <p style="font-size: 0.85rem; margin-top: 1rem;">
+            <a href="/" style="color: var(--accent); text-decoration: none;">Home</a> • 
+            <a href="/blog.html" style="color: var(--accent); text-decoration: none;">Blog</a> • 
+            <a href="https://github.com/devanjaniraj/anjaniraj.live" style="color: var(--accent); text-decoration: none;">View Source</a>
+        </p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeToggleIcon();
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggleIcon();
+        });
+
+        function updateThemeToggleIcon() {
+            const theme = htmlElement.getAttribute('data-theme');
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        // Track page view
+        if (window.gtag) {
+            gtag('event', 'page_view', { page_path: '/blog/building-without-frameworks' });
+        }
+    </script>
+</body>
+</html>
