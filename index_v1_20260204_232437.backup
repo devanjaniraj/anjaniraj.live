@@ -24,28 +24,13 @@
 <style>
 :root {
   --bg: #0b0d12;
-  --bg-secondary: #1a1d26;
   --text: #ffffff;
-  --text-secondary: #e0e0e0;
   --muted: #cfcfcf;
   --accent: #6cf2c2;
   --accent-dark: #059b7a;
   --card-bg: rgba(255,255,255,.04);
   --card-border: rgba(255,255,255,.06);
   --success: #10b981;
-  --error: #ef4444;
-}
-
-html[data-theme="light"] {
-  --bg: #ffffff;
-  --bg-secondary: #f5f5f5;
-  --text: #1a1a1a;
-  --text-secondary: #333333;
-  --muted: #666666;
-  --accent: #00a876;
-  --accent-dark: #059b7a;
-  --card-bg: rgba(0,0,0,.04);
-  --card-border: rgba(0,0,0,.1);
 }
 
 * {
@@ -63,9 +48,9 @@ body {
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
-  transition: background .3s, color .3s;
 }
 
+/* BACKGROUND */
 .bg {
   position: fixed;
   inset: 0;
@@ -77,18 +62,12 @@ body {
   animation: slowZoom 40s ease-in-out infinite alternate;
 }
 
-html[data-theme="light"] .bg {
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(0,168,118,.08), transparent 40%),
-    linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.98)),
-    url('hero.jpg') center/cover no-repeat;
-}
-
 @keyframes slowZoom {
   from { transform: scale(1); }
   to { transform: scale(1.08); }
 }
 
+/* NAV */
 .nav {
   position: fixed;
   top: 24px;
@@ -97,7 +76,6 @@ html[data-theme="light"] .bg {
   gap: 26px;
   z-index: 10;
   flex-wrap: wrap;
-  align-items: center;
 }
 
 .nav a {
@@ -114,27 +92,7 @@ html[data-theme="light"] .bg {
   color: var(--accent);
 }
 
-.theme-toggle {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  backdrop-filter: blur(12px);
-  color: var(--text);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  transition: .25s;
-}
-
-.theme-toggle:hover {
-  background: rgba(255,255,255,.08);
-  color: var(--accent);
-}
-
+/* LAYOUT */
 .container {
   max-width: 1100px;
   margin: auto;
@@ -149,6 +107,11 @@ section {
   padding-left: 32px;
 }
 
+section:first-of-type {
+  margin-top: 0;
+}
+
+/* TYPOGRAPHY */
 h1 {
   font-size: clamp(3.8rem, 7vw, 6.2rem);
   font-weight: 800;
@@ -183,6 +146,7 @@ p {
   margin-top: 18px;
 }
 
+/* CTA */
 .cta {
   margin-top: 48px;
   display: flex;
@@ -195,7 +159,7 @@ p {
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.25);
   background: rgba(255,255,255,.04);
-  color: var(--text);
+  color: #fff;
   text-decoration: none;
   font-weight: 600;
   backdrop-filter: blur(10px);
@@ -219,66 +183,7 @@ p {
   background: var(--accent-dark);
 }
 
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--card-border);
-  background: var(--card-bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  backdrop-filter: blur(10px);
-  transition: .25s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: rgba(108,242,194,.05);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.form-message {
-  padding: 16px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  display: none;
-}
-
-.form-message.success {
-  background: rgba(16,185,129,.1);
-  color: var(--success);
-  border: 1px solid rgba(16,185,129,.3);
-}
-
-.form-message.error {
-  background: rgba(239,68,68,.1);
-  color: var(--error);
-  border: 1px solid rgba(239,68,68,.3);
-}
-
-.form-message.show {
-  display: block;
-}
-
+/* SOCIAL */
 .social {
   margin-top: 40px;
   display: flex;
@@ -307,6 +212,7 @@ p {
   transform: translateY(-4px) scale(1.1);
 }
 
+/* STATS GRID */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -343,6 +249,7 @@ p {
   margin-top: 12px;
 }
 
+/* PROJECTS GRID */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -403,6 +310,7 @@ p {
   border: 1px solid rgba(108,242,194,.2);
 }
 
+/* SKILLS */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -442,6 +350,48 @@ p {
   font-weight: bold;
 }
 
+/* TIMELINE */
+.timeline {
+  margin-top: 48px;
+}
+
+.timeline-item {
+  padding: 28px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  background: var(--card-bg);
+  border-left: 3px solid var(--accent);
+  backdrop-filter: blur(12px);
+  transition: .25s;
+}
+
+.timeline-item:hover {
+  background: rgba(255,255,255,.08);
+  border-left-color: #8fd3ff;
+}
+
+.timeline-year {
+  font-size: .9rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.timeline-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.timeline-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* REVEAL */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -453,6 +403,7 @@ p {
   transform: translateY(0);
 }
 
+/* CURSOR GLOW */
 .cursor {
   position: fixed;
   width: 18px;
@@ -478,6 +429,7 @@ footer p {
   margin: 8px 0;
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .container {
     padding: 120px 16px;
@@ -562,6 +514,7 @@ footer p {
   section {
     padding-left: 12px;
     margin-bottom: 100px;
+    border-left-width: 2px;
   }
 
   .nav {
@@ -585,6 +538,7 @@ footer p {
 }
 </style>
 
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNLZP70T21"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -600,32 +554,33 @@ footer p {
 <div class="cursor" id="cursor"></div>
 
 <div class="nav">
-  <a href="/">Home</a>
-  <a href="/">Stats</a>
-  <a href="/projects.html">Projects</a>
-  <a href="/blog.html">Blog</a>
+  <a href="#home">Home</a>
+  <a href="#stats">Stats</a>
   <a href="#work">Work</a>
   <a href="#skills">Skills</a>
   <a href="#about">About</a>
   <a href="#connect">Connect</a>
-  <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode"><i class="fas fa-moon"></i></button>
 </div>
 
 <div class="container">
 
+<!-- HERO SECTION -->
 <section id="home">
   <h1>Anjani <span class="gradient">Raj</span></h1>
   <p><strong>Engineer by instinct. Entrepreneur by action.</strong></p>
   <p>I build quietly, think long-term, and work toward independence. Specialized in full-stack web development, automation, and scalable systems.</p>
+  
   <div class="cta">
     <a href="#connect" class="btn primary">Let's Connect</a>
     <a href="#work" class="btn">View My Work</a>
   </div>
 </section>
 
+<!-- STATS SECTION -->
 <section id="stats" class="reveal">
   <h2>By The Numbers</h2>
-  <p>A snapshot of my contributions and impact.</p>
+  <p>A snapshot of my contributions and impact in tech and entrepreneurship.</p>
+  
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-number">20+</div>
@@ -646,34 +601,38 @@ footer p {
   </div>
 </section>
 
+<!-- FEATURED WORK SECTION -->
 <section id="work" class="reveal">
   <h2>Featured Projects</h2>
-  <p>Building tools and solutions that solve real problems.</p>
+  <p>Building tools and solutions that solve real problems with clean code and thoughtful design.</p>
+  
   <div class="projects-grid">
     <div class="project-card">
       <div class="project-icon"><i class="fas fa-globe"></i></div>
       <div class="project-title">Anjani Raj Live</div>
-      <div class="project-desc">Personal portfolio with clean design. Pure HTML, CSS, and JavaScript.</div>
+      <div class="project-desc">Personal portfolio and digital identity. Clean, minimal design with no frameworks. Pure HTML, CSS, and JavaScript.</div>
       <div class="project-tags">
         <span class="tag">HTML5</span>
         <span class="tag">CSS3</span>
         <span class="tag">GitHub Pages</span>
       </div>
     </div>
+
     <div class="project-card">
       <div class="project-icon"><i class="fas fa-calculator"></i></div>
       <div class="project-title">Engineering Calculator Pro</div>
-      <div class="project-desc">Web calculator with scientific functions, dark mode, and unit conversions.</div>
+      <div class="project-desc">Modern web-based calculator with scientific functions, dark mode, and unit conversions. Optimized for GitHub Pages deployment.</div>
       <div class="project-tags">
         <span class="tag">Web App</span>
         <span class="tag">JavaScript</span>
         <span class="tag">PWA</span>
       </div>
     </div>
+
     <div class="project-card">
       <div class="project-icon"><i class="fas fa-tools"></i></div>
       <div class="project-title">Developer Environment Setup</div>
-      <div class="project-desc">PowerShell automation for complete developer stack configuration.</div>
+      <div class="project-desc">Professional developer environment automation for Windows. PowerShell-based setup that configures the complete dev stack.</div>
       <div class="project-tags">
         <span class="tag">PowerShell</span>
         <span class="tag">Automation</span>
@@ -683,9 +642,11 @@ footer p {
   </div>
 </section>
 
+<!-- SKILLS SECTION -->
 <section id="skills" class="reveal">
   <h2>Skills & Tech Stack</h2>
-  <p>A diverse toolkit built through solving complex problems.</p>
+  <p>A diverse toolkit built through years of solving complex problems and shipping products.</p>
+  
   <div class="skills-grid">
     <div class="skill-category">
       <h4><i class="fas fa-code"></i> Web Development</h4>
@@ -694,6 +655,7 @@ footer p {
       <div class="skill-item">JavaScript & ES6+</div>
       <div class="skill-item">React & Modern Frameworks</div>
     </div>
+
     <div class="skill-category">
       <h4><i class="fas fa-database"></i> Backend</h4>
       <div class="skill-item">Node.js & Express</div>
@@ -701,6 +663,7 @@ footer p {
       <div class="skill-item">REST APIs & GraphQL</div>
       <div class="skill-item">Cloud Services & DevOps</div>
     </div>
+
     <div class="skill-category">
       <h4><i class="fas fa-tools"></i> Tools & Systems</h4>
       <div class="skill-item">Git & Version Control</div>
@@ -708,6 +671,7 @@ footer p {
       <div class="skill-item">Linux & Command Line</div>
       <div class="skill-item">Automation & CI/CD</div>
     </div>
+
     <div class="skill-category">
       <h4><i class="fas fa-brain"></i> Soft Skills</h4>
       <div class="skill-item">Problem Solving</div>
@@ -718,71 +682,47 @@ footer p {
   </div>
 </section>
 
+<!-- ABOUT SECTION -->
 <section id="about" class="reveal">
   <h2>About Me</h2>
+  
   <h3>Philosophy</h3>
   <p>I'm driven by the need to build systems and businesses that create long-term freedom. I believe in working with intent, thinking deeply, and shipping solutions that matter.</p>
+
   <h3 style="margin-top: 32px;">Principles</h3>
   <p style="margin-top: 16px;">• <strong>One life. No rehearsals.</strong> Every decision counts.</p>
   <p style="margin-top: 8px;">• <strong>Work to be remembered, not noticed.</strong> Impact over visibility.</p>
   <p style="margin-top: 8px;">• <strong>Crowds dilute thinking.</strong> Deep work requires focus.</p>
-  <p style="margin-top: 8px;">• <strong>The only competition is myself.</strong> Comparing is a losing game.</p>
+  <p style="margin-top: 8px;">• <strong>The only competition is myself.</strong> Comparing yourself to others is a losing game.</p>
+
   <h3 style="margin-top: 32px;">What I Do</h3>
-  <p>I design and build web applications, tools, and systems. I specialize in creating clean, scalable, and user-friendly solutions.</p>
+  <p>I design and build web applications, tools, and systems. I specialize in creating solutions that are clean, scalable, and user-friendly. I also help teams understand complex technical concepts and make better architectural decisions.</p>
+
+  <h3 style="margin-top: 32px;">My Approach</h3>
+  <p>Simplicity is harder than complexity. I focus on stripping away the unnecessary, building with intention, and creating solutions that will still make sense 5 years from now.</p>
 </section>
 
+<!-- CONNECT SECTION -->
 <section id="connect" class="reveal">
-  <h2>Get In Touch</h2>
-  <p>Interested in working together or just want to chat? Reach out.</p>
-  
-  <div style="margin-top: 40px;">
-    <h3>Send Me A Message</h3>
-    <form id="contactForm" method="POST" style="max-width: 600px; margin-top: 20px;">
-      <div id="formMessage" class="form-message"></div>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required placeholder="Your name">
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required placeholder="your@email.com">
-      </div>
-      <div class="form-group">
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" placeholder="What's this about?">
-      </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required placeholder="Your message..."></textarea>
-      </div>
-      <button type="submit" class="btn primary">Send Message</button>
-    </form>
+  <h2>Let's Connect</h2>
+  <p>I'm always interested in meaningful conversations about technology, entrepreneurship, and building systems for freedom.</p>
+
+  <h3 style="margin-top: 32px;">Reach Out</h3>
+  <p style="margin-top: 16px;">Email me at <strong>Kanjanikumar52@gmail.com</strong> or send a message through any of these platforms:</p>
+
+  <div class="social">
+    <a href="https://www.linkedin.com/in/anjaniraj" target="_blank" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/devanjaniraj" target="_blank" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://discordapp.com/users/112526543956451331" target="_blank" title="Discord" aria-label="Discord"><i class="fab fa-discord"></i></a>
+    <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:Kanjanikumar52@gmail.com" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
   </div>
 
-  <div style="margin-top: 60px;">
-    <h3>Stay Updated</h3>
-    <form id="newsletterForm" style="max-width: 600px; margin-top: 20px;">
-      <div id="newsletterMessage" class="form-message"></div>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <input type="email" id="newsletterEmail" placeholder="your@email.com" required style="flex: 1; min-width: 250px; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--card-border); background: var(--card-bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 1rem;">
-        <button type="submit" class="btn primary" style="white-space: nowrap;">Subscribe</button>
-      </div>
-    </form>
-  </div>
-
-  <div style="margin-top: 60px;">
-    <h3>Direct Contact</h3>
-    <p style="margin-top: 12px; margin-bottom: 24px;">Email: <strong>Kanjanikumar52@gmail.com</strong></p>
-    <div class="social">
-      <a href="https://www.linkedin.com/in/anjaniraj" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/devanjaniraj" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://discordapp.com/users/112526543956451331" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
-      <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="mailto:Kanjanikumar52@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-    </div>
-  </div>
+  <h3 style="margin-top: 48px;">What to Expect</h3>
+  <p style="margin-top: 16px;">Quick response times • Thoughtful conversations • Genuine interest in your ideas and challenges • Open to collaboration and mentorship opportunities</p>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <p>© 2026 Anjani Raj · Built with intent and clean code</p>
   <p>No frameworks. No bloat. Just purposeful engineering.</p>
@@ -791,25 +731,7 @@ footer p {
 </div>
 
 <script>
-const themeToggle = document.getElementById('themeToggle');
-const htmlElement = document.documentElement;
-const savedTheme = localStorage.getItem('theme') || 'dark';
-
-htmlElement.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
-
-themeToggle.addEventListener('click', () => {
-  const currentTheme = htmlElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  htmlElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon(newTheme);
-});
-
-function updateThemeIcon(theme) {
-  themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-}
-
+/* Scroll reveal */
 const reveals = document.querySelectorAll('.reveal');
 
 function revealOnScroll() {
@@ -823,12 +745,14 @@ function revealOnScroll() {
 window.addEventListener('scroll', revealOnScroll);
 revealOnScroll();
 
+/* Cursor glow */
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
   cursor.style.left = e.clientX + 'px';
   cursor.style.top = e.clientY + 'px';
 });
 
+/* Smooth scroll for anchor links */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -838,72 +762,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
-const contactForm = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
-
-contactForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formspreeId = 'mqzqzyrl';
-  contactForm.action = `https://formspree.io/f/${formspreeId}`;
-  
-  try {
-    const formData = new FormData(contactForm);
-    const response = await fetch(contactForm.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      formMessage.textContent = 'Message sent! I will get back to you soon.';
-      formMessage.className = 'form-message success show';
-      contactForm.reset();
-      setTimeout(() => formMessage.classList.remove('show'), 5000);
-    } else {
-      throw new Error('Failed');
-    }
-  } catch (error) {
-    formMessage.textContent = 'Error sending message. Please try email.';
-    formMessage.className = 'form-message error show';
-    setTimeout(() => formMessage.classList.remove('show'), 5000);
-  }
-});
-
-const newsletterForm = document.getElementById('newsletterForm');
-const newsletterMessage = document.getElementById('newsletterMessage');
-const newsletterEmail = document.getElementById('newsletterEmail');
-
-newsletterForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = newsletterEmail.value;
-  
-  try {
-    const response = await fetch('https://formspree.io/f/mqzqzyrl', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: email,
-        _subject: 'Newsletter Signup'
-      }),
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-    if (response.ok) {
-      newsletterMessage.textContent = 'Thanks for subscribing! Check your email.';
-      newsletterMessage.className = 'form-message success show';
-      newsletterEmail.value = '';
-      setTimeout(() => newsletterMessage.classList.remove('show'), 5000);
-    } else {
-      throw new Error('Failed');
-    }
-  } catch (error) {
-    newsletterMessage.textContent = 'Signup failed. Please try again.';
-    newsletterMessage.className = 'form-message error show';
-    setTimeout(() => newsletterMessage.classList.remove('show'), 5000);
-  }
-});
 </script>
 
 </body>
 </html>
-
