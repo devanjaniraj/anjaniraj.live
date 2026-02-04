@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Blog - Anjani Raj</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Thoughts on engineering, entrepreneurship, and building systems for freedom.">
+<meta name="author" content="Anjani Raj">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+
+<style>
+:root {
+  --bg: #0b0d12;
+  --text: #ffffff;
+  --muted: #cfcfcf;
+  --accent: #6cf2c2;
+  --card-bg: rgba(255,255,255,.04);
+  --card-border: rgba(255,255,255,.06);
+}
+
+html[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #666666;
+  --accent: #00a876;
+  --card-bg: rgba(0,0,0,.04);
+  --card-border: rgba(0,0,0,.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background .3s, color .3s;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(108,242,194,.08), transparent 40%),
+    linear-gradient(180deg, rgba(11,13,18,.95), rgba(11,13,18,.98));
+  z-index: -1;
+}
+
+html[data-theme="light"] .bg {
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0,168,118,.05), transparent 40%),
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.99));
+}
+
+.nav {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  gap: 26px;
+  z-index: 10;
+  align-items: center;
+}
+
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  opacity: .75;
+  transition: .25s;
+}
+
+.nav a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.theme-toggle {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: .25s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,.08);
+  color: var(--accent);
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 120px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 32px;
+  letter-spacing: -0.05em;
+}
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.blog-post {
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  transition: .25s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.blog-post:hover {
+  background: rgba(255,255,255,.08);
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.blog-date {
+  font-size: .9rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.blog-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.blog-excerpt {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.blog-meta {
+  display: flex;
+  gap: 16px;
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.blog-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  color: var(--accent);
+  font-weight: 600;
+  transition: .25s;
+}
+
+.blog-post:hover .read-more {
+  gap: 12px;
+}
+
+footer {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid var(--card-border);
+  font-size: .85rem;
+  color: #888;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .blog-post {
+    padding: 24px;
+  }
+
+  .blog-title {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    padding: 100px 16px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+<div class="bg"></div>
+
+<div class="nav">
+  <a href="/">← Back Home</a>
+  <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+</div>
+
+<div class="container">
+
+<h1>Blog</h1>
+<p style="font-size: 1.1rem; color: var(--muted); max-width: 700px; margin-bottom: 32px;">
+  Thoughts on engineering, entrepreneurship, and building systems for long-term freedom.
+</p>
+
+<div class="blog-list">
+
+<!-- BLOG POST 1 -->
+<a href="#post-1" class="blog-post" onclick="showPost(event, 'post-1')">
+  <div class="blog-date">February 2026</div>
+  <div class="blog-title">Building Without Frameworks: Why Simplicity Wins</div>
+  <div class="blog-excerpt">Exploring the philosophy of minimalist development. Why I build with pure HTML, CSS, and JavaScript instead of heavy frameworks—and why you might want to try it too.</div>
+  <div class="blog-meta">
+    <span><i class="fas fa-clock"></i> 8 min read</span>
+    <span><i class="fas fa-tag"></i> Philosophy</span>
+  </div>
+  <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
+</a>
+
+<!-- BLOG POST 2 -->
+<a href="#post-2" class="blog-post" onclick="showPost(event, 'post-2')">
+  <div class="blog-date">January 2026</div>
+  <div class="blog-title">5 Years of Engineering: Lessons I Learned the Hard Way</div>
+  <div class="blog-excerpt">A reflective piece on five years in tech. The mistakes that shaped my approach, the wins that mattered, and what I'd tell my past self.</div>
+  <div class="blog-meta">
+    <span><i class="fas fa-clock"></i> 12 min read</span>
+    <span><i class="fas fa-tag"></i> Career</span>
+  </div>
+  <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
+</a>
+
+<!-- BLOG POST 3 -->
+<a href="#post-3" class="blog-post" onclick="showPost(event, 'post-3')">
+  <div class="blog-date">December 2025</div>
+  <div class="blog-title">The Entrepreneurial Engineer: Building Systems for Freedom</div>
+  <div class="blog-excerpt">Why engineers make great entrepreneurs. The overlap between technical problem-solving and business building. Creating sustainable income through software.</div>
+  <div class="blog-meta">
+    <span><i class="fas fa-clock"></i> 10 min read</span>
+    <span><i class="fas fa-tag"></i> Entrepreneurship</span>
+  </div>
+  <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
+</a>
+
+<!-- BLOG POST 4 -->
+<a href="#post-4" class="blog-post" onclick="showPost(event, 'post-4')">
+  <div class="blog-date">November 2025</div>
+  <div class="blog-title">Clean Code Isn't About Perfect Code—It's About Future You</div>
+  <div class="blog-excerpt">A practical guide to writing code that matters. Making decisions today that your future self (and your team) will thank you for tomorrow.</div>
+  <div class="blog-meta">
+    <span><i class="fas fa-clock"></i> 9 min read</span>
+    <span><i class="fas fa-tag"></i> Development</span>
+  </div>
+  <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
+</a>
+
+<!-- BLOG POST 5 -->
+<a href="#post-5" class="blog-post" onclick="showPost(event, 'post-5')">
+  <div class="blog-date">October 2025</div>
+  <div class="blog-title">One Life. No Rehearsals. How I Approach Decision Making</div>
+  <div class="blog-excerpt">Personal philosophy about making decisions when the stakes matter. Trade-offs, regrets, and the principle that guides my biggest choices.</div>
+  <div class="blog-meta">
+    <span><i class="fas fa-clock"></i> 7 min read</span>
+    <span><i class="fas fa-tag"></i> Personal</span>
+  </div>
+  <div class="read-more">Read Article <i class="fas fa-arrow-right"></i></div>
+</a>
+
+</div>
+
+<footer>
+  <p>© 2026 Anjani Raj · All thoughts are my own</p>
+</footer>
+
+</div>
+
+<script>
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+const savedTheme = localStorage.getItem('theme') || 'dark';
+
+htmlElement.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const currentTheme = htmlElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  htmlElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+});
+
+function updateThemeIcon(theme) {
+  themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+}
+
+function showPost(e, postId) {
+  e.preventDefault();
+  alert('Full blog post content would load here.\n\nPost: ' + postId + '\n\nThis is a placeholder for the blog infrastructure.');
+}
+</script>
+
+</body>
+</html>
