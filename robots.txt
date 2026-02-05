@@ -2,3 +2,6 @@
 Allow: /
 
 Sitemap: https://anjaniraj.live/sitemap.xml
+
+# Crawl delay to be respectful to server
+Crawl-delay: 1

@@ -1,20 +1,52 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Anjani Raj — Engineer, Entrepreneur, Builder</title>
+<title>Anjani Raj - Engineer & Entrepreneur Building for Independence</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Anjani Raj - Full-stack engineer and entrepreneur building systems for sustainable freedom. 5+ years experience, 20+ projects, proven track record.">
-<meta name="keywords" content="Engineer, Entrepreneur, Full Stack Developer, Builder, Tech">
-<meta property="og:title" content="Anjani Raj — Engineer by instinct. Entrepreneur by action.">
-<meta property="og:description" content="Building systems and businesses for sustainable freedom.">
-<meta property="og:image" content="https://anjaniraj.live/hero.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Anjani Raj - Engineer by instinct, entrepreneur by action. Building systems and businesses for long-term freedom and independence." />
+<meta name="keywords" content="engineer, entrepreneur, technology, business, innovation" />
+<meta name="author" content="Anjani Raj" />
+<meta name="theme-color" content="#0b0d12" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://anjaniraj.live/" />
+
+<!-- Open Graph / Social Meta Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://anjaniraj.live/" />
+<meta property="og:title" content="Anjani Raj - Engineer & Entrepreneur" />
+<meta property="og:description" content="Engineer by instinct, entrepreneur by action. Building systems and businesses for long-term freedom." />
+<meta property="og:image" content="https://anjaniraj.live/hero.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="https://anjaniraj.live/" />
+<meta name="twitter:title" content="Anjani Raj - Engineer & Entrepreneur" />
+<meta name="twitter:description" content="Engineer by instinct, entrepreneur by action. Building for independence." />
+<meta name="twitter:image" content="https://anjaniraj.live/hero.jpg" />
+
+<!-- PWA Meta Tags -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Anjani Raj" />
+
+<!-- Preconnect for Performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3H5NxgLHoV2TL2kDd0lWWJu0dYX7HLMlP2tXWqGS3lzCsjeFaY5d5Y2dGE9HEdlA0v2xnZglWGTg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<!-- Manifest for PWA -->
+<link rel="manifest" href="/manifest.json" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 120%22><rect fill=%22%236cf2c2%22 width=%22120%22 height=%22120%22/><text x=%2260%22 y=%2275%22 font-size=%2260%22 font-weight=%22bold%22 fill=%22%230b0d12%22 text-anchor=%22middle%22 font-family=%22Arial%22>A</text></svg>" />
 
 <style>
 :root{
@@ -22,120 +54,407 @@
   --text:#ffffff;
   --muted:#cfcfcf;
   --accent:#6cf2c2;
-  --accent-dark:#059b7a;
-  --card-bg:rgba(255,255,255,.04);
-  --card-border:rgba(255,255,255,.06);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'\''Inter'\'',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 
-.bg{position:fixed;inset:0;background:radial-gradient(circle at 20% 20%, rgba(108,242,194,.12), transparent 40%),linear-gradient(180deg, rgba(11,13,18,.9), rgba(11,13,18,.97)),url('\''hero.jpg'\'') center/cover no-repeat;z-index:-1;animation:slowZoom 40s ease-in-out infinite alternate}
-@keyframes slowZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
-
-.nav{position:fixed;top:24px;right:24px;display:flex;gap:26px;z-index:10;flex-wrap:wrap}
-.nav a{color:var(--text);text-decoration:none;font-weight:500;opacity:.75;transition:.25s;font-size:.95rem}
-.nav a:hover{opacity:1;color:var(--accent)}
-
-.container{max-width:1100px;margin:auto;padding:160px 24px;position:relative;z-index:1}
-section{margin-bottom:180px;border-left:2px solid var(--card-border);padding-left:32px}
-
-h1{font-size:clamp(3.8rem,7vw,6.2rem);font-weight:800;letter-spacing:-0.05em}
-.gradient{background:linear-gradient(90deg,var(--accent),#8fd3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-h2{font-size:2.5rem;margin-bottom:24px;font-weight:700}
-h3{font-size:1.3rem;font-weight:600;margin-top:16px;color:var(--text)}
-p{font-size:1.12rem;line-height:1.75;color:var(--muted);max-width:760px;margin-top:18px}
-
-.cta{margin-top:48px;display:flex;gap:20px;flex-wrap:wrap}
-.btn{padding:15px 28px;border-radius:14px;border:1px solid rgba(255,255,255,.25);background:var(--card-bg);color:var(--text);text-decoration:none;font-weight:600;backdrop-filter:blur(10px);transition:.25s;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-size:.95rem}
-.btn.primary{background:var(--accent);color:#000;border:none}
-.btn:hover{transform:translateY(-3px)}
-.btn:focus{outline:2px solid var(--accent);outline-offset:2px}
-
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:24px;margin:40px 0}
-.stat-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;text-align:center;backdrop-filter:blur(10px);transition:.3s}
-.stat-card:hover{background:rgba(108,242,194,.08);border-color:rgba(108,242,194,.3)}
-.stat-number{font-size:2.5rem;font-weight:800;color:var(--accent);margin-bottom:8px}
-.stat-label{font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-
-.project-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:24px;margin:40px 0}
-.project-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:24px;backdrop-filter:blur(10px);transition:.3s;overflow:hidden}
-.project-card:hover{background:rgba(108,242,194,.08);border-color:rgba(108,242,194,.3);transform:translateY(-4px)}
-.project-card h3{margin-top:0;color:var(--accent)}
-.project-card p{font-size:1rem;margin-top:12px}
-.tech-stack{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-.tech-badge{display:inline-block;background:rgba(108,242,194,.1);color:var(--accent);padding:4px 12px;border-radius:6px;font-size:.85rem;font-weight:600}
-.project-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-weight:600;margin-top:12px;transition:.25s}
-.project-link:hover{gap:10px}
-
-.testimonial{background:var(--card-bg);border-left:4px solid var(--accent);border-radius:8px;padding:24px;margin:20px 0;font-style:italic;color:var(--muted)}
-.testimonial-author{font-style:normal;font-weight:600;color:var(--text);margin-top:16px}
-
-.insight-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:20px;margin:16px 0;backdrop-filter:blur(10px);transition:.3s}
-.insight-card:hover{background:rgba(108,242,194,.08);border-color:rgba(108,242,194,.3)}
-.insight-date{font-size:.85rem;color:var(--muted);margin-bottom:8px}
-.insight-card h4{color:var(--accent);margin-bottom:8px;font-size:1.1rem}
-.insight-link{color:var(--accent);text-decoration:none;font-weight:600;transition:.25s}
-.insight-link:hover{text-decoration:underline}
-
-.timeline{position:relative;margin:40px 0}
-.timeline-item{margin-bottom:40px;position:relative;padding-left:40px}
-.timeline-item::before{content:'';position:absolute;left:0;top:0;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg)}
-.timeline-item::after{content:'';position:absolute;left:4px;top:12px;width:2px;height:calc(100% + 28px);background:var(--card-border)}
-.timeline-item:last-child::after{display:none}
-.timeline-date{font-weight:600;color:var(--accent);font-size:.95rem}
-.timeline-title{font-size:1.1rem;font-weight:600;margin:8px 0}
-.timeline-desc{color:var(--muted);font-size:.95rem}
-
-.skill-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:16px;margin:32px 0}
-.skill-category{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:20px;text-align:center;backdrop-filter:blur(10px)}
-.skill-category h4{color:var(--accent);margin-bottom:12px}
-.skill-items{display:flex;flex-direction:column;gap:8px}
-.skill-item{font-size:.95rem;color:var(--muted)}
-
-.social{margin-top:40px;display:flex;gap:22px;flex-wrap:wrap}
-.social a{width:56px;height:56px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:var(--card-bg);border:1px solid var(--card-border);backdrop-filter:blur(12px);color:var(--text);font-size:26px;transition:.25s;text-decoration:none}
-.social a:hover{background:rgba(108,242,194,.2);color:var(--accent);transform:translateY(-4px) scale(1.1)}
-
-.reveal{opacity:0;transform:translateY(40px);transition:all .9s ease}
-.reveal.active{opacity:1;transform:translateY(0)}
-
-.cursor{position:fixed;width:18px;height:18px;border-radius:50%;background:rgba(108,242,194,.35);pointer-events:none;transform:translate(-50%,-50%);filter:blur(6px);z-index:100}
-
-footer{margin-top:160px;font-size:.85rem;color:var(--muted);padding:40px 0 80px;border-top:1px solid var(--card-border)}
-footer a{color:var(--accent);text-decoration:none;transition:.25s}
-footer a:hover{text-decoration:underline}
-
-.cta-box{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:32px;margin:40px 0;text-align:center;backdrop-filter:blur(10px)}
-.cta-box h3{margin-top:0;font-size:1.5rem}
-
-@media(max-width:768px){
-  .nav{gap:12px;right:16px;top:16px;font-size:.85rem}
-  section{padding-left:18px}
-  .cursor{display:none}
-  .stats-grid,.project-grid,.skill-grid{grid-template-columns:1fr}
-  .cta{flex-direction:column}
-  .btn{width:100%;justify-content:center}
-  .timeline-item{padding-left:32px}
-  .timeline-item::before{width:10px;height:10px;left:-7px}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-touch-callout:none;
 }
 
+/* BACKGROUND */
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(108,242,194,.12), transparent 40%),
+    linear-gradient(180deg, rgba(11,13,18,.9), rgba(11,13,18,.97)),
+    url('hero.jpg') center/cover no-repeat;
+  z-index:-1;
+  animation:slowZoom 40s ease-in-out infinite alternate;
+}
+
+@keyframes slowZoom{
+  from{transform:scale(1)}
+  to{transform:scale(1.08)}
+}
+
+/* Reduce motion for accessibility and mobile performance */
+@media(prefers-reduced-motion:reduce){
+  .bg{
+    animation:none;
+  }
+}
+
+@media(max-width:768px){
+  .bg{
+    animation:slowZoom 60s ease-in-out infinite alternate;
+    background-attachment:fixed;
+  }
+}
+
+/* NAV */
+.nav{
+  position:fixed;
+  top:24px;
+  right:24px;
+  display:flex;
+  gap:26px;
+  z-index:10;
+}
+
+.nav a{
+  color:var(--text);
+  text-decoration:none;
+  font-weight:500;
+  opacity:.75;
+  transition:.25s;
+  border-radius:6px;
+  padding:6px 8px;
+}
+
+.nav a:hover{
+  opacity:1;
+  color:var(--accent);
+}
+
+.nav a:focus,.nav a:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+  opacity:1;
+}
+
+.nav a:active{
+  opacity:0.8;
+  transform:scale(0.95);
+}
+
+/* LAYOUT */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:160px 24px;
+}
+
+section{
+  margin-bottom:180px;
+  border-left:2px solid rgba(255,255,255,.06);
+  padding-left:32px;
+}
+
+/* TYPOGRAPHY */
+h1{
+  font-size:clamp(3.8rem,7vw,6.2rem);
+  font-weight:800;
+  letter-spacing:-0.05em;
+  line-height:1.1;
+}
+
+.gradient{
+  background:linear-gradient(90deg,var(--accent),#8fd3ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+h2{font-size:2.5rem;margin-bottom:24px}
+
+p{
+  font-size:1.12rem;
+  line-height:1.75;
+  color:var(--muted);
+  max-width:760px;
+  margin-top:18px;
+}
+
+strong{
+  color:var(--text);
+  font-weight:600;
+}
+
+/* CTA */
+.cta{
+  margin-top:48px;
+  display:flex;
+  gap:20px;
+}
+
+.btn{
+  padding:15px 28px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.04);
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  backdrop-filter:blur(10px);
+  transition:.25s;
+  cursor:pointer;
+}
+
+.btn:focus,.btn:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+
+.btn:active{
+  transform:translateY(-1px);
+  opacity:0.9;
+}
+
+.btn.primary{
+  background:var(--accent);
+  color:#000;
+  border:none;
+}
+
+.btn:hover{transform:translateY(-3px)}
+
+/* SOCIAL – FIXED */
+.social{
+  margin-top:40px;
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+}
+
+.social a{
+  width:56px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  color:#ffffff;
+  font-size:26px;
+  transition:.25s;
+  text-decoration:none;
+}
+
+.social a:hover{
+  background:rgba(108,242,194,.2);
+  color:var(--accent);
+  transform:translateY(-4px) scale(1.1);
+}
+
+.social a:focus,.social a:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+  background:rgba(108,242,194,.2);
+  color:var(--accent);
+}
+
+.social a:active{
+  transform:scale(0.95);
+}
+
+/* REVEAL */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .9s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* CURSOR GLOW */
+.cursor{
+  position:fixed;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:rgba(108,242,194,.35);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  filter:blur(6px);
+  z-index:100;
+}
+
+footer{
+  margin-top:160px;
+  font-size:.85rem;
+  color:#888;
+}
+
+/* MOBILE OPTIMIZATION */
+@media(max-width:768px){
+  /* Hide cursor on all touch devices */
+  .cursor{display:none}
+  
+  /* Navigation - stack better on mobile */
+  .nav{
+    top:16px;
+    right:16px;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  
+  .nav a{
+    font-size:0.9rem;
+    padding:8px 12px;
+  }
+  
+  /* Container - more breathing room on mobile */
+  .container{
+    padding:120px 16px;
+  }
+  
+  /* Typography scaling for mobile */
+  h1{
+    font-size:clamp(2.5rem, 6vw, 4rem);
+  }
+  
+  h2{
+    font-size:1.8rem;
+    margin-bottom:16px;
+  }
+  
+  p{
+    font-size:1rem;
+    line-height:1.6;
+  }
+  
+  /* Sections with better mobile spacing */
+  section{
+    margin-bottom:120px;
+    padding-left:20px;
+  }
+  
+  /* CTA buttons stack vertically on small screens */
+  .cta{
+    flex-direction:column;
+    gap:12px;
+  }
+  
+  .btn{
+    padding:14px 24px;
+    font-size:0.95rem;
+    width:100%;
+    text-align:center;
+    border-radius:12px;
+  }
+  
+  /* Social icons - larger touch targets on mobile */
+  .social{
+    gap:14px;
+    margin-top:32px;
+  }
+  
+  .social a{
+    width:50px;
+    height:50px;
+    font-size:22px;
+    border-radius:12px;
+  }
+  
+  /* Footer adjustment */
+  footer{
+    margin-top:120px;
+    font-size:0.8rem;
+  }
+}
+
+/* Extra small phones (< 480px) */
 @media(max-width:480px){
-  .container{padding:100px 16px}
-  h1{font-size:2.5rem}
-  h2{font-size:1.8rem}
-  .nav{gap:8px}
-  section{margin-bottom:120px}
+  .container{
+    padding:100px 14px;
+  }
+  
+  .nav{
+    top:12px;
+    right:12px;
+    gap:12px;
+  }
+  
+  .nav a{
+    font-size:0.85rem;
+    padding:6px 10px;
+  }
+  
+  h1{
+    font-size:clamp(2rem, 5.5vw, 3.2rem);
+    letter-spacing:-0.03em;
+  }
+  
+  h2{
+    font-size:1.6rem;
+    margin-bottom:14px;
+  }
+  
+  p{
+    font-size:0.95rem;
+    line-height:1.55;
+    margin-top:14px;
+  }
+  
+  section{
+    margin-bottom:100px;
+    padding-left:16px;
+  }
+  
+  .cta{
+    margin-top:36px;
+    gap:10px;
+  }
+  
+  .btn{
+    padding:12px 20px;
+    font-size:0.9rem;
+    border-radius:10px;
+  }
+  
+  .social a{
+    width:48px;
+    height:48px;
+    font-size:20px;
+  }
+  
+  footer{
+    margin-top:100px;
+    font-size:0.75rem;
+  }
 }
 </style>
 
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Anjani Raj",
+  "url": "https://anjaniraj.live",
+  "description": "Engineer by instinct, entrepreneur by action. Building systems and businesses for long-term freedom.",
+  "image": "https://anjaniraj.live/hero.jpg",
+  "sameAs": [
+    "https://www.linkedin.com/in/anjaniraj",
+    "https://github.com/devanjaniraj",
+    "https://discordapp.com/users/1125265439564513315"
+  ],
+  "jobTitle": "Engineer & Entrepreneur",
+  "email": "Kanjanikumar52@gmail.com"
+}
+</script>
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNLZP70T21"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('\''js'\'', new Date());
-  gtag('\''config'\'', '\''G-GNLZP70T21'\'');
+  gtag('js', new Date());
+
+  gtag('config', 'G-GNLZP70T21');
 </script>
 
 </head>
@@ -146,346 +465,80 @@ footer a:hover{text-decoration:underline}
 
 <div class="nav">
   <a href="#home">Home</a>
-  <a href="#stats">Stats</a>
-  <a href="#projects">Projects</a>
-  <a href="#insights">Insights</a>
-  <a href="#timeline">Journey</a>
-  <a href="#skills">Skills</a>
-  <a href="#testimonials">Testimonials</a>
+  <a href="#about">About</a>
+  <a href="#principles">Principles</a>
   <a href="#connect">Connect</a>
 </div>
 
 <div class="container">
 
-<!-- HOME SECTION -->
 <section id="home">
   <h1>Anjani <span class="gradient">Raj</span></h1>
   <p><strong>Engineer by instinct. Entrepreneur by action.</strong></p>
-  <p>Full-stack engineer and entrepreneur building systems and businesses for sustainable freedom. 5+ years of experience crafting solutions that matter.</p>
+  <p>I build quietly, think long-term, and work toward independence.</p>
 
   <div class="cta">
-    <a href="#projects" class="btn primary"><i class="fas fa-briefcase"></i> See My Work</a>
-    <a href="#connect" class="btn"><i class="fas fa-envelope"></i> Get in Touch</a>
+    <a href="#connect" class="btn primary">Connect</a>
+    <a href="#about" class="btn">Know more</a>
   </div>
 </section>
 
-<!-- STATISTICS SECTION -->
-<section id="stats" class="reveal">
-  <h2>By The Numbers</h2>
-  <p>A snapshot of my impact and journey:</p>
-  
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-number">5+</div>
-      <div class="stat-label">Years Experience</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">20+</div>
-      <div class="stat-label">Projects Delivered</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">500K+</div>
-      <div class="stat-label">Lines of Code</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">10K+</div>
-      <div class="stat-label">GitHub Stars</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">Client Satisfaction</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">3</div>
-      <div class="stat-label">Products Shipped</div>
-    </div>
-  </div>
+<section id="about" class="reveal">
+  <h2>About</h2>
+  <p>I’m driven by the need to build systems and businesses that create long-term freedom.</p>
 </section>
 
-<!-- FEATURED PROJECTS SECTION -->
-<section id="projects" class="reveal">
-  <h2>Featured Projects</h2>
-  <p>Hand-picked projects that showcase my approach to building:</p>
-
-  <div class="project-grid">
-    <div class="project-card">
-      <h3><i class="fas fa-globe"></i> Personal Portfolio</h3>
-      <p>A minimalist personal identity website built with zero dependencies. Clean HTML/CSS/JS showcasing design principles and technical excellence.</p>
-      <div class="tech-stack">
-        <span class="tech-badge">HTML5</span>
-        <span class="tech-badge">CSS3</span>
-        <span class="tech-badge">JavaScript</span>
-      </div>
-      <a href="https://github.com/devanjaniraj/anjaniraj.live" target="_blank" class="project-link">
-        View on GitHub <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-
-    <div class="project-card">
-      <h3><i class="fas fa-code"></i> Open Source Library</h3>
-      <p>A powerful utility library used by 100+ developers. Simplifies common programming tasks with an intuitive API and comprehensive documentation.</p>
-      <div class="tech-stack">
-        <span class="tech-badge">JavaScript</span>
-        <span class="tech-badge">TypeScript</span>
-        <span class="tech-badge">Testing</span>
-      </div>
-      <a href="https://github.com/devanjaniraj" target="_blank" class="project-link">
-        View on GitHub <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-
-    <div class="project-card">
-      <h3><i class="fas fa-rocket"></i> SaaS Platform</h3>
-      <p>Full-stack web application serving 1000+ active users. Built with modern frameworks, scalable architecture, and delightful UX.</p>
-      <div class="tech-stack">
-        <span class="tech-badge">React</span>
-        <span class="tech-badge">Node.js</span>
-        <span class="tech-badge">PostgreSQL</span>
-      </div>
-      <a href="#" target="_blank" class="project-link">
-        View Live <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
+<section id="principles" class="reveal">
+  <h2>Principles</h2>
+  <p>• One life. No rehearsals.</p>
+  <p>• Work to be remembered, not noticed.</p>
+  <p>• Crowds dilute thinking.</p>
+  <p>• The only competition is myself.</p>
 </section>
 
-<!-- INSIGHTS SECTION -->
-<section id="insights" class="reveal">
-  <h2>Latest Insights</h2>
-  <p>Thoughts on building, entrepreneurship, and technology:</p>
-
-  <div class="insight-card">
-    <div class="insight-date">January 28, 2026</div>
-    <h4>Systems Over Motivation</h4>
-    <p>Why relying on willpower is a losing game. Build systems and habits that work without motivation. This is the key to sustainable success.</p>
-    <a href="#" class="insight-link">Read More </a>
-  </div>
-
-  <div class="insight-card">
-    <div class="insight-date">January 15, 2026</div>
-    <h4>The Art of Technical Minimalism</h4>
-    <p>More code doesn''t equal better software. How to build powerful, maintainable systems with minimal dependencies and maximum clarity.</p>
-    <a href="#" class="insight-link">Read More </a>
-  </div>
-
-  <div class="insight-card">
-    <div class="insight-date">December 30, 2025</div>
-    <h4>Building for the Long Term</h4>
-    <p>Short-term thinking creates technical debt and unhappy teams. How to make decisions that pay dividends over years, not weeks.</p>
-    <a href="#" class="insight-link">Read More </a>
-  </div>
-</section>
-
-<!-- JOURNEY TIMELINE SECTION -->
-<section id="timeline" class="reveal">
-  <h2>My Journey</h2>
-  <p>Key milestones in my career:</p>
-
-  <div class="timeline">
-    <div class="timeline-item">
-      <div class="timeline-date">2024 - Present</div>
-      <div class="timeline-title">Independent Builder</div>
-      <div class="timeline-desc">Focusing on building products and systems that create sustainable freedom. Working with select clients on meaningful projects.</div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-date">2022 - 2024</div>
-      <div class="timeline-title">Senior Engineer</div>
-      <div class="timeline-desc">Led technical initiatives at a growth-stage startup. Scaled systems to handle 10x traffic growth and mentored junior developers.</div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-date">2021 - 2022</div>
-      <div class="timeline-title">Full Stack Developer</div>
-      <div class="timeline-desc">Developed end-to-end solutions for SaaS products. Built APIs, databases, and user interfaces that served thousands of users.</div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-date">2020 - 2021</div>
-      <div class="timeline-title">First Developer Role</div>
-      <div class="timeline-desc">Started my tech career as a junior developer. Learned fundamentals, best practices, and the importance of clean code.</div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-date">2018 - 2020</div>
-      <div class="timeline-title">Self-Taught Developer</div>
-      <div class="timeline-desc">Spent 2 years learning programming through online courses, projects, and open-source contributions. Built the foundation for everything that followed.</div>
-    </div>
-  </div>
-</section>
-
-<!-- TECH STACK SECTION -->
-<section id="skills" class="reveal">
-  <h2>Tech Stack & Expertise</h2>
-  <p>Technologies and tools I work with:</p>
-
-  <div class="skill-grid">
-    <div class="skill-category">
-      <h4><i class="fas fa-code"></i> Languages</h4>
-      <div class="skill-items">
-        <span class="skill-item">JavaScript/TypeScript</span>
-        <span class="skill-item">Python</span>
-        <span class="skill-item">SQL</span>
-        <span class="skill-item">HTML/CSS</span>
-      </div>
-    </div>
-
-    <div class="skill-category">
-      <h4><i class="fas fa-server"></i> Backend</h4>
-      <div class="skill-items">
-        <span class="skill-item">Node.js/Express</span>
-        <span class="skill-item">PostgreSQL</span>
-        <span class="skill-item">RESTful APIs</span>
-        <span class="skill-item">Microservices</span>
-      </div>
-    </div>
-
-    <div class="skill-category">
-      <h4><i class="fas fa-paint-brush"></i> Frontend</h4>
-      <div class="skill-items">
-        <span class="skill-item">React</span>
-        <span class="skill-item">Vue.js</span>
-        <span class="skill-item">CSS/SCSS</span>
-        <span class="skill-item">Responsive Design</span>
-      </div>
-    </div>
-
-    <div class="skill-category">
-      <h4><i class="fas fa-tools"></i> Tools & Platforms</h4>
-      <div class="skill-items">
-        <span class="skill-item">Git/GitHub</span>
-        <span class="skill-item">Docker</span>
-        <span class="skill-item">AWS</span>
-        <span class="skill-item">CI/CD</span>
-      </div>
-    </div>
-
-    <div class="skill-category">
-      <h4><i class="fas fa-brain"></i> Core Skills</h4>
-      <div class="skill-items">
-        <span class="skill-item">System Design</span>
-        <span class="skill-item">Code Quality</span>
-        <span class="skill-item">Leadership</span>
-        <span class="skill-item">Problem Solving</span>
-      </div>
-    </div>
-
-    <div class="skill-category">
-      <h4><i class="fas fa-chart-line"></i> Business</h4>
-      <div class="skill-items">
-        <span class="skill-item">Entrepreneurship</span>
-        <span class="skill-item">Product Strategy</span>
-        <span class="skill-item">Team Building</span>
-        <span class="skill-item">Growth Hacking</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS SECTION -->
-<section id="testimonials" class="reveal">
-  <h2>What Others Say</h2>
-  <p>Kind words from people I''ve worked with:</p>
-
-  <div class="testimonial">
-    <p>"Anjani is an exceptional engineer who doesn''t just write code—he builds systems. His attention to detail and long-term thinking made a significant impact on our platform."</p>
-    <div class="testimonial-author">— Sarah Chen, CTO at TechVenture</div>
-  </div>
-
-  <div class="testimonial">
-    <p>"Working with Anjani taught me what excellence looks like. He''s not interested in shortcuts or quick fixes. He builds things that last."</p>
-    <div class="testimonial-author">— Marcus Johnson, Founder at StartupX</div>
-  </div>
-
-  <div class="testimonial">
-    <p>"Anjani''s approach to problem-solving is unique. He asks the right questions, thinks deeply, and delivers solutions that exceed expectations every time."</p>
-    <div class="testimonial-author">— Lisa Rodriguez, VP Engineering at DataCorp</div>
-  </div>
-</section>
-
-<!-- CONTACT CTA SECTION -->
 <section id="connect" class="reveal">
-  <h2>Let''s Build Something Great</h2>
-  <p>If you''re interested in collaborating, discussing ideas, or exploring opportunities, I''d love to hear from you.</p>
+  <h2>Connect</h2>
+  <p>If it makes sense, reach out.</p>
 
-  <div class="cta-box">
-    <h3>Available for Projects & Partnerships</h3>
-    <p>I''m selective about projects, but I''m always open to meaningful collaborations.</p>
-    <div class="cta" style="justify-content:center">
-      <a href="mailto:Kanjanikumar52@gmail.com" class="btn primary">
-        <i class="fas fa-envelope"></i> Send Email
-      </a>
-      <a href="#social" class="btn">
-        <i class="fas fa-link"></i> Social Links
-      </a>
-    </div>
-  </div>
-
-  <h3 style="margin-top:40px" id="social">Connect With Me</h3>
-  <p>Let''s connect on your preferred platform:</p>
-  
   <div class="social">
-    <a href="https://www.linkedin.com/in/anjaniraj" target="_blank" title="LinkedIn" aria-label="LinkedIn">
-      <i class="fab fa-linkedin"></i>
-    </a>
-    <a href="https://github.com/devanjaniraj" target="_blank" title="GitHub" aria-label="GitHub">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://twitter.com/devanjaniraj" target="_blank" title="Twitter" aria-label="Twitter">
-      <i class="fab fa-twitter"></i>
-    </a>
-    <a href="https://discordapp.com/users/1125265439564513315" target="_blank" title="Discord" aria-label="Discord">
-      <i class="fab fa-discord"></i>
-    </a>
-    <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank" title="WhatsApp" aria-label="WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="mailto:Kanjanikumar52@gmail.com" title="Email" aria-label="Email">
-      <i class="fas fa-envelope"></i>
-    </a>
+    <a href="https://www.linkedin.com/in/anjaniraj" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/devanjaniraj" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://discordapp.com/users/1125265439564513315" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+    <a href="https://wa.me/message/FAT7HKT4JDBVJ1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:Kanjanikumar52@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p> 2026 Anjani Raj  Built with intent  <a href="https://github.com/devanjaniraj/anjaniraj.live">Source Code</a></p>
-  <p style="margin-top:12px;font-size:.8rem">Last updated: February 4, 2026 | <a href="/ENHANCEMENTS.md">Enhancements</a> | <a href="/sitemap.xml">Sitemap</a></p>
+  © 2026 Anjani Raj · Built with intent
 </footer>
 
 </div>
 
 <script>
-// Scroll reveal animation
-const reveals = document.querySelectorAll('\''.reveal'\'');
-function revealOnScroll() {
-  reveals.forEach(section => {
-    if (section.getBoundingClientRect().top < window.innerHeight - 100) {
-      section.classList.add('\''active'\'');
+/* Scroll reveal */
+const reveals=document.querySelectorAll('.reveal');
+function revealOnScroll(){
+  reveals.forEach(s=>{
+    if(s.getBoundingClientRect().top<window.innerHeight-120){
+      s.classList.add('active');
     }
   });
 }
-window.addEventListener('\''scroll'\'', revealOnScroll);
+window.addEventListener('scroll',revealOnScroll);
 revealOnScroll();
 
-// Cursor glow effect
-const cursor = document.getElementById('\''cursor'\'');
-if (cursor) {
-  document.addEventListener('\''mousemove'\'', e => {
-    cursor.style.left = e.clientX + '\''px'\'';
-    cursor.style.top = e.clientY + '\''px'\'';
-  });
-}
-
-// Analytics tracking
-document.addEventListener('\''click'\'', e => {
-  if (e.target.tagName === '\''A'\'' && e.target.href) {
-    gtag('\''event'\'', '\''link_click'\'', {
-      '\''link_url'\'': e.target.href,
-      '\''link_text'\'': e.target.textContent
-    });
-  }
+/* Cursor */
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
 });
-</script>
 
+/* Service Worker Registration */
+if('serviceWorker'in navigator){
+  navigator.serviceWorker.register('/sw.js').then(r=>console.log('SW registered')).catch(e=>console.log('SW registration failed:',e));
+}
+</script>
 </body>
 </html>
