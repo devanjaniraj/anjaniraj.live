@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -384,6 +384,20 @@
 </style>
 </head>
 <body>
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--accent); z-index: 1000; transition: width 0.1s ease;"></div>
+    <!-- Social Share Buttons -->
+    <div style="position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1rem; z-index: 100;">
+        <a href="#" onclick="shareOnTwitter(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" onclick="shareOnLinkedIn(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" onclick="copyLink(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'" title="Copy link">
+            <i class="fas fa-link"></i>
+        </a>
+    </div>
     <div class="reading-progress" id="readingProgress"></div>
     <nav>
         <div style="display: flex; align-items: center; gap: 2rem;">
@@ -575,6 +589,35 @@
             gtag('event', 'page_view', { page_path: '/blog/5-years-engineering' });
         }
     </script>
+
+    <script>
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress').style.width = scrolled + '%';
+        });
+
+        // Social Share Functions
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=550,height=420');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=550,height=420');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
 </body>
 </html>
+
 
