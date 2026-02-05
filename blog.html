@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Blog — Anjani Raj</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Articles on engineering, entrepreneurship, and building systems for sustainable freedom. Insights from 5+ years of shipping code and solving problems.">
+    <meta name="keywords" content="Blog, Engineering, Entrepreneurship, Web Development, Career">
+    <meta name="author" content="Anjani Raj">
+    <meta property="og:title" content="Blog — Anjani Raj">
+    <meta property="og:description" content="Thoughts on engineering, entrepreneurship, and building sustainable systems.">
+    <meta name="twitter:card" content="summary">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNLZP70T21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GNLZP70T21');
+    </script>
+    
+    <style>
+        :root {
+            --bg: #0b0d12;
+            --bg-secondary: #1a1d26;
+            --text: #ffffff;
+            --text-secondary: #e0e0e0;
+            --muted: #cfcfcf;
+            --accent: #6cf2c2;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(255,255,255,.04);
+            --card-border: rgba(255,255,255,.06);
+        }
+
+        html[data-theme="light"] {
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text: #1a1a1a;
+            --text-secondary: #333333;
+            --muted: #666666;
+            --accent: #00a876;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(0,0,0,.04);
+            --card-border: rgba(0,0,0,.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .page-header {
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 1rem;
+        }
+
+        .blog-posts {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(108,242,194,0.1);
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: rgba(108,242,194,0.1);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .blog-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        .blog-card:hover h2 {
+            color: var(--accent);
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .read-more {
+            color: var(--accent);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .blog-card:hover .read-more {
+            gap: 1rem;
+        }
+
+        .reading-time {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        .search-box {
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(108,242,194,0.1);
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .page-header {
+                padding: 2rem 0;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .blog-card {
+                padding: 1.5rem;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .blog-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <a href="/" style="font-weight: 700; font-size: 1.1rem; color: var(--accent);">AR</a>
+            <a href="/">Home</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/#about">About</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <div class="container fade-in">
+        <div class="page-header">
+            <h1>Blog</h1>
+            <p>Thoughts on engineering, entrepreneurship, and building sustainable systems</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search articles..." />
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">All Articles</button>
+            <button class="filter-btn" data-filter="Philosophy">Philosophy</button>
+            <button class="filter-btn" data-filter="Career">Career</button>
+            <button class="filter-btn" data-filter="Development">Development</button>
+            <button class="filter-btn" data-filter="Entrepreneurship">Entrepreneurship</button>
+            <button class="filter-btn" data-filter="Personal">Personal</button>
+        </div>
+
+        <div class="blog-posts" id="blogPosts"></div>
+    </div>
+
+    <footer>
+        <p>© 2026 Anjani Raj. Built with code, coffee, and curiosity.</p>
+        <p style="font-size: 0.85rem; margin-top: 1rem;">
+            <a href="/">Home</a> • 
+            <a href="/#connect">Contact</a> • 
+            <a href="https://github.com/devanjaniraj/anjaniraj.live">View Source</a>
+        </p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeToggleIcon();
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggleIcon();
+        });
+
+        function updateThemeToggleIcon() {
+            const theme = htmlElement.getAttribute('data-theme');
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        // Blog Posts Data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Building Without Frameworks: Why Simplicity Wins",
+                excerpt: "Exploring why building with pure HTML, CSS, and JavaScript sometimes beats using frameworks. A deep dive into simplicity, performance, and developer sanity.",
+                date: "January 15, 2026",
+                readTime: "8 min",
+                category: "Philosophy",
+                url: "/blog-post-1.html"
+            },
+            {
+                id: 2,
+                title: "5 Years of Engineering: Lessons Learned the Hard Way",
+                excerpt: "Reflections on half a decade of building products, shipping code, and learning what actually matters in engineering and business.",
+                date: "November 20, 2025",
+                readTime: "12 min",
+                category: "Career",
+                url: "/blog-post-2.html"
+            },
+            {
+                id: 3,
+                title: "The Entrepreneurial Engineer: Building Systems for Freedom",
+                excerpt: "How technical skills and business thinking complement each other in building products people want. The unique perspective of someone who codes and builds businesses.",
+                date: "October 8, 2025",
+                readTime: "10 min",
+                category: "Entrepreneurship",
+                url: "#"
+            },
+            {
+                id: 4,
+                title: "Clean Code Isn't About Perfect Code—It's About Future You",
+                excerpt: "Why code clarity matters more than cleverness, and how to write code that your future self will thank you for. Practical principles for maintainable systems.",
+                date: "September 12, 2025",
+                readTime: "9 min",
+                category: "Development",
+                url: "#"
+            },
+            {
+                id: 5,
+                title: "One Life. No Rehearsals. How I Approach Decision Making",
+                excerpt: "A personal exploration of decision-making frameworks, risk tolerance, and how to make choices when the stakes are high and the outcomes uncertain.",
+                date: "August 5, 2025",
+                readTime: "7 min",
+                category: "Personal",
+                url: "#"
+            }
+        ];
+
+        // Render blog posts
+        function renderPosts(posts = blogPosts) {
+            const blogPostsContainer = document.getElementById('blogPosts');
+            blogPostsContainer.innerHTML = '';
+
+            posts.forEach(post => {
+                const postElement = document.createElement('a');
+                postElement.href = post.url;
+                postElement.className = 'blog-card fade-in';
+                postElement.dataset.category = post.category;
+                postElement.innerHTML = `
+                    <div class="blog-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <time>${post.date}</time>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            ${post.readTime} read
+                        </div>
+                        <span class="blog-category">${post.category}</span>
+                    </div>
+                    <h2>${post.title}</h2>
+                    <p class="blog-excerpt">${post.excerpt}</p>
+                    <div class="blog-footer">
+                        <span class="read-more">
+                            Read Article
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </div>
+                `;
+                blogPostsContainer.appendChild(postElement);
+            });
+        }
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.dataset.filter;
+                if (filter === 'all') {
+                    renderPosts(blogPosts);
+                } else {
+                    const filtered = blogPosts.filter(post => post.category === filter);
+                    renderPosts(filtered);
+                }
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filtered = blogPosts.filter(post => 
+                post.title.toLowerCase().includes(query) || 
+                post.excerpt.toLowerCase().includes(query)
+            );
+            renderPosts(filtered);
+        });
+
+        // Initial render
+        renderPosts();
+
+        // Track page view
+        if (window.gtag) {
+            gtag('event', 'page_view', { page_path: '/blog.html' });
+        }
+    </script>
+</body>
+</html>

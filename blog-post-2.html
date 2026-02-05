@@ -1,0 +1,623 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>5 Years of Engineering: Lessons Learned the Hard Way — Anjani Raj</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Reflections on five years of engineering work. Lessons learned, mistakes made, and wisdom gained through building products, companies, and systems in the real world.">
+    <meta name="keywords" content="Engineering, Career, Lessons Learned, Product Development, Leadership">
+    <meta name="author" content="Anjani Raj">
+    <meta property="og:title" content="5 Years of Engineering: Lessons Learned the Hard Way">
+    <meta property="og:description" content="Reflections on five years of engineering work and the lessons that shaped my career.">
+    <meta property="og:type" content="article">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNLZP70T21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GNLZP70T21');
+    </script>
+    
+    <style>
+        :root {
+            --bg: #0b0d12;
+            --bg-secondary: #1a1d26;
+            --text: #ffffff;
+            --text-secondary: #e0e0e0;
+            --muted: #cfcfcf;
+            --accent: #6cf2c2;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(255,255,255,.04);
+            --card-border: rgba(255,255,255,.06);
+        }
+
+        html[data-theme="light"] {
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text: #1a1a1a;
+            --text-secondary: #333333;
+            --muted: #666666;
+            --accent: #00a876;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(0,0,0,.04);
+            --card-border: rgba(0,0,0,.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .back-link {
+            color: var(--accent);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        article {
+            padding: 4rem 0;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .article-excerpt {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+            color: var(--text-secondary);
+        }
+
+        .article-content ul, .article-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: rgba(108,242,194,0.1);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight strong {
+            color: var(--accent);
+        }
+
+        code {
+            background: var(--card-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        .article-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .related-posts {
+            margin-top: 2rem;
+        }
+
+        .related-post {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .related-post:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .related-post-title {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-post-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 0.75rem 1.25rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            article {
+                padding: 2rem 0;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .lesson {
+            background: var(--card-bg);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .lesson-title {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+            /* Reading Progress Bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Social Share Buttons */
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+
+        .share-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 242, 194, 0.3);
+        }
+
+        .share-button.twitter { background: #1DA1F2; }
+        .share-button.linkedin { background: #0077B5; }
+        .share-button.copy { background: var(--bg-secondary); color: var(--text); border: 1px solid var(--card-border); }
+</style>
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--accent); z-index: 1000; transition: width 0.1s ease;"></div>
+    <!-- Social Share Buttons -->
+    <div style="position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1rem; z-index: 100;">
+        <a href="#" onclick="shareOnTwitter(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" onclick="shareOnLinkedIn(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" onclick="copyLink(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'" title="Copy link">
+            <i class="fas fa-link"></i>
+        </a>
+    </div>
+    <div class="reading-progress" id="readingProgress"></div>
+    <nav>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <a href="/" style="font-weight: 700; font-size: 1.1rem; color: var(--accent);">AR</a>
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/#about">About</a>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </nav>
+
+    <div class="container fade-in">
+        <a href="/blog.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+        </a>
+
+        <article>
+            <div class="article-header">
+                <h1>5 Years of Engineering: Lessons Learned the Hard Way</h1>
+                <p class="article-excerpt">Reflections on half a decade of building products, shipping code, and learning what actually matters in engineering and business.</p>
+                
+                <div class="article-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <time datetime="2025-11-20">November 20, 2025</time>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        12 min read
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-tag"></i>
+                        Career
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-content">
+                <h2>The Journey</h2>
+                <p>Five years ago, I was learning to code. I thought I knew what I was doing. I didn't. Five years later, I know how much I still don't know. But that's progress.</p>
+
+                <p>This essay is a collection of lessons learned through building products, shipping code, leading teams, starting businesses, and failing spectacularly at all of the above. Some of these lessons were expensive. I hope you can learn them from reading instead.</p>
+
+                <h2>Lesson 1: Shipping Beats Perfection</h2>
+                <p>I spent months perfecting an architecture that no one ever saw. The code was beautiful. The design patterns were chef's kiss. The project was dead.</p>
+
+                <p>Meanwhile, my friend shipped a messy MVP in two weeks that customers loved and paid for.</p>
+
+                <div class="lesson">
+                    <div class="lesson-title">The Truth:</div>
+                    A deployed, imperfect solution that creates value beats elegant code that never ships. The best architecture is the one that exists in production.
+                </div>
+
+                <p>Since then, I've become obsessed with shipping. Ship early, ship often, get feedback, iterate. Perfection is a luxury only profitable companies can afford.</p>
+
+                <h2>Lesson 2: Communication is a Technical Skill</h2>
+                <p>I was convinced that writing good code was enough. The code would speak for itself. It didn't speak at all—no one understood it.</p>
+
+                <p>I learned that explaining your architecture to a team member teaches you more about your architecture than writing it ever will. And if you can't explain it simply, you don't understand it well enough.</p>
+
+                <div class="lesson">
+                    <div class="lesson-title">The Truth:</div>
+                    The best engineers are often the best communicators. Code is only half of engineering. The other half is making sure your team understands what you're doing and why.
+                </div>
+
+                <p>Now I spend significant time on documentation, diagrams, and explaining decisions. It's made me a better engineer.</p>
+
+                <h2>Lesson 3: Scope Creep is the Enemy</h2>
+                <p>Every project expands to fill the time allotted. Every estimate is off by a factor of 2. Every "quick feature" takes three weeks.</p>
+
+                <p>The solution? Say no. Protect the scope. Define boundaries. Ship the MVP, not the everything-ever-released-product.</p>
+
+                <div class="lesson">
+                    <div class="lesson-title">The Truth:</div>
+                    The projects that shipped on time weren't the ones with the smallest scope—they were the ones with protected scope. Someone said no, often.
+                </div>
+
+                <h2>Lesson 4: Ownership Changes Everything</h2>
+                <p>There's a difference between a job and a business. When you own something, you think differently. Every decision matters. Every line of code is yours.</p>
+
+                <p>This is why I transitioned to building businesses alongside my engineering work. When you own the problem, you solve it better.</p>
+
+                <div class="lesson">
+                    <div class="lesson-title">The Truth:</div>
+                    Engineers who think like owners—who care about revenue, user satisfaction, and impact—become leaders. That's a choice, not a promotion.
+                </div>
+
+                <h2>Lesson 5: Technical Debt is Real Debt</h2>
+                <p>I cut corners "just for now." Just for now became forever. That quick fix I shipped at 2 AM? We're still dealing with it three years later.</p>
+
+                <p>Now I think about code like financial debt. Sometimes it's worth it (we're shipping to capture market before a competitor). Usually, it's not. And compound interest applies—that debt adds interest every day.</p>
+
+                <div class="lesson">
+                    <div class="lesson-title">The Truth:</div>
+                    Write code you're willing to maintain. Because you will. For years.
+                </div>
+
+                <h2>Lesson 6: The Best Tools are the Ones You Understand</h2>
+                <p>I chased technologies. React was better than Vue was better than Angular. I spent more time learning frameworks than solving problems.</p>
+
+                <p>The turning point came when I built my portfolio with vanilla JavaScript. No build process. No framework drama. Just HTML, CSS, and JavaScript. It was liberating.</p>
+
+                <div class="lesson">
+                    <div class="lesson-title">The Truth:</div>
+                    Master fundamentals over chasing trends. A developer who deeply understands JavaScript, HTTP, and databases is worth ten developers who've used every framework.
+                </div>
+
+                <h2>Lesson 7: Teams Make or Break You</h2>
+                <p>I've worked with teams that brought out my best work. And I've worked with teams that made me question my career choice. The difference wasn't the technology stack—it was the people.</p>
+
+                <p>Hiring slowly and deliberately, protecting your team's culture, and surrounding yourself with people smarter than you—these are engineering decisions with the highest ROI.</p>
+
+                <div class="lesson">
+                    <div class="lesson-title">The Truth:</div>
+                    The best project in the world with the wrong team will fail. The mediocre project with the right team will succeed.
+                </div>
+
+                <h2>Lesson 8: Automation is Strategic</h2>
+                <p>I spent weeks automating a process that took 5 minutes a week. Not a good trade. But I also spent years doing a 1-hour process manually that could have been automated in a day. That was worse.</p>
+
+                <p>The key is distinguishing between "nice to automate" and "essential to automate." Use your time on things machines can't do.</p>
+
+                <h2>Lesson 9: Security and Privacy Are Not Optional</h2>
+                <p>I learned this the hard way—or rather, users learned it for me when their data was compromised. Now security is first-class, not an afterthought.</p>
+
+                <p>Your users are trusting you with their information. Treat it accordingly.</p>
+
+                <h2>Lesson 10: What Matters is Impact</h2>
+                <p>Lines of code don't matter. Technologies used don't matter. What matters is: did you create value? Did users' lives improve? Did you solve a real problem?</p>
+
+                <p>This is the lesson that took the longest to learn and the one that matters the most. I measure success differently now.</p>
+
+                <h2>Looking Forward</h2>
+                <p>The next five years will bring new lessons. I'm excited to learn them, and I hope I can share them with you before they become expensive.</p>
+
+                <p>The engineering journey isn't a destination. It's understanding that you'll never be "done" learning, and that's the beautiful part.</p>
+            </div>
+
+            <div class="article-footer">
+                <h3>Share This Article</h3>
+                <div class="share-buttons">
+                    <a href="https://twitter.com/intent/tweet?url=https://anjaniraj.live/blog/5-years-engineering&text=5%20Years%20of%20Engineering:%20Lessons%20Learned" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-twitter"></i> Twitter
+                    </a>
+                    <a href="https://linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog/5-years-engineering" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+
+                <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">More Articles</h3>
+                <div class="related-posts">
+                    <a href="/blog-post-1.html" class="related-post">
+                        <div class="related-post-title">Building Without Frameworks: Why Simplicity Wins</div>
+                        <div class="related-post-excerpt">Why pure HTML/CSS/JavaScript often beats frameworks. A practical philosophy for sustainable systems.</div>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>© 2026 Anjani Raj. Built with code, coffee, and curiosity.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeToggleIcon();
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggleIcon();
+        });
+
+        function updateThemeToggleIcon() {
+            const theme = htmlElement.getAttribute('data-theme');
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        if (window.gtag) {
+            gtag('event', 'page_view', { page_path: '/blog/5-years-engineering' });
+        }
+    </script>
+
+    <script>
+        // Reading Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress').style.width = scrolled + '%';
+        });
+
+        // Social Share Functions
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=550,height=420');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=550,height=420');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
+
+

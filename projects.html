@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Projects - Anjani Raj</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Detailed case studies and projects built by Anjani Raj.">
+<meta name="author" content="Anjani Raj">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+
+<style>
+:root {
+  --bg: #0b0d12;
+  --text: #ffffff;
+  --muted: #cfcfcf;
+  --accent: #6cf2c2;
+  --card-bg: rgba(255,255,255,.04);
+  --card-border: rgba(255,255,255,.06);
+}
+
+html[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #666666;
+  --accent: #00a876;
+  --card-bg: rgba(0,0,0,.04);
+  --card-border: rgba(0,0,0,.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background .3s, color .3s;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(108,242,194,.08), transparent 40%),
+    linear-gradient(180deg, rgba(11,13,18,.95), rgba(11,13,18,.98));
+  z-index: -1;
+}
+
+html[data-theme="light"] .bg {
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(0,168,118,.05), transparent 40%),
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.99));
+}
+
+.nav {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  gap: 26px;
+  z-index: 10;
+  align-items: center;
+}
+
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  opacity: .75;
+  transition: .25s;
+}
+
+.nav a:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.theme-toggle {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: .25s;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,.08);
+  color: var(--accent);
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 120px 24px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.05em;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 48px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.project-card {
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(12px);
+  transition: .25s;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  background: rgba(255,255,255,.08);
+  border-color: var(--accent);
+  transform: translateY(-6px);
+}
+
+.project-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: var(--accent);
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.project-role {
+  font-size: .95rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.project-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat {
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(108,242,194,.05);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.project-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: .85rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(108,242,194,.1);
+  color: var(--accent);
+  border: 1px solid rgba(108,242,194,.2);
+}
+
+.view-project {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(108,242,194,.1);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: .25s;
+}
+
+.view-project:hover {
+  background: rgba(108,242,194,.2);
+  gap: 12px;
+}
+
+footer {
+  margin-top: 80px;
+  padding-top: 40px;
+  border-top: 1px solid var(--card-border);
+  font-size: .85rem;
+  color: #888;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 100px 16px;
+  }
+}
+</style>
+
+</head>
+
+<body>
+<div class="bg"></div>
+
+<div class="nav">
+  <a href="/">← Back Home</a>
+  <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+</div>
+
+<div class="container">
+
+<h1>Projects</h1>
+<p class="subtitle">Detailed case studies of work I'm proud of.</p>
+
+<div class="projects-grid">
+
+<!-- PROJECT 1 -->
+<div class="project-card">
+  <div class="project-icon"><i class="fas fa-globe"></i></div>
+  <div class="project-title">Anjani Raj Live</div>
+  <div class="project-role">Personal Portfolio</div>
+  <div class="project-desc">A minimal personal portfolio and digital identity. Built to reflect principles of intentional design and clean code.</div>
+  
+  <div class="project-stats">
+    <div class="stat">
+      <div class="stat-value">243</div>
+      <div class="stat-label">Lines (v1)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Dependencies</div>
+    </div>
+  </div>
+
+  <div class="project-tags">
+    <span class="tag">HTML5</span>
+    <span class="tag">CSS3</span>
+    <span class="tag">JavaScript</span>
+    <span class="tag">GitHub Pages</span>
+  </div>
+
+  <div style="margin-top: 20px; font-size: 1rem; color: var(--muted); line-height: 1.6;">
+    <strong>Challenge:</strong> Create a personal brand website that stands out without using frameworks or unnecessary bloat.
+    <br><br>
+    <strong>Solution:</strong> Pure HTML/CSS/JS with a focus on typography, whitespace, and intentional design. No build tools, no frameworks—just clean code.
+    <br><br>
+    <strong>Result:</strong> 6KB homepage that loads instantly. Served via GitHub Pages. Responsive across all devices.
+  </div>
+
+  <a href="https://anjaniraj.live" class="view-project" target="_blank">Visit Site <i class="fas fa-arrow-right"></i></a>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="project-card">
+  <div class="project-icon"><i class="fas fa-calculator"></i></div>
+  <div class="project-title">Engineering Calculator Pro</div>
+  <div class="project-role">Web Application</div>
+  <div class="project-desc">A modern calculator with scientific functions, unit conversions, and dark mode. Optimized as a Progressive Web App.</div>
+  
+  <div class="project-stats">
+    <div class="stat">
+      <div class="stat-value">2K+</div>
+      <div class="stat-label">Lines</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Server</div>
+    </div>
+  </div>
+
+  <div class="project-tags">
+    <span class="tag">JavaScript</span>
+    <span class="tag">PWA</span>
+    <span class="tag">Web App</span>
+    <span class="tag">Offline Ready</span>
+  </div>
+
+  <div style="margin-top: 20px; font-size: 1rem; color: var(--muted); line-height: 1.6;">
+    <strong>Challenge:</strong> Build a powerful calculator that works offline and feels like a native app.
+    <br><br>
+    <strong>Solution:</strong> Progressive Web App with Service Worker caching, responsive design, and comprehensive functionality.
+    <br><br>
+    <strong>Result:</strong> Installable app, works offline, 100+ functions, dark/light mode, unit conversions.
+  </div>
+
+  <a href="https://github.com/devanjaniraj/engicalc-pro" class="view-project" target="_blank">View Code <i class="fas fa-arrow-right"></i></a>
+</div>
+
+<!-- PROJECT 3 -->
+<div class="project-card">
+  <div class="project-icon"><i class="fas fa-tools"></i></div>
+  <div class="project-title">Developer Environment Setup</div>
+  <div class="project-role">DevOps / Automation</div>
+  <div class="project-desc">Automated PowerShell scripts to configure a complete professional developer environment on Windows from scratch.</div>
+  
+  <div class="project-stats">
+    <div class="stat">
+      <div class="stat-value">2K+</div>
+      <div class="stat-label">Lines</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">40+</div>
+      <div class="stat-label">Tools</div>
+    </div>
+  </div>
+
+  <div class="project-tags">
+    <span class="tag">PowerShell</span>
+    <span class="tag">Automation</span>
+    <span class="tag">DevOps</span>
+    <span class="tag">Windows</span>
+  </div>
+
+  <div style="margin-top: 20px; font-size: 1rem; color: var(--muted); line-height: 1.6;">
+    <strong>Challenge:</strong> Reduce setup time for new development machines from hours to minutes.
+    <br><br>
+    <strong>Solution:</strong> Comprehensive PowerShell automation scripts that install and configure all essential developer tools.
+    <br><br>
+    <strong>Result:</strong> One-command setup for complete development environment. Saves 4+ hours of manual configuration per machine.
+  </div>
+
+  <a href="https://github.com/devanjaniraj/developer-environment-setup" class="view-project" target="_blank">View Code <i class="fas fa-arrow-right"></i></a>
+</div>
+
+</div>
+
+<footer>
+  <p>© 2026 Anjani Raj · Building the future, one project at a time</p>
+</footer>
+
+</div>
+
+<script>
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
+const savedTheme = localStorage.getItem('theme') || 'dark';
+
+htmlElement.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const currentTheme = htmlElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  htmlElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+});
+
+function updateThemeIcon(theme) {
+  themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+}
+</script>
+
+</body>
+</html>
