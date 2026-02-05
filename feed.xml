@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anjani Raj - Blog</title>
+    <description>Thoughts on engineering, entrepreneurship, and building sustainable systems</description>
+    <link>https://anjaniraj.live/blog.html</link>
+    <atom:link href="https://anjaniraj.live/feed.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Feb 2026 12:00:00 GMT</lastBuildDate>
+    <pubDate>Wed, 05 Feb 2026 12:00:00 GMT</pubDate>
+    <ttl>1800</ttl>
+    
+    <item>
+      <title>5 Years of Engineering: Lessons Learned the Hard Way</title>
+      <description>A collection of hard-earned insights from 5+ years in software engineering. Real lessons from real failures and successes.</description>
+      <link>https://anjaniraj.live/blog-post-2.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-2.html</guid>
+      <pubDate>Tue, 04 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Engineering</category>
+      <category>Career</category>
+      <author>Kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+    
+    <item>
+      <title>Building Without Frameworks: Why Simplicity Wins</title>
+      <description>A deep dive into why sometimes the best solution is not another framework, but pure HTML, CSS, and JavaScript. Exploring performance, maintainability, and developer happiness.</description>
+      <link>https://anjaniraj.live/blog-post-1.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-1.html</guid>
+      <pubDate>Mon, 03 Feb 2026 00:00:00 GMT</pubDate>
+      <category>Web Development</category>
+      <category>Engineering</category>
+      <author>Kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+    
+  </channel>
+</rss>

@@ -916,6 +916,43 @@
             font-size: 0.8rem;
         }
     </style>
+    <!-- PWA Manifest -->
+    <link rel='manifest' href='/manifest.json'>
+    <meta name='theme-color' content='#6cf2c2'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'>
+    <meta name='apple-mobile-web-app-title' content='Anjani Raj'>
+    
+    <!-- RSS Feed -->
+    <link rel='alternate' type='application/rss+xml' title='Anjani Raj Blog' href='/feed.xml'>
+    
+    <!-- JSON-LD Schema Markup -->
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Anjani Raj",
+      "url": "https://anjaniraj.live",
+      "image": "https://anjaniraj.live/hero.jpg",
+      "jobTitle": "Full-Stack Engineer & Entrepreneur",
+      "description": "Building systems and businesses for sustainable freedom",
+      "sameAs": [
+        "https://github.com/devanjaniraj",
+        "https://linkedin.com/in/anjaniraj",
+        "https://twitter.com/anjaniraj"
+      ],
+      "knowsAbout": [
+        "Web Development",
+        "Software Engineering",
+        "Entrepreneurship",
+        "Full-Stack Development",
+        "JavaScript",
+        "Python",
+        "React",
+        "Node.js"
+      ]
+    }
+    </script>
 </head>
 <body>
     <nav>
@@ -1487,6 +1524,16 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+    </script>
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker registered:', reg))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
     </script>
 </body>
 </html>
