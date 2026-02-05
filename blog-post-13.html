@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master Docker containerization and deployment. Learn Docker fundamentals and streamline your deployment workflows.">
+    <meta name="keywords" content="Docker, containers, containerization, deployment, DevOps, Docker Compose">
+    <meta name="author" content="Anjani Raj">
+    <meta name="publish_date" content="2026-02-05">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Docker & Container Basics: Deployment Made Simple">
+    <meta property="og:description" content="Master Docker containerization and simplify your deployment workflows with practical examples.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="/assets/blog/post-13-og.jpg">
+    <meta property="og:url" content="https://anjaniraj.live/blog-post-13.html">
+    
+    <title>Docker & Container Basics: Deployment Made Simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Courier New', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+        
+        .back-link:hover {
+            opacity: 0.8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .article-header {
+            margin-bottom: 40px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        body.dark-mode .category-tag {
+            background: #2563eb;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .article-meta {
+            color: #999;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            color: #2563eb;
+        }
+        
+        body.dark-mode .article-content h2 {
+            color: #60a5fa;
+        }
+        
+        .article-content h3 {
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            color: #333;
+        }
+        
+        body.dark-mode .article-content h3 {
+            color: #e0e0e0;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 20px 0 20px 40px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body.dark-mode .code-block {
+            background: #27272a;
+            border-color: #3f3f46;
+            color: #e4e4e7;
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        body.dark-mode .highlight-box {
+            background: #0f172a;
+            border-left-color: #60a5fa;
+        }
+        
+        .highlight-box strong {
+            color: #2563eb;
+        }
+        
+        body.dark-mode .highlight-box strong {
+            color: #60a5fa;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            background: white;
+            color: #2563eb;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .share-section {
+            background: #2a2a2a;
+        }
+        
+        .share-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+        
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .twitter-btn {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .linkedin-btn {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .copy-btn {
+            background: #2563eb;
+            color: white;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+            margin-top: 60px;
+        }
+        
+        body.dark-mode footer {
+            background: #111;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .article-content h2 {
+                font-size: 1.4em;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Anjani Raj</a>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back</a>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <article class="article-content">
+            <div class="article-header">
+                <span class="category-tag">DevOps</span>
+                <h1>Docker & Container Basics: Deployment Made Simple</h1>
+                <div class="article-meta">
+                    <span>📅 February 5, 2026</span>
+                    <span>⏱️ 11 min read</span>
+                    <span>✍️ By Anjani Raj</span>
+                </div>
+            </div>
+            
+            <h2>Introduction: From Local to Cloud with Confidence</h2>
+            <p>One of the most common challenges in software deployment is the mismatch between local development environments and production servers. "It works on my machine" is a problem Docker solves. Docker packages your application with all its dependencies into a container—a lightweight, portable package that runs identically whether on your laptop or a cloud server.</p>
+            
+            <p>This article explains Docker fundamentals and shows how to containerize applications for reliable, scalable deployments.</p>
+            
+            <h2>Understanding Containers: What and Why</h2>
+            
+            <h3>Containers vs Virtual Machines</h3>
+            <p>Containers are often confused with virtual machines. They're similar but different:</p>
+            
+            <ul>
+                <li><strong>Virtual Machines:</strong> Full operating system instances. Lots of overhead. Take minutes to start. Typical size: gigabytes.</li>
+                <li><strong>Containers:</strong> Lightweight process isolation. Share the host OS kernel. Start in milliseconds. Typical size: megabytes.</li>
+            </ul>
+            
+            <p>Containers offer the isolation benefits of VMs with the efficiency of processes. This makes them ideal for modern application deployment.</p>
+            
+            <h3>Images vs Containers</h3>
+            <p>Understanding this distinction is crucial:</p>
+            
+            <ul>
+                <li><strong>Image:</strong> Blueprint containing application code, dependencies, and configuration. Immutable. Think of it as a class.</li>
+                <li><strong>Container:</strong> Running instance of an image. Mutable while running. Think of it as an object.</li>
+            </ul>
+            
+            <p>You build an image once, then run multiple containers from that image.</p>
+            
+            <h2>Dockerfile: Defining Your Container</h2>
+            
+            <h3>Creating a Simple Dockerfile</h3>
+            <p>A Dockerfile is a text file with instructions to build an image:</p>
+            
+            <div class="code-block">
+# Use official Node.js runtime as base image
+FROM node:18-alpine
+
+# Set working directory in container
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy application code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
+  CMD node healthcheck.js
+
+# Run application
+CMD ["node", "server.js"]
+            </div>
+            
+            <h3>Understanding Dockerfile Layers</h3>
+            <p>Each instruction creates a layer in the image. Layers are cached and reused, speeding up builds:</p>
+            
+            <div class="code-block">
+# Better: Dependencies change rarely
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+CMD ["node", "server.js"]
+
+# Worse: Rebuilds dependencies even when only code changes
+FROM node:18-alpine
+WORKDIR /app
+COPY . .
+RUN npm ci --only=production
+CMD ["node", "server.js"]
+            </div>
+            
+            <p>Order instructions from least frequently changed to most frequently changed for optimal caching.</p>
+            
+            <h2>Building and Running Containers</h2>
+            
+            <h3>Building an Image</h3>
+            <p>Build an image from a Dockerfile:</p>
+            
+            <div class="code-block">
+# Build image
+docker build -t my-app:1.0.0 .
+
+# Tag with registry/repository format for Docker Hub
+docker build -t username/my-app:1.0.0 .
+
+# Build and tag with latest
+docker build -t username/my-app:1.0.0 -t username/my-app:latest .
+            </div>
+            
+            <h3>Running a Container</h3>
+            <p>Run containers from images:</p>
+            
+            <div class="code-block">
+# Run container
+docker run -p 3000:3000 my-app:1.0.0
+
+# Run with environment variables
+docker run -p 3000:3000 \
+  -e NODE_ENV=production \
+  -e DATABASE_URL=mongodb://... \
+  my-app:1.0.0
+
+# Run in background (detached mode)
+docker run -d -p 3000:3000 --name my-app-instance my-app:1.0.0
+
+# View running containers
+docker ps
+
+# View logs
+docker logs my-app-instance
+
+# Stop container
+docker stop my-app-instance
+
+# Remove container
+docker rm my-app-instance
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Port Mapping:</strong> The syntax `-p 3000:3000` means "map port 3000 on the host to port 3000 in the container". Left side is host port, right side is container port.
+            </div>
+            
+            <h2>Multi-Stage Builds: Optimized Production Images</h2>
+            
+            <h3>Problem: Large Production Images</h3>
+            <p>Building directly from source creates large images containing build tools and source code. Multi-stage builds fix this:</p>
+            
+            <div class="code-block">
+# Stage 1: Build
+FROM node:18 as builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Stage 2: Runtime (small and efficient)
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+# Copy only built files from builder stage
+COPY --from=builder /app/dist ./dist
+CMD ["node", "dist/server.js"]
+            </div>
+            
+            <p>This produces a much smaller production image: the builder stage's build tools and source code aren't included in the final image.</p>
+            
+            <h2>Docker Compose: Multi-Container Applications</h2>
+            
+            <h3>Problem: Running Multiple Services</h3>
+            <p>Real applications need multiple services: web server, database, cache, message queue. Running each container manually is tedious. Docker Compose solves this:</p>
+            
+            <div class="code-block">
+# docker-compose.yml
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=mongodb://db:27017/myapp
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./logs:/app/logs
+
+  db:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo_data:
+            </div>
+            
+            <h3>Running with Docker Compose</h3>
+            <p>Docker Compose commands simplify multi-container orchestration:</p>
+            
+            <div class="code-block">
+# Start all services
+docker-compose up
+
+# Start in background
+docker-compose up -d
+
+# View logs
+docker-compose logs -f web
+
+# Stop services
+docker-compose down
+
+# Stop and remove volumes
+docker-compose down -v
+
+# Rebuild images
+docker-compose build
+
+# Run one-off command in service
+docker-compose exec web npm test
+            </div>
+            
+            <h2>Container Networking and Data Persistence</h2>
+            
+            <h3>Networking Between Containers</h3>
+            <p>Containers in the same Docker Compose file automatically connect via a network:</p>
+            
+            <div class="code-block">
+# Services can reference each other by name
+# In web service, connect to database like this:
+const mongoUri = 'mongodb://db:27017/myapp';
+const redisClient = new Redis('redis://redis:6379');
+            </div>
+            
+            <h3>Data Persistence with Volumes</h3>
+            <p>By default, container data is lost when the container stops. Volumes persist data:</p>
+            
+            <div class="code-block">
+# Named volume (managed by Docker)
+docker run -v my-data:/app/data my-app
+
+# Bind mount (map host directory)
+docker run -v /host/path:/container/path my-app
+
+# In Docker Compose
+volumes:
+  - mongo_data:/data/db  # Named volume
+  - ./config:/app/config # Bind mount
+            </div>
+            
+            <h2>Best Practices for Production Containers</h2>
+            
+            <h3>Security: Running as Non-Root User</h3>
+            <p>Containers running as root pose security risks. Run as unprivileged user:</p>
+            
+            <div class="code-block">
+FROM node:18-alpine
+WORKDIR /app
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nodejs -u 1001
+
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+
+# Switch to non-root user
+USER nodejs
+
+EXPOSE 3000
+CMD ["node", "server.js"]
+            </div>
+            
+            <h3>Resource Limits</h3>
+            <p>Prevent containers from consuming unlimited resources:</p>
+            
+            <div class="code-block">
+# docker-compose.yml
+services:
+  web:
+    build: .
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+            </div>
+            
+            <h3>Health Checks</h3>
+            <p>Tell Docker how to determine if a container is healthy:</p>
+            
+            <div class="code-block">
+FROM node:18-alpine
+WORKDIR /app
+
+COPY . .
+RUN npm ci --only=production
+
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD npm run healthcheck
+
+CMD ["node", "server.js"]
+            </div>
+            
+            <h2>Deployment Workflow</h2>
+            
+            <h3>Build, Push, Pull, Run</h3>
+            <p>Typical deployment workflow:</p>
+            
+            <div class="code-block">
+# 1. Build image locally
+docker build -t myregistry/myapp:1.0.0 .
+
+# 2. Push to registry (Docker Hub, AWS ECR, etc.)
+docker login
+docker push myregistry/myapp:1.0.0
+
+# 3. On server, pull image
+docker pull myregistry/myapp:1.0.0
+
+# 4. Run container
+docker run -d -p 3000:3000 myregistry/myapp:1.0.0
+            </div>
+            
+            <h3>Continuous Deployment with Docker</h3>
+            <p>Automate the build and deployment pipeline:</p>
+            
+            <div class="code-block">
+# GitHub Actions example
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build image
+        run: docker build -t myapp:${{ github.sha }} .
+      
+      - name: Push to registry
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker tag myapp:${{ github.sha }} myapp:latest
+          docker push myapp:latest
+      
+      - name: Deploy to server
+        run: |
+          ssh user@server "docker pull myapp:latest && docker-compose up -d"
+            </div>
+            
+            <h2>Monitoring and Debugging</h2>
+            
+            <h3>Viewing Container Metrics</h3>
+            <p>Monitor container resource usage:</p>
+            
+            <div class="code-block">
+# View container stats
+docker stats
+
+# Show container information
+docker inspect container-name
+
+# View container processes
+docker top container-name
+            </div>
+            
+            <h3>Debugging Inside Containers</h3>
+            <p>Execute commands inside running containers:</p>
+            
+            <div class="code-block">
+# Open shell in running container
+docker exec -it container-name /bin/sh
+
+# Run command
+docker exec container-name npm test
+
+# View file contents
+docker exec container-name cat /app/config.json
+            </div>
+            
+            <h2>Conclusion: Containers as the Standard</h2>
+            
+            <p>Docker and containerization have become industry standard. Every major platform supports containers. Learning Docker fundamentals is essential for modern development. Start by containerizing a simple application, then expand to multi-container setups with Docker Compose. Once comfortable, explore orchestration platforms like Kubernetes for large-scale deployments.</p>
+            
+            <p>Containers solve the "it works on my machine" problem, enable consistent deployments, and simplify DevOps workflows. That's why they're everywhere.</p>
+            
+            <div class="cta-section">
+                <h3>Ready to Master Containerization?</h3>
+                <p>Connect with me on LinkedIn to discuss Docker, DevOps, and deployment strategies.</p>
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com/in/anjaniraj" class="cta-btn">Connect on LinkedIn</a>
+                    <a href="https://twitter.com/anjaniraj" class="cta-btn">Follow on Twitter</a>
+                </div>
+            </div>
+            
+            <div class="share-section">
+                <span style="font-weight: 600;">Share this article:</span>
+                <a href="https://twitter.com/intent/tweet?text=Docker%20Container%20Basics:%20Deployment%20Made%20Simple&url=https://anjaniraj.live/blog-post-13.html" class="share-btn twitter-btn">🐦 Twitter</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog-post-13.html" class="share-btn linkedin-btn">💼 LinkedIn</a>
+                <button onclick="copyToClipboard('https://anjaniraj.live/blog-post-13.html')" class="share-btn copy-btn">🔗 Copy Link</button>
+            </div>
+        </article>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Anjani Raj. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for innovation and knowledge sharing.</p>
+    </footer>
+    
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+        
+        // Reading progress
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / windowHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrollPercent + '%';
+        });
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

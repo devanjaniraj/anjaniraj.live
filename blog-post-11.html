@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Make web apps blazingly fast. Learn optimization techniques, benchmarking, caching strategies, and code splitting for performance.">
+    <meta name="keywords" content="performance optimization, web performance, caching, code splitting, benchmarking, web vitals">
+    <meta name="author" content="Anjani Raj">
+    <meta name="publish_date" content="2026-02-05">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Performance Optimization: Making Web Apps Blazingly Fast">
+    <meta property="og:description" content="Master web performance optimization with techniques for caching, code splitting, and benchmarking.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="/assets/blog/post-11-og.jpg">
+    <meta property="og:url" content="https://anjaniraj.live/blog-post-11.html">
+    
+    <title>Performance Optimization: Making Web Apps Blazingly Fast</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Courier New', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ec4899 0%, #8b5cf6 100%);
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+        
+        .back-link:hover {
+            opacity: 0.8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .article-header {
+            margin-bottom: 40px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: #ec4899;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        body.dark-mode .category-tag {
+            background: #ec4899;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .article-meta {
+            color: #999;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            color: #ec4899;
+        }
+        
+        body.dark-mode .article-content h2 {
+            color: #f472b6;
+        }
+        
+        .article-content h3 {
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            color: #333;
+        }
+        
+        body.dark-mode .article-content h3 {
+            color: #e0e0e0;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 20px 0 20px 40px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #fce7f3;
+            border: 1px solid #fbcfe8;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body.dark-mode .code-block {
+            background: #3a1a2a;
+            border-color: #6b2a46;
+            color: #f3d8f0;
+        }
+        
+        .highlight-box {
+            background: #fce7f3;
+            border-left: 4px solid #ec4899;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        body.dark-mode .highlight-box {
+            background: #3a1a2a;
+            border-left-color: #f472b6;
+        }
+        
+        .highlight-box strong {
+            color: #ec4899;
+        }
+        
+        body.dark-mode .highlight-box strong {
+            color: #f472b6;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            background: white;
+            color: #ec4899;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .share-section {
+            background: #2a2a2a;
+        }
+        
+        .share-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+        
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .twitter-btn {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .linkedin-btn {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .copy-btn {
+            background: #ec4899;
+            color: white;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+            margin-top: 60px;
+        }
+        
+        body.dark-mode footer {
+            background: #111;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .article-content h2 {
+                font-size: 1.4em;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Anjani Raj</a>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back</a>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <article class="article-content">
+            <div class="article-header">
+                <span class="category-tag">Development</span>
+                <h1>Performance Optimization: Making Web Apps Blazingly Fast</h1>
+                <div class="article-meta">
+                    <span>📅 February 5, 2026</span>
+                    <span>⏱️ 11 min read</span>
+                    <span>✍️ By Anjani Raj</span>
+                </div>
+            </div>
+            
+            <h2>Introduction: Performance is a Feature</h2>
+            <p>Users expect web applications to load in under three seconds. Every additional second of load time causes abandonment. Performance isn't just nice to have—it's essential for business. Google ranks faster sites higher. Users convert more readily on faster sites. Users stay engaged with faster sites.</p>
+            
+            <p>This article covers practical techniques for optimizing web application performance, from measuring what matters to implementing solutions that deliver measurable improvements.</p>
+            
+            <h2>Measuring Performance: What to Track</h2>
+            
+            <h3>Core Web Vitals: Google's Performance Metrics</h3>
+            <p>Google defines three Core Web Vitals that matter most for user experience:</p>
+            
+            <ul>
+                <li><strong>LCP (Largest Contentful Paint):</strong> When the largest visible element renders. Aim for under 2.5 seconds.</li>
+                <li><strong>FID (First Input Delay):</strong> How long until the page responds to user interaction. Aim for under 100 milliseconds.</li>
+                <li><strong>CLS (Cumulative Layout Shift):</strong> How much the page layout shifts unexpectedly. Aim for under 0.1.</li>
+            </ul>
+            
+            <p>These metrics matter because they correlate with user satisfaction. A slow LCP means users wait too long to see content. High FID means the page feels sluggish. High CLS means annoying layout shifts that make clicking wrong elements.</p>
+            
+            <h3>Measuring in Code</h3>
+            <p>Measure Web Vitals in your application:</p>
+            
+            <div class="code-block">
+// Using web-vitals library
+import { getCLS, getFID, getLCP } from 'web-vitals';
+
+function sendMetric(metric) {
+  // Send to analytics
+  fetch('/api/metrics', {
+    method: 'POST',
+    body: JSON.stringify(metric)
+  });
+}
+
+getCLS(sendMetric);
+getFID(sendMetric);
+getLCP(sendMetric);
+
+// Or use performance API directly
+const paintEntries = performance.getEntriesByType('paint');
+console.log('FCP:', paintEntries[0].startTime);
+console.log('LCP:', paintEntries[1].startTime);
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Measurement Principle:</strong> You can't improve what you don't measure. Set up monitoring for Core Web Vitals in production. Compare performance across browsers, devices, and network conditions.
+            </div>
+            
+            <h2>Optimization Techniques: From Front to Back</h2>
+            
+            <h3>Critical: Optimize the Critical Rendering Path</h3>
+            <p>The critical rendering path is the sequence of steps the browser takes to render a page. Optimize each step:</p>
+            
+            <p><strong>1. Minimize Critical Resources</strong><br>
+            Only include absolutely necessary CSS and JavaScript in the initial load:</p>
+            
+            <div class="code-block">
+<!-- Inline critical CSS -->
+<head>
+  <style>
+    /* Critical CSS for above-the-fold content */
+    .hero { display: flex; align-items: center; }
+  </style>
+  <link rel="stylesheet" href="/styles.css" media="print">
+</head>
+
+<!-- Defer non-critical JavaScript -->
+<script src="/app.js" defer></script>
+<script src="/analytics.js" async></script>
+            </div>
+            
+            <p><strong>2. Optimize CSS Delivery</strong></p>
+            
+            <div class="code-block">
+<!-- Load only needed CSS immediately -->
+<link rel="stylesheet" href="/critical.css">
+
+<!-- Load additional CSS in background -->
+<link rel="preload" href="/additional.css" as="style">
+<link rel="stylesheet" href="/additional.css" media="screen">
+
+<!-- Load fonts strategically -->
+<link rel="preload" href="/fonts/main.woff2" as="font" type="font/woff2">
+            </div>
+            
+            <h3>JavaScript Optimization: Code Splitting</h3>
+            <p>Don't load all JavaScript on initial page load. Split into chunks and load what's needed:</p>
+            
+            <div class="code-block">
+// React with code splitting
+import React, { lazy, Suspense } from 'react';
+
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Admin = lazy(() => import('./pages/Admin'));
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </Suspense>
+  );
+}
+
+// Webpack configuration for code splitting
+optimization: {
+  splitChunks: {
+    chunks: 'all',
+    cacheGroups: {
+      vendor: {
+        test: /[\\/]node_modules[\\/]/,
+        name: 'vendors',
+        priority: 10
+      }
+    }
+  }
+}
+            </div>
+            
+            <h3>Image Optimization: The Biggest Opportunity</h3>
+            <p>Images typically consume 50%+ of bytes downloaded. Optimize aggressively:</p>
+            
+            <div class="code-block">
+<!-- Responsive images with srcset -->
+<img
+  src="/image-small.webp"
+  srcset="/image-small.webp 480w,
+          /image-medium.webp 768w,
+          /image-large.webp 1200w"
+  sizes="(max-width: 480px) 100vw,
+         (max-width: 768px) 80vw,
+         1200px"
+  alt="Description"
+  loading="lazy"
+/>
+
+<!-- Use modern formats with fallback -->
+<picture>
+  <source srcset="/image.webp" type="image/webp">
+  <img src="/image.png" alt="Description">
+</picture>
+
+<!-- Lazy loading -->
+<img src="/image.jpg" loading="lazy" alt="Description">
+            </div>
+            
+            <h2>Caching Strategies: Serving Cached Content</h2>
+            
+            <h3>Browser Caching: Leverage the Browser Cache</h3>
+            <p>Tell browsers to cache files with appropriate headers:</p>
+            
+            <div class="code-block">
+// Express server - cache configuration
+app.use((req, res, next) => {
+  // Static assets - cache for 1 year
+  if (req.url.match(/\.(js|css|png|jpg|woff2)$/)) {
+    res.set('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+  // HTML - no cache, check on every request
+  else if (req.url.endsWith('.html') || !req.url.includes('.')) {
+    res.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  }
+  next();
+});
+
+// Use content hashing in asset names
+app.use(express.static('public', {
+  maxAge: '31536000', // 1 year
+  etag: false // disable weak ETags
+}));
+            </div>
+            
+            <h3>CDN: Content Delivery Network</h3>
+            <p>Serve content from servers geographically close to users:</p>
+            
+            <div class="code-block">
+// Configure CDN caching headers
+res.set('Cache-Control', 'public, max-age=3600');
+res.set('CDN-Cache-Control', 'max-age=86400');
+
+// Use CDN URLs for assets
+// Instead of: https://myapp.com/image.jpg
+// Use: https://cdn.myapp.com/image.jpg
+            </div>
+            
+            <h2>Database and API Optimization</h2>
+            
+            <h3>Backend Response Optimization</h3>
+            <p>Minimize backend response times:</p>
+            
+            <div class="code-block">
+// Use database indexing
+db.collection('posts').createIndex({ createdAt: -1 });
+db.collection('users').createIndex({ email: 1 });
+
+// Select only needed fields
+app.get('/api/posts', async (req, res) => {
+  const posts = await Post.find()
+    .select('title excerpt createdAt author')
+    .limit(20)
+    .sort({ createdAt: -1 })
+    .lean(); // Returns plain JS objects, not Mongoose docs
+  res.json(posts);
+});
+
+// Use pagination
+app.get('/api/posts', async (req, res) => {
+  const page = req.query.page || 1;
+  const limit = 20;
+  const skip = (page - 1) * limit;
+  
+  const posts = await Post.find()
+    .skip(skip)
+    .limit(limit);
+  
+  const total = await Post.countDocuments();
+  res.json({
+    posts,
+    pagination: { page, limit, total }
+  });
+});
+            </div>
+            
+            <h3>Frontend Request Optimization</h3>
+            <p>Minimize frontend requests:</p>
+            
+            <div class="code-block">
+// Request batching - combine multiple requests
+async function fetchUserAndPosts(userId) {
+  // Instead of 2 requests
+  // const user = await fetch(`/api/users/${userId}`);
+  // const posts = await fetch(`/api/users/${userId}/posts`);
+  
+  // Make 1 request
+  const response = await fetch(`/api/users/${userId}?include=posts`);
+  return response.json();
+}
+
+// Request deduplication
+const requestCache = new Map();
+
+function cachedFetch(url) {
+  if (requestCache.has(url)) {
+    return requestCache.get(url);
+  }
+  
+  const promise = fetch(url).then(r => r.json());
+  requestCache.set(url, promise);
+  return promise;
+}
+            </div>
+            
+            <h2>Rendering Performance: Making the Page Feel Fast</h2>
+            
+            <h3>Reduce JavaScript Execution Time</h3>
+            <p>Long JavaScript execution blocks the main thread. Break work into smaller chunks:</p>
+            
+            <div class="code-block">
+// Bad: Blocks main thread for 100ms
+function processLargeDataset(data) {
+  return data.map(item => complexCalculation(item));
+}
+
+// Better: Uses requestIdleCallback to avoid blocking
+function processLargeDataset(data) {
+  let index = 0;
+  
+  function processChunk() {
+    const chunkEnd = Math.min(index + 100, data.length);
+    for (let i = index; i < chunkEnd; i++) {
+      processItem(data[i]);
+    }
+    index = chunkEnd;
+    
+    if (index < data.length) {
+      requestIdleCallback(processChunk);
+    }
+  }
+  
+  requestIdleCallback(processChunk);
+}
+            </div>
+            
+            <h3>Virtual Scrolling for Long Lists</h3>
+            <p>Render only visible items when displaying long lists:</p>
+            
+            <div class="code-block">
+// Libraries like react-window handle this
+import { FixedSizeList } from 'react-window';
+
+function PostList({ posts }) {
+  return (
+    <FixedSizeList
+      height={600}
+      itemCount={posts.length}
+      itemSize={100}
+      width="100%"
+    >
+      {({ index, style }) => (
+        <div style={style}>
+          <PostCard post={posts[index]} />
+        </div>
+      )}
+    </FixedSizeList>
+  );
+}
+            </div>
+            
+            <h2>Monitoring Performance in Production</h2>
+            
+            <h3>Real User Monitoring (RUM)</h3>
+            <p>Collect performance metrics from real users:</p>
+            
+            <div class="code-block">
+// Send performance metrics to analytics
+if (window.performance && window.performance.timing) {
+  window.addEventListener('load', () => {
+    const metrics = {
+      dns: performance.timing.domainLookupEnd - performance.timing.domainLookupStart,
+      tcp: performance.timing.connectEnd - performance.timing.connectStart,
+      ttfb: performance.timing.responseStart - performance.timing.fetchStart,
+      download: performance.timing.responseEnd - performance.timing.responseStart,
+      domInteractive: performance.timing.domInteractive - performance.timing.fetchStart,
+      total: performance.timing.loadEventEnd - performance.timing.fetchStart
+    };
+    
+    fetch('/api/metrics', {
+      method: 'POST',
+      body: JSON.stringify(metrics)
+    });
+  });
+}
+            </div>
+            
+            <h3>Set Performance Budgets</h3>
+            <p>Define acceptable performance limits and enforce them:</p>
+            
+            <div class="code-block">
+// Lighthouse budget configuration
+{
+  "budgets": [{
+    "type": "bundle",
+    "name": "main",
+    "size": "150kb"
+  }, {
+    "type": "bundle",
+    "name": "vendor",
+    "size": "250kb"
+  }, {
+    "type": "timing",
+    "metric": "interactive",
+    "budget": 3000
+  }, {
+    "type": "timing",
+    "metric": "largest-contentful-paint",
+    "budget": 2500
+  }]
+}
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Performance Culture:</strong> Make performance visible to your team. Share metrics regularly. Make it part of code review. Celebrate performance improvements. It compounds over time.
+            </div>
+            
+            <h2>Quick Win Checklist</h2>
+            
+            <ul>
+                <li>✓ Optimize images: use WebP, compress, serve responsively</li>
+                <li>✓ Defer JavaScript: move non-critical scripts to defer/async</li>
+                <li>✓ Inline critical CSS: reduce render-blocking CSS</li>
+                <li>✓ Use HTTP/2 Server Push: push critical resources</li>
+                <li>✓ Enable compression: use gzip or Brotli</li>
+                <li>✓ Cache aggressively: use Cache-Control headers</li>
+                <li>✓ Use a CDN: serve content from edge servers</li>
+                <li>✓ Minify code: reduce file sizes</li>
+                <li>✓ Monitor Core Web Vitals: track performance in production</li>
+                <li>✓ Set performance budgets: prevent regressions</li>
+            </ul>
+            
+            <h2>Conclusion: Performance as Ongoing Practice</h2>
+            
+            <p>Web performance optimization isn't a one-time task—it's an ongoing practice. Measure regularly, implement improvements incrementally, and monitor results. Every improvement compounds: 100ms faster load time means more users stay engaged, which means better business outcomes.</p>
+            
+            <p>Start with the biggest opportunities—usually images and JavaScript—then optimize incrementally. The best optimization is the one that's actually implemented and monitored.</p>
+            
+            <div class="cta-section">
+                <h3>Want to Master Performance?</h3>
+                <p>Connect with me on LinkedIn to discuss web performance and optimization strategies.</p>
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com/in/anjaniraj" class="cta-btn">Connect on LinkedIn</a>
+                    <a href="https://twitter.com/anjaniraj" class="cta-btn">Follow on Twitter</a>
+                </div>
+            </div>
+            
+            <div class="share-section">
+                <span style="font-weight: 600;">Share this article:</span>
+                <a href="https://twitter.com/intent/tweet?text=Performance%20Optimization:%20Making%20Web%20Apps%20Blazingly%20Fast&url=https://anjaniraj.live/blog-post-11.html" class="share-btn twitter-btn">🐦 Twitter</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog-post-11.html" class="share-btn linkedin-btn">💼 LinkedIn</a>
+                <button onclick="copyToClipboard('https://anjaniraj.live/blog-post-11.html')" class="share-btn copy-btn">🔗 Copy Link</button>
+            </div>
+        </article>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Anjani Raj. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for innovation and knowledge sharing.</p>
+    </footer>
+    
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+        
+        // Reading progress
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / windowHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrollPercent + '%';
+        });
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master full-stack development with React and Node.js. Learn architecture, API design, deployment, and performance optimization.">
+    <meta name="keywords" content="full-stack, React, Node.js, API design, deployment, performance, architecture">
+    <meta name="author" content="Anjani Raj">
+    <meta name="publish_date" content="2026-02-05">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Frontend to Backend: Full-Stack Development Workflow with React & Node.js">
+    <meta property="og:description" content="Master full-stack development: architecture, API design, deployment, and performance with React and Node.js.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="/assets/blog/post-10-og.jpg">
+    <meta property="og:url" content="https://anjaniraj.live/blog-post-10.html">
+    
+    <title>Frontend to Backend: Full-Stack Development Workflow with React & Node.js</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Courier New', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6 0%, #1e40af 100%);
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+        
+        .back-link:hover {
+            opacity: 0.8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .article-header {
+            margin-bottom: 40px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        body.dark-mode .category-tag {
+            background: #3b82f6;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .article-meta {
+            color: #999;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            color: #3b82f6;
+        }
+        
+        body.dark-mode .article-content h2 {
+            color: #60a5fa;
+        }
+        
+        .article-content h3 {
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            color: #333;
+        }
+        
+        body.dark-mode .article-content h3 {
+            color: #e0e0e0;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 20px 0 20px 40px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body.dark-mode .code-block {
+            background: #27272a;
+            border-color: #44444a;
+            color: #e4e4e7;
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        body.dark-mode .highlight-box {
+            background: #0f172a;
+            border-left-color: #60a5fa;
+        }
+        
+        .highlight-box strong {
+            color: #3b82f6;
+        }
+        
+        body.dark-mode .highlight-box strong {
+            color: #60a5fa;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            background: white;
+            color: #3b82f6;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .share-section {
+            background: #2a2a2a;
+        }
+        
+        .share-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+        
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .twitter-btn {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .linkedin-btn {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .copy-btn {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+            margin-top: 60px;
+        }
+        
+        body.dark-mode footer {
+            background: #111;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .article-content h2 {
+                font-size: 1.4em;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Anjani Raj</a>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back</a>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <article class="article-content">
+            <div class="article-header">
+                <span class="category-tag">Development</span>
+                <h1>Frontend to Backend: Full-Stack Development Workflow with React & Node.js</h1>
+                <div class="article-meta">
+                    <span>📅 February 5, 2026</span>
+                    <span>⏱️ 12 min read</span>
+                    <span>✍️ By Anjani Raj</span>
+                </div>
+            </div>
+            
+            <h2>Introduction: The Full-Stack Reality</h2>
+            <p>Full-stack development encompasses everything from the browser interface users interact with to the servers storing data and processing logic. React handles the frontend—creating interactive user interfaces. Node.js handles the backend—managing data, business logic, and serving content to clients. Understanding how these layers communicate and coordinate is essential for building modern web applications.</p>
+            
+            <p>This article walks through building production-grade full-stack applications, with practical patterns and architectural decisions that scale.</p>
+            
+            <h2>Architecture: How Frontend and Backend Communicate</h2>
+            
+            <h3>Client-Server Model</h3>
+            <p>The fundamental architecture is simple: React runs in the browser on the client. Node.js runs on servers in the cloud. They communicate via HTTP REST APIs or GraphQL endpoints. The client sends requests; the server responds with data or status confirmation.</p>
+            
+            <p>In practice, there's more nuance. The client might make multiple API calls per user action. The server might need to fetch data from databases, cache layers, or third-party services. The network might be slow or fail. Handling these realities is where architecture matters.</p>
+            
+            <h3>Separation of Concerns</h3>
+            <p>The frontend and backend are separate concerns with clear boundaries:</p>
+            
+            <ul>
+                <li><strong>Frontend responsibility:</strong> UI rendering, user interactions, client-side state management, form validation, optimistic updates</li>
+                <li><strong>Backend responsibility:</strong> Data persistence, business logic enforcement, authentication/authorization, API documentation</li>
+            </ul>
+            
+            <p>Don't put business logic in the frontend—it can be bypassed. Don't put UI logic in the backend—it reduces client-side flexibility. Keep concerns separated.</p>
+            
+            <h2>Backend Architecture: Node.js and Express</h2>
+            
+            <h3>Setting Up Express Server</h3>
+            <p>Express provides routing, middleware, and request handling:</p>
+            
+            <div class="code-block">
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+// Middleware
+app.use(express.json());
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true
+}));
+
+// Routes
+app.get('/api/posts', async (req, res) => {
+  try {
+    const posts = await Post.find()
+      .limit(10)
+      .sort({ createdAt: -1 });
+    res.json({ success: true, data: posts });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/posts', async (req, res) => {
+  try {
+    const post = new Post(req.body);
+    await post.save();
+    res.status(201).json({ success: true, data: post });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
+  }
+});
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server running on port 3000');
+});
+            </div>
+            
+            <h3>Middleware and Error Handling</h3>
+            <p>Middleware processes requests before they reach route handlers. Error handling middleware catches exceptions:</p>
+            
+            <div class="code-block">
+// Authentication middleware
+const authenticate = async (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.status(401).json({ error: 'Unauthorized' });
+  
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.userId = decoded.id;
+    next();
+  } catch (error) {
+    res.status(401).json({ error: 'Invalid token' });
+  }
+};
+
+app.post('/api/posts', authenticate, async (req, res) => {
+  // Handler now has access to req.userId
+});
+
+// Error handling middleware (must be last)
+app.use((error, req, res, next) => {
+  console.error(error);
+  res.status(error.status || 500).json({
+    success: false,
+    error: error.message
+  });
+});
+            </div>
+            
+            <h2>Database Integration: Connecting to Data</h2>
+            
+            <h3>MongoDB with Mongoose</h3>
+            <p>Mongoose provides schema-based interaction with MongoDB:</p>
+            
+            <div class="code-block">
+const mongoose = require('mongoose');
+
+const postSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  content: { type: String, required: true },
+  author: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
+});
+
+const Post = mongoose.model('Post', postSchema);
+
+// Usage
+const newPost = await Post.create({
+  title: 'My Post',
+  content: 'Content here',
+  author: userId
+});
+
+// Queries
+const posts = await Post.find({ author: userId })
+  .populate('author')
+  .select('title content createdAt');
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Design Principle:</strong> Define schemas clearly. Use validation at the database level—don't rely on frontend validation alone. Someone will try to bypass it.
+            </div>
+            
+            <h2>Frontend Architecture: React Components and State</h2>
+            
+            <h3>Component-Based Architecture</h3>
+            <p>React applications are trees of components. Each component has clear responsibilities:</p>
+            
+            <div class="code-block">
+function PostList() {
+  const [posts, setPosts] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+  
+  React.useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/posts');
+        if (!response.ok) throw new Error('Failed to fetch');
+        const data = await response.json();
+        setPosts(data.data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchPosts();
+  }, []);
+  
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  
+  return (
+    <div className="posts">
+      {posts.map(post => (
+        <PostCard key={post.id} post={post} />
+      ))}
+    </div>
+  );
+}
+            </div>
+            
+            <h3>State Management</h3>
+            <p>For simple applications, React's built-in state management suffices. For complex applications with lots of shared state, consider Redux or Context API:</p>
+            
+            <div class="code-block">
+// Using Context API for shared state
+const AuthContext = React.createContext();
+
+function AuthProvider({ children }) {
+  const [user, setUser] = React.useState(null);
+  const [token, setToken] = React.useState(localStorage.getItem('token'));
+  
+  const login = async (email, password) => {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+    setToken(data.token);
+    setUser(data.user);
+    localStorage.setItem('token', data.token);
+  };
+  
+  return (
+    <AuthContext.Provider value={{ user, token, login }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+// Usage in components
+function Dashboard() {
+  const { user } = React.useContext(AuthContext);
+  return <div>Welcome, {user?.name}</div>;
+}
+            </div>
+            
+            <h2>API Design: The Contract Between Frontend and Backend</h2>
+            
+            <h3>RESTful Principles</h3>
+            <p>REST (Representational State Transfer) provides conventions for API design:</p>
+            
+            <ul>
+                <li><strong>GET /api/posts</strong> - Retrieve all posts</li>
+                <li><strong>GET /api/posts/:id</strong> - Retrieve specific post</li>
+                <li><strong>POST /api/posts</strong> - Create new post</li>
+                <li><strong>PUT /api/posts/:id</strong> - Update existing post</li>
+                <li><strong>DELETE /api/posts/:id</strong> - Delete post</li>
+            </ul>
+            
+            <h3>Response Format Consistency</h3>
+            <p>Consistent response format makes frontend handling simple:</p>
+            
+            <div class="code-block">
+// Success response
+{
+  "success": true,
+  "data": { /* response data */ },
+  "meta": { "total": 100, "page": 1 }
+}
+
+// Error response
+{
+  "success": false,
+  "error": "Validation error",
+  "errors": {
+    "email": "Invalid email format"
+  }
+}
+            </div>
+            
+            <h2>Authentication and Security</h2>
+            
+            <h3>JWT-Based Authentication</h3>
+            <p>JSON Web Tokens provide stateless authentication:</p>
+            
+            <div class="code-block">
+// Backend: Issue token on login
+app.post('/api/auth/login', async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(401).json({ error: 'Invalid credentials' });
+  
+  const isValid = await bcrypt.compare(req.body.password, user.password);
+  if (!isValid) return res.status(401).json({ error: 'Invalid credentials' });
+  
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: '7d'
+  });
+  res.json({ token, user });
+});
+
+// Frontend: Store and use token
+localStorage.setItem('token', token);
+fetch('/api/posts', {
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  }
+});
+            </div>
+            
+            <h3>CORS and Security Headers</h3>
+            <p>Configure CORS to only allow requests from your frontend:</p>
+            
+            <div class="code-block">
+app.use(cors({
+  origin: ['https://myapp.com', 'https://www.myapp.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+app.use((req, res, next) => {
+  res.header('X-Content-Type-Options', 'nosniff');
+  res.header('X-Frame-Options', 'DENY');
+  res.header('X-XSS-Protection', '1; mode=block');
+  next();
+});
+            </div>
+            
+            <h2>Performance Optimization</h2>
+            
+            <h3>Backend: Caching and Database Optimization</h3>
+            <p>Use Redis for caching frequently accessed data:</p>
+            
+            <div class="code-block">
+const redis = require('redis');
+const cache = redis.createClient();
+
+app.get('/api/posts', async (req, res) => {
+  // Check cache first
+  const cached = await cache.get('posts:all');
+  if (cached) return res.json(JSON.parse(cached));
+  
+  // Fetch from database
+  const posts = await Post.find().limit(10);
+  
+  // Cache for 1 hour
+  await cache.setex('posts:all', 3600, JSON.stringify(posts));
+  
+  res.json(posts);
+});
+            </div>
+            
+            <h3>Frontend: Code Splitting and Lazy Loading</h3>
+            <p>Load code only when needed:</p>
+            
+            <div class="code-block">
+// React.lazy for code splitting
+const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
+
+function App() {
+  return (
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <AdminDashboard />
+    </React.Suspense>
+  );
+}
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Performance Priority:</strong> Optimize the critical path first. What does the user need immediately? Load that first. Load everything else later.
+            </div>
+            
+            <h2>Deployment: Getting to Production</h2>
+            
+            <h3>Backend Deployment</h3>
+            <p>Deploy Node.js backend to cloud platforms like Heroku, AWS, or DigitalOcean:</p>
+            
+            <div class="code-block">
+// Procfile for Heroku
+web: node server.js
+
+// Environment variables (.env)
+NODE_ENV=production
+PORT=3000
+DATABASE_URL=mongodb+srv://...
+JWT_SECRET=your-secret-key
+FRONTEND_URL=https://myapp.com
+            </div>
+            
+            <h3>Frontend Deployment</h3>
+            <p>Build and deploy React to static hosts like Vercel, Netlify, or AWS S3:</p>
+            
+            <div class="code-block">
+// Build for production
+npm run build
+
+// Environment variables (.env.production)
+REACT_APP_API_URL=https://api.myapp.com
+REACT_APP_ENV=production
+            </div>
+            
+            <h2>Development Workflow: Local Development to Production</h2>
+            
+            <h3>Local Development Setup</h3>
+            <p>Run frontend and backend separately during development:</p>
+            
+            <ul>
+                <li>Backend: `npm start` (runs on http://localhost:3000)</li>
+                <li>Frontend: `npm run dev` (runs on http://localhost:3001)</li>
+                <li>Configure frontend to proxy backend requests in development</li>
+            </ul>
+            
+            <h3>Testing Workflow</h3>
+            <p>Test both frontend and backend:</p>
+            
+            <div class="code-block">
+// Backend tests (Jest + Supertest)
+describe('POST /api/posts', () => {
+  it('should create a post', async () => {
+    const response = await request(app)
+      .post('/api/posts')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ title: 'Test', content: 'Content' });
+    
+    expect(response.status).toBe(201);
+    expect(response.body.data).toHaveProperty('id');
+  });
+});
+
+// Frontend tests (React Testing Library)
+test('renders post list', async () => {
+  render(<PostList />);
+  const element = await screen.findByText('Loading...');
+  expect(element).toBeInTheDocument();
+});
+            </div>
+            
+            <h2>Common Challenges and Solutions</h2>
+            
+            <h3>CORS Errors</h3>
+            <p>Frontend and backend on different domains/ports require proper CORS configuration. Configure the backend to accept requests from the frontend URL.</p>
+            
+            <h3>Race Conditions</h3>
+            <p>Multiple simultaneous requests can create inconsistent state. Use optimistic updates with rollback:</p>
+            
+            <div class="code-block">
+async function updatePost(id, updates) {
+  // Optimistic update
+  const originalPost = posts[id];
+  setPosts({ ...posts, [id]: { ...posts[id], ...updates } });
+  
+  try {
+    // Actual update
+    await fetch(`/api/posts/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updates)
+    });
+  } catch (error) {
+    // Rollback on error
+    setPosts({ ...posts, [id]: originalPost });
+  }
+}
+            </div>
+            
+            <h2>Conclusion: Building Scalable Full-Stack Applications</h2>
+            
+            <p>Full-stack development requires understanding how frontend and backend work together. Clear API contracts, proper error handling, security considerations, and deployment strategy all matter. The best full-stack developers think about the entire user journey—from the moment someone opens the browser to the moment data is persisted in the database.</p>
+            
+            <p>Start simple, build incrementally, and refactor when patterns emerge. That's how you build applications that scale.</p>
+            
+            <div class="cta-section">
+                <h3>Ready to Build Full-Stack Applications?</h3>
+                <p>Connect with me on LinkedIn to discuss full-stack development and architectural patterns.</p>
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com/in/anjaniraj" class="cta-btn">Connect on LinkedIn</a>
+                    <a href="https://twitter.com/anjaniraj" class="cta-btn">Follow on Twitter</a>
+                </div>
+            </div>
+            
+            <div class="share-section">
+                <span style="font-weight: 600;">Share this article:</span>
+                <a href="https://twitter.com/intent/tweet?text=Full-Stack%20Development%20with%20React%20and%20Node&url=https://anjaniraj.live/blog-post-10.html" class="share-btn twitter-btn">🐦 Twitter</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog-post-10.html" class="share-btn linkedin-btn">💼 LinkedIn</a>
+                <button onclick="copyToClipboard('https://anjaniraj.live/blog-post-10.html')" class="share-btn copy-btn">🔗 Copy Link</button>
+            </div>
+        </article>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Anjani Raj. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for innovation and knowledge sharing.</p>
+    </footer>
+    
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+        
+        // Reading progress
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / windowHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrollPercent + '%';
+        });
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

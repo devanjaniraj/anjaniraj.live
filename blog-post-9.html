@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Deep dive into building Progressive Web Apps without frameworks. Master service workers, offline capability, and caching strategies.">
+    <meta name="keywords" content="PWA, progressive web apps, service workers, offline, caching, web development">
+    <meta name="author" content="Anjani Raj">
+    <meta name="publish_date" content="2026-02-05">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Building PWAs Without Frameworks: Extended Deep Dive">
+    <meta property="og:description" content="Master Progressive Web Apps with service workers, offline capability, and advanced caching strategies.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="/assets/blog/post-9-og.jpg">
+    <meta property="og:url" content="https://anjaniraj.live/blog-post-9.html">
+    
+    <title>Building PWAs Without Frameworks: Extended Deep Dive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Monaco', 'Courier New', monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #6366f1 0%, #ec4899 100%);
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+        
+        .back-link:hover {
+            opacity: 0.8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .article-header {
+            margin-bottom: 40px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        body.dark-mode .category-tag {
+            background: #6366f1;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .article-meta {
+            color: #999;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            color: #6366f1;
+        }
+        
+        body.dark-mode .article-content h2 {
+            color: #a5f3fc;
+        }
+        
+        .article-content h3 {
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            color: #333;
+        }
+        
+        body.dark-mode .article-content h3 {
+            color: #e0e0e0;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 20px 0 20px 40px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-size: 0.9em;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        
+        body.dark-mode .code-block {
+            background: #2a2a2a;
+            border-color: #444;
+            color: #d4d4d4;
+        }
+        
+        .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid #6366f1;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        body.dark-mode .highlight-box {
+            background: #1e1b4b;
+            border-left-color: #a5f3fc;
+        }
+        
+        .highlight-box strong {
+            color: #6366f1;
+        }
+        
+        body.dark-mode .highlight-box strong {
+            color: #a5f3fc;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            background: white;
+            color: #6366f1;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .share-section {
+            background: #2a2a2a;
+        }
+        
+        .share-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+        
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .twitter-btn {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .linkedin-btn {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .copy-btn {
+            background: #6366f1;
+            color: white;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+            margin-top: 60px;
+        }
+        
+        body.dark-mode footer {
+            background: #111;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .article-content h2 {
+                font-size: 1.4em;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .code-block {
+                font-size: 0.8em;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Anjani Raj</a>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back</a>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <article class="article-content">
+            <div class="article-header">
+                <span class="category-tag">Development</span>
+                <h1>Building PWAs Without Frameworks: Extended Deep Dive</h1>
+                <div class="article-meta">
+                    <span>📅 February 5, 2026</span>
+                    <span>⏱️ 13 min read</span>
+                    <span>✍️ By Anjani Raj</span>
+                </div>
+            </div>
+            
+            <h2>Introduction: Progressive Web Apps as a Paradigm</h2>
+            <p>Progressive Web Apps (PWAs) represent a fundamental shift in how we think about web applications. Rather than separate concerns—native apps for desktop, native apps for mobile, websites for browsers—PWAs blur these boundaries. A PWA is a website that behaves like an app: it works offline, loads instantly, and can be installed on your home screen.</p>
+            
+            <p>The remarkable part is that building sophisticated PWAs doesn't require heavy frameworks. Vanilla JavaScript provides all necessary APIs. This article explores building production-grade PWAs using only web standards and vanilla JavaScript.</p>
+            
+            <h2>Foundation: Understanding Service Workers</h2>
+            
+            <h3>What Service Workers Are</h3>
+            <p>A Service Worker is a JavaScript file that runs in the background, separate from your main website. It intercepts network requests, enabling offline functionality and caching strategies. Think of it as a proxy between your website and the network.</p>
+            
+            <p>Service Workers are event-driven: they listen for installation events, activation events, and fetch events. When a user navigates your website and makes a request (for HTML, CSS, JavaScript, images), the Service Worker intercepts that request and decides what to do: return cached content, fetch from network, or some combination.</p>
+            
+            <h3>Registration: Starting Point</h3>
+            <p>First, we register the Service Worker in our main application:</p>
+            
+            <div class="code-block">
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(registration => {
+      console.log('Service Worker registered:', registration);
+    })
+    .catch(error => {
+      console.error('Service Worker registration failed:', error);
+    });
+}
+            </div>
+            
+            <p>This checks browser support, then registers the Service Worker file. The registration happens asynchronously—the website continues loading while the Service Worker registers in the background.</p>
+            
+            <h2>Service Worker Lifecycle: Installation and Activation</h2>
+            
+            <h3>Installation Phase</h3>
+            <p>When first registered, the Service Worker fires an "install" event. This is where we typically cache critical assets needed for the app to function offline:</p>
+            
+            <div class="code-block">
+const CACHE_VERSION = 'v1';
+const ASSETS_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/app.js',
+  '/assets/logo.png'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_VERSION).then(cache => {
+      return cache.addAll(ASSETS_TO_CACHE);
+    })
+  );
+});
+            </div>
+            
+            <p>The `event.waitUntil()` tells the browser to keep the Service Worker alive until the promise resolves. We open a cache (named 'v1') and add all critical assets. If any fail, the entire installation fails.</p>
+            
+            <h3>Activation Phase</h3>
+            <p>After installation, the Service Worker activates. This is where we clean up old caches:</p>
+            
+            <div class="code-block">
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_VERSION) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+            </div>
+            
+            <p>This finds all cache versions and deletes any that aren't the current version. This prevents old caches from consuming storage indefinitely.</p>
+            
+            <h2>Caching Strategies: The Core of PWAs</h2>
+            
+            <h3>Strategy 1: Cache First, Fallback to Network</h3>
+            <p>For static assets (CSS, JavaScript, images), cache-first makes sense. Serve from cache if available; if not, fetch from network and cache for future use:</p>
+            
+            <div class="code-block">
+self.addEventListener('fetch', event => {
+  // Cache static assets
+  if (event.request.url.includes('/assets/')) {
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => {
+          if (response) return response;
+          
+          return fetch(event.request)
+            .then(response => {
+              // Clone the response before caching
+              const cloned = response.clone();
+              caches.open(CACHE_VERSION)
+                .then(cache => cache.put(event.request, cloned));
+              return response;
+            });
+        })
+        .catch(() => {
+          // Return fallback if both cache and network fail
+          return caches.match('/fallback.png');
+        })
+    );
+  }
+});
+            </div>
+            
+            <p>This strategy ensures fast loads (cache) while keeping content fresh (network fetch).</p>
+            
+            <h3>Strategy 2: Network First, Fallback to Cache</h3>
+            <p>For API responses and dynamic content, network-first makes sense. Try to fetch fresh data; if offline or network fails, use cached version:</p>
+            
+            <div class="code-block">
+self.addEventListener('fetch', event => {
+  // Network-first for API calls
+  if (event.request.url.includes('/api/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          const cloned = response.clone();
+          caches.open(CACHE_VERSION)
+            .then(cache => cache.put(event.request, cloned));
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request)
+            .then(response => response || notFoundResponse());
+        })
+    );
+  }
+});
+            </div>
+            
+            <p>This ensures data freshness when possible while maintaining offline functionality.</p>
+            
+            <h3>Strategy 3: Stale-While-Revalidate</h3>
+            <p>Return cached content immediately while fetching fresh content in background:</p>
+            
+            <div class="code-block">
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.open(CACHE_VERSION).then(cache => {
+      return cache.match(event.request)
+        .then(response => {
+          // Start background fetch
+          const fetchPromise = fetch(event.request)
+            .then(networkResponse => {
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            });
+          
+          // Return cached response immediately, or network response
+          return response || fetchPromise;
+        });
+    })
+  );
+});
+            </div>
+            
+            <p>This provides instant experience (cached response) while updating in background. Perfect for content that doesn't need to be perfectly fresh.</p>
+            
+            <div class="highlight-box">
+                <strong>Key Principle:</strong> Different resources need different caching strategies. Static assets benefit from cache-first. API responses benefit from network-first. The goal is balancing freshness with reliability and performance.
+            </div>
+            
+            <h2>Offline Functionality: Making Apps Work Everywhere</h2>
+            
+            <h3>Building a Resilient App Shell</h3>
+            <p>The "app shell" is the minimal HTML/CSS/JavaScript needed to render your app structure. Cache this aggressively. When offline, serve the shell and populate with cached data:</p>
+            
+            <div class="code-block">
+// In main app.js
+document.addEventListener('DOMContentLoaded', () => {
+  if (!navigator.onLine) {
+    document.body.classList.add('offline-mode');
+    loadCachedData();
+  }
+});
+
+window.addEventListener('online', () => {
+  document.body.classList.remove('offline-mode');
+  syncPendingChanges();
+});
+
+window.addEventListener('offline', () => {
+  document.body.classList.add('offline-mode');
+});
+            </div>
+            
+            <p>This detects offline state and adjusts UI accordingly. Users know they're offline and understand which features work.</p>
+            
+            <h3>Caching User Data</h3>
+            <p>For PWAs to work offline, we need to cache user data. IndexedDB provides this capability:</p>
+            
+            <div class="code-block">
+// Initialize IndexedDB
+const dbRequest = indexedDB.open('MyAppDB', 1);
+
+dbRequest.onsuccess = (e) => {
+  const db = e.target.result;
+  const transaction = db.transaction(['posts'], 'readwrite');
+  const store = transaction.objectStore('posts');
+  
+  // Store user data
+  store.add({
+    id: 1,
+    title: 'My Post',
+    content: 'Post content',
+    timestamp: Date.now()
+  });
+};
+
+// Retrieve cached data
+function getCachedPost(id) {
+  const db = indexedDB.open('MyAppDB');
+  const transaction = db.transaction(['posts'], 'readonly');
+  const store = transaction.objectStore('posts');
+  return store.get(id);
+}
+            </div>
+            
+            <p>IndexedDB provides structured storage for complex data, much better than localStorage for large datasets.</p>
+            
+            <h2>Progressive Enhancement: Layers of Capability</h2>
+            
+            <h3>Design Philosophy</h3>
+            <p>Progressive enhancement means building your PWA in layers: core functionality works with basic HTML, better experience with CSS, best experience with JavaScript and Service Workers.</p>
+            
+            <p>A blog PWA might have layers:</p>
+            <ul>
+                <li><strong>Layer 1 (HTML):</strong> Server renders HTML with posts. Works in any browser, even very old ones.</li>
+                <li><strong>Layer 2 (CSS):</strong> Styles render properly on all screen sizes. Responsive design makes it work on mobile and desktop.</li>
+                <li><strong>Layer 3 (JavaScript):</strong> Smooth interactions, infinite scroll, instant search. Enhances user experience.</li>
+                <li><strong>Layer 4 (Service Workers):</strong> Offline functionality, app-like installation, background sync. Most advanced capability.</li>
+            </ul>
+            
+            <p>Each layer enhances the experience, but core functionality works at every level.</p>
+            
+            <h3>Implementation Example</h3>
+            <p>Build forms that work without JavaScript:</p>
+            
+            <div class="code-block">
+<!-- HTML works without JavaScript -->
+<form method="POST" action="/api/submit">
+  <input type="text" name="message" required>
+  <button type="submit">Send</button>
+</form>
+
+<!-- JavaScript enhances with client-side validation, offline queueing -->
+<script>
+const form = document.querySelector('form');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  const formData = new FormData(form);
+  if (navigator.onLine) {
+    // Fetch works
+    fetch('/api/submit', {
+      method: 'POST',
+      body: formData
+    });
+  } else {
+    // Queue for later sync
+    queuePendingRequest(formData);
+    showMessage('Saved for later');
+  }
+});
+</script>
+            </div>
+            
+            <h2>Web App Manifest: Installation and Identity</h2>
+            
+            <h3>What Goes in the Manifest</h3>
+            <p>The manifest.json file tells browsers how to display your PWA as an installed app:</p>
+            
+            <div class="code-block">
+{
+  "name": "My Awesome App",
+  "short_name": "MyApp",
+  "description": "An amazing progressive web app",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#667eea",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
+            </div>
+            
+            <h3>Linking in HTML</h3>
+            <p>Reference the manifest in your HTML head:</p>
+            
+            <div class="code-block">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" href="/icon-192.png">
+<meta name="theme-color" content="#667eea">
+<meta name="apple-mobile-web-app-capable" content="yes">
+            </div>
+            
+            <p>This enables installation on home screen on Android and iOS.</p>
+            
+            <h2>Performance Optimization: Making PWAs Blazingly Fast</h2>
+            
+            <h3>Critical Path Optimization</h3>
+            <p>Cache only what's critical for initial render. Lazy-load everything else:</p>
+            
+            <div class="code-block">
+// Prioritize critical assets
+const CRITICAL_ASSETS = [
+  '/',
+  '/index.html',
+  '/critical.css',
+  '/critical.js'
+];
+
+// Lazy-load others on-demand
+function lazyLoadAsset(src) {
+  return caches.match(src).then(response => {
+    if (response) return response;
+    return fetch(src);
+  });
+}
+            </div>
+            
+            <h3>Code Splitting and Module Loading</h3>
+            <p>Use dynamic imports to load code only when needed:</p>
+            
+            <div class="code-block">
+// Load analytics only if enabled
+async function initializeAnalytics() {
+  if (localStorage.getItem('analytics-enabled')) {
+    const { initAnalytics } = await import('./analytics.js');
+    initAnalytics();
+  }
+}
+
+// Routes load their components dynamically
+async function navigateTo(route) {
+  const { renderPage } = await import(`./pages/${route}.js`);
+  renderPage();
+}
+            </div>
+            
+            <h2>Testing and Debugging PWAs</h2>
+            
+            <h3>Chrome DevTools Integration</h3>
+            <p>DevTools provides Service Worker inspection and testing:</p>
+            
+            <ul>
+                <li>Go to Application tab → Service Workers to see registration status</li>
+                <li>Go to Application tab → Cache Storage to inspect cached content</li>
+                <li>Use Network tab → Offline checkbox to test offline functionality</li>
+                <li>Go to Application tab → Manifest to verify manifest.json is valid</li>
+            </ul>
+            
+            <h3>Lighthouse Auditing</h3>
+            <p>Lighthouse provides automated PWA quality checks:</p>
+            
+            <div class="code-block">
+// Run in DevTools:
+// 1. Go to Lighthouse tab
+// 2. Select "Progressive Web App"
+// 3. Generate report
+
+// Report shows:
+// - Installability
+// - Service Worker functionality
+// - Offline support
+// - Performance metrics
+            </div>
+            
+            <p>Aim for 90+ score across all PWA metrics.</p>
+            
+            <div class="highlight-box">
+                <strong>Pro Tip:</strong> Test on actual devices and slow networks. Simulation isn't perfect. Chrome DevTools lets you throttle network speed and test realistic conditions.
+            </div>
+            
+            <h2>Handling Updates and Versioning</h2>
+            
+            <h3>Semantic Cache Versioning</h3>
+            <p>Use versioning to control when caches update:</p>
+            
+            <div class="code-block">
+const CACHE_VERSION = 'v2.1.0';
+const OLD_CACHES = ['v1', 'v2.0.0'];
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(name => {
+          if (OLD_CACHES.includes(name)) {
+            return caches.delete(name);
+          }
+        })
+      );
+    })
+  );
+});
+            </div>
+            
+            <h3>Update Notifications</h3>
+            <p>Notify users when new version is available:</p>
+            
+            <div class="code-block">
+let refreshing = false;
+
+navigator.serviceWorker.addEventListener('controllerchange', () => {
+  if (refreshing) return;
+  refreshing = true;
+  window.location.reload();
+});
+
+navigator.serviceWorker.ready.then(reg => {
+  reg.addEventListener('updatefound', () => {
+    const newWorker = reg.installing;
+    newWorker.addEventListener('statechange', () => {
+      if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+        // New version available
+        showUpdateNotification();
+      }
+    });
+  });
+  
+  // Check for updates periodically
+  setInterval(() => reg.update(), 60000);
+});
+            </div>
+            
+            <h2>Conclusion: The Future of Web Applications</h2>
+            
+            <p>Progressive Web Apps built with vanilla JavaScript demonstrate that frameworks aren't always necessary. Understanding web standards deeply—Service Workers, Caching, IndexedDB, Offline APIs—enables you to build sophisticated, resilient applications.</p>
+            
+            <p>The key is thoughtful architecture: consider caching strategies, offline requirements, performance constraints, and user experience. Build progressively, layer capabilities, and test thoroughly. The result is applications that work reliably whether users have perfect connectivity or no connectivity at all.</p>
+            
+            <div class="cta-section">
+                <h3>Ready to Build Better Web Apps?</h3>
+                <p>Connect with me on LinkedIn to discuss web development and progressive web application strategies.</p>
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com/in/anjaniraj" class="cta-btn">Connect on LinkedIn</a>
+                    <a href="https://twitter.com/anjaniraj" class="cta-btn">Follow on Twitter</a>
+                </div>
+            </div>
+            
+            <div class="share-section">
+                <span style="font-weight: 600;">Share this article:</span>
+                <a href="https://twitter.com/intent/tweet?text=Building%20PWAs%20Without%20Frameworks&url=https://anjaniraj.live/blog-post-9.html" class="share-btn twitter-btn">🐦 Twitter</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog-post-9.html" class="share-btn linkedin-btn">💼 LinkedIn</a>
+                <button onclick="copyToClipboard('https://anjaniraj.live/blog-post-9.html')" class="share-btn copy-btn">🔗 Copy Link</button>
+            </div>
+        </article>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Anjani Raj. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for innovation and knowledge sharing.</p>
+    </footer>
+    
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+        
+        // Reading progress
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / windowHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrollPercent + '%';
+        });
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

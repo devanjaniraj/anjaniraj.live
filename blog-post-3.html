@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />        
+    <title>Building Multiple Startups: Lessons from Sinha Enterprises & Mediplus Solutions — Anjani Raj</title>                                
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />                                    
+    <meta name="description" content="Real lessons from founding and scaling multiple startups during COVID-19, focusing on business fundamentals, operations, and sustainable growth strategies.">                        
+    <meta name="keywords" content="Entrepreneurship, Startup Lessons, Sinha Enterprises, Mediplus Solutions, Business Building, COVID-19, Crisis Response">                                  
+    <meta name="author" content="Anjani Raj">                               
+    <meta property="og:title" content="Building Multiple Startups: Lessons from Sinha Enterprises & Mediplus Solutions">                       
+    <meta property="og:description" content="Real lessons from founding and scaling multiple startups during COVID-19.">         
+    <meta property="og:type" content="article">                             
+    <meta name="twitter:card" content="summary_large_image">            
+    <link rel="preconnect" href="https://fonts.googleapis.com">             
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">                                 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">       
+    
+    <link rel="alternate" type="application/rss+xml" title="Anjani Raj Blog" href="/feed.xml">
+
+    <style>
+        :root {
+            --bg: #0b0d12;
+            --bg-secondary: #1a1d26;
+            --text: #ffffff;        
+            --text-secondary: #e0e0e0;                                              
+            --muted: #cfcfcf;       
+            --accent: #6cf2c2;      
+            --accent-dark: #059b7a; 
+            --card-bg: rgba(255,255,255,.04);                                       
+            --card-border: rgba(255,255,255,.06);                               
+        }
+
+        html[data-theme="light"] {  
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text: #1a1a1a;        
+            --text-secondary: #333333;                                              
+            --muted: #666666;       
+            --accent: #00a876;      
+            --accent-dark: #059b7a; 
+            --card-bg: rgba(0,0,0,.04);                                             
+            --card-border: rgba(0,0,0,.1);                                      
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;                                       
+            background: var(--bg);  
+            color: var(--text);     
+            line-height: 1.8;       
+            transition: background 0.3s ease, color 0.3s ease;                  
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;                                         
+            align-items: center;    
+            padding: 1.5rem 2rem;   
+            background: var(--bg-secondary);                                        
+            border-bottom: 1px solid var(--card-border);                            
+            position: sticky;       
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: var(--text);     
+            text-decoration: none;  
+            margin: 0 1rem;
+            font-size: 0.95rem;     
+            transition: color 0.3s ease;                                        
+        }
+
+        nav a:hover {
+            color: var(--accent);   
+        }
+
+        .back-link {
+            color: var(--accent);   
+            text-decoration: none;  
+            display: inline-flex;   
+            align-items: center;    
+            gap: 0.5rem;
+            margin-bottom: 2rem;    
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 1rem;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .post-header {
+            margin-bottom: 3rem;
+        }
+
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .post-content {
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .post-content h2 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem 0;
+            color: var(--accent);
+        }
+
+        .post-content h3 {
+            font-size: 1.3rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+
+        .post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin: 1.5rem 0 1.5rem 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.8rem;
+        }
+
+        .post-content strong {
+            color: var(--accent);
+        }
+
+        code {
+            background: var(--card-bg);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent);
+        }
+
+        .highlight-box {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .cta-section a {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-section a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(108, 242, 194, 0.2);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .post-title {
+                font-size: 1.8rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="reading-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--accent); z-index: 1000; transition: width 0.1s ease;"></div>
+
+    <div style="position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1rem; z-index: 100;">
+        <a href="#" onclick="shareOnTwitter(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" onclick="shareOnLinkedIn(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" onclick="copyLink(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'" title="Copy link">
+            <i class="fas fa-link"></i>
+        </a>
+    </div>
+
+    <nav>
+        <a href="/">Anjani Raj</a>
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <a href="/blog.html">Blog</a>
+            <a href="/#contact">Contact</a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="/blog.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Blog
+        </a>
+
+        <div class="post-header">
+            <h1 class="post-title">Building Multiple Startups: Lessons from Sinha Enterprises & Mediplus Solutions</h1>
+            <div class="post-meta">
+                <span class="category-tag">Entrepreneurship</span>
+                <span><i class="far fa-calendar"></i> Feb 5, 2026</span>
+                <span><i class="far fa-clock"></i> 12 min read</span>
+                <span>By <strong>Anjani Raj</strong></span>
+            </div>
+        </div>
+
+        <article class="post-content">
+            <p>Most entrepreneurs talk about building one business. I've been fortunate—and tested—to build multiple startups simultaneously. This isn't a humble brag; it's been one of the most chaotic, educational, and rewarding experiences of my career. In this post, I'll share the real lessons from founding <strong>Sinha Enterprises</strong> (wholesale distribution) and <strong>Mediplus Solutions</strong> (medical supplies during COVID-19).</p>
+
+            <h2>The Context: Why Multiple Startups?</h2>
+            <p>People often ask: "Why run multiple businesses instead of focusing on one?" The honest answer is that opportunity doesn't wait for perfect timing. In 2020, when COVID-19 hit, there was a critical shortage of medical supplies. Simultaneously, I saw an opportunity to build a more efficient wholesale distribution network. Rather than choosing, I decided to tackle both.</p>
+
+            <p>This wasn't a strategic choice—it was a necessity-driven decision. But it taught me something fundamental about entrepreneurship: <strong>you don't need permission to experiment, and you don't need perfect focus to win.</strong></p>
+
+            <h2>Lesson 1: Systems Over Chaos</h2>
+            <p>Running two startups simultaneously is like juggling while riding a unicycle. Without systems, you crash.</p>
+
+            <p>Here's what I implemented:</p>
+
+            <ul>
+                <li><strong>Time blocking:</strong> Specific hours for each business (8-11 AM Sinha, 11 AM-2 PM Mediplus, 2-5 PM Strategic)</li>
+                <li><strong>Weekly dashboards:</strong> KPIs for each business visible in one place</li>
+                <li><strong>Delegation framework:</strong> Clear ownership for each function—I'm not a bottleneck</li>
+                <li><strong>Communication rhythms:</strong> Monday strategy, Wednesday checkpoint, Friday retrospective</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Critical Insight:</strong> The businesses didn't fail because I was stretched thin. They thrived because I built systems that didn't require constant decision-making. Automate the repeatable; focus your energy on strategic decisions.
+            </div>
+
+            <h2>Lesson 2: Crisis Creates Clarity</h2>
+            <p>COVID-19 was a crisis. Medical supplies were scarce. Hospitals were desperate. This forced clarity.</p>
+
+            <p>For <strong>Mediplus Solutions</strong>, the mission became razor-sharp: Get PPE to frontline workers. Everything else was noise. This clarity meant:</p>
+
+            <ul>
+                <li>No feature creep—only essentials</li>
+                <li>Fast decision-making—delay costs lives</li>
+                <li>Customer obsession—hospitals' needs were non-negotiable</li>
+                <li>Operational efficiency—every rupee matters when stakes are high</li>
+            </ul>
+
+            <p>Many startups struggle because their purpose is vague. Crisis forces precision. If you can find that clarity without a crisis, you've already won half the battle.</p>
+
+            <h2>Lesson 3: Different Businesses, Different Muscles</h2>
+            <p><strong>Sinha Enterprises</strong> (wholesale distribution) required:</p>
+            <ul>
+                <li>Relationship management—building trust with distributors and retailers</li>
+                <li>Supply chain optimization—reducing cost per unit</li>
+                <li>Logistics excellence—timely delivery</li>
+            </ul>
+
+            <p><strong>Mediplus Solutions</strong> required:</p>
+            <ul>
+                <li>Crisis management—rapid scaling under pressure</li>
+                <li>Regulatory compliance—medical supplies have standards</li>
+                <li>Direct customer relationships—hospitals, not intermediaries</li>
+            </ul>
+
+            <p>I realized I couldn't use the same playbook for both. Building a distribution network isn't the same as building a crisis-response business. Each required different skills, team structures, and decision-making frameworks.</p>
+
+            <div class="highlight-box">
+                <strong>Key Takeaway:</strong> Don't assume what works in one industry works in another. Study the context. Learn the rules. Adapt your approach. Cookie-cutter strategies fail in diverse markets.
+            </div>
+
+            <h2>Lesson 4: Team > Founder</h2>
+            <p>I couldn't have run two businesses without exceptional teams. Here's what I learned about building them:</p>
+
+            <p><strong>Hire for culture and work ethic first, skills second.</strong> Skills can be taught. Culture and drive can't. I hired people who:</p>
+
+            <ul>
+                <li>Believed in the mission, not just the paycheck</li>
+                <li>Could work independently—I wasn't micromanaging</li>
+                <li>Brought complementary skills to my weaknesses</li>
+                <li>Challenged my assumptions respectfully</li>
+            </ul>
+
+            <p><strong>Give ownership, not tasks.</strong> Instead of "Get these supplies to Hospital X by Friday," I'd say "We promised Hospital X delivery by Friday. You own making that happen. How can I help?" This shifts mindset from execution to ownership.</p>
+
+            <h2>Lesson 5: Financial Discipline Isn't Optional</h2>
+            <p>Running two businesses taught me that <strong>runway is your superpower.</strong> Cash doesn't care about vision. Here's what I tracked obsessively:</p>
+
+            <ul>
+                <li><strong>Burn rate:</strong> How much cash am I spending monthly?</li>
+                <li><strong>Runway:</strong> How many months until I run out?</li>
+                <li><strong>Unit economics:</strong> Am I making money on each transaction?</li>
+                <li><strong>Working capital:</strong> How much cash is tied up in inventory?</li>
+            </ul>
+
+            <p>For Mediplus, I negotiated payment terms carefully—if I had to pay suppliers upfront but customers paid in 30 days, I'd die. I restructured deals to get cash flow aligned.</p>
+
+            <p>For Sinha, I optimized inventory turns. Every day inventory sits on shelves is cash locked up.</p>
+
+            <div class="highlight-box">
+                <strong>Harsh Truth:</strong> Most startups don't die because the idea was bad. They die because they ran out of cash. Watch your unit economics like a hawk.
+            </div>
+
+            <h2>Lesson 6: Saying No is Your Superpower</h2>
+            <p>With limited time and resources, saying "no" became my most important tool.</p>
+
+            <ul>
+                <li>No to low-margin customers (even if big)</li>
+                <li>No to feature requests that don't serve core mission</li>
+                <li>No to partnerships that sound good but dilute focus</li>
+                <li>No to perfectionism—"good enough" shipped beats "perfect" delayed</li>
+            </ul>
+
+            <p>Every "yes" to something is a "no" to something else. I became very intentional about that trade-off.</p>
+
+            <h2>Lesson 7: Speed Beats Perfection in Uncertain Times</h2>
+            <p>Mediplus taught me this most clearly. During COVID, we couldn't wait for the perfect system. We had to move fast, iterate, and learn.</p>
+
+            <p>We launched with basic logistics, learned from the first 100 orders, and improved. We didn't have a perfect compliance framework—we worked with lawyers to build it as we scaled. We didn't have a sophisticated supply chain—we built it piece by piece.</p>
+
+            <p>In predictable markets, perfection matters. In crisis and uncertainty, speed wins.</p>
+
+            <h2>Lesson 8: Know Your Why</h2>
+            <p>Founder burnout is real. Running two businesses simultaneously is exhausting. What kept me going wasn't the money (we didn't have much early on) or the recognition. It was the <strong>why.</strong></p>
+
+            <p>For Mediplus: "Frontline workers need PPE. I can help save lives."</p>
+            <p>For Sinha: "Small retailers are underserved by big distributors. I can create a better value chain."</p>
+
+            <p>When you're exhausted at midnight solving a supply chain crisis, a paycheck won't motivate you. But knowing you're solving a real problem? That will keep you going.</p>
+
+            <h2>The Reality Check</h2>
+            <p>I won't sugarcoat it: running two startups is hard. I missed sleep, birthdays, and regular meals. I made mistakes that cost money. I learned expensive lessons.</p>
+
+            <p>But I also learned more in those years than I would have in 10 years at a comfortable job. I built businesses from zero. I managed teams. I navigated crisis. I learned what I'm capable of.</p>
+
+            <h2>What Would I Do Differently?</h2>
+
+            <ul>
+                <li><strong>Delegate earlier.</strong> I micromanaged for too long. Hire great people and trust them sooner.</li>
+                <li><strong>Take weekends.</strong> Rest isn't laziness. It's maintenance. Burnout makes you stupid.</li>
+                <li><strong>Be more intentional about learning.</strong> Document lessons as you go, don't wait until the end.</li>
+                <li><strong>Build stronger financial buffers.</strong> Crisis liquidity management is stressful. More runway = better decisions.</li>
+            </ul>
+
+            <h2>Key Takeaways</h2>
+
+            <p>If you're thinking about building multiple ventures:</p>
+
+            <ul>
+                <li>✅ <strong>Systems enable scale.</strong> Build processes that don't require you.</li>
+                <li>✅ <strong>Clarity is gold.</strong> Know your mission and stick to it relentlessly.</li>
+                <li>✅ <strong>Different contexts require different playbooks.</strong> Adapt your approach.</li>
+                <li>✅ <strong>Team > Founder.</strong> Build a great team and trust them.</li>
+                <li>✅ <strong>Cash is king.</strong> Watch your burn rate and unit economics obsessively.</li>
+                <li>✅ <strong>No is a strategy.</strong> Focus through selective saying no.</li>
+                <li>✅ <strong>Speed > Perfection in uncertainty.</strong> Ship, learn, iterate.</li>
+                <li>✅ <strong>Your why > Everything else.</strong> If it's not meaningful, it's not sustainable.</li>
+            </ul>
+
+            <p>Building Sinha Enterprises and Mediplus Solutions simultaneously was the hardest and best education I could have gotten. The lessons apply whether you're building one startup or ten.</p>
+        </article>
+
+        <div class="cta-section">
+            <h3>Want to discuss entrepreneurship, building systems, or crisis management?</h3>
+            <p>Let's connect and share experiences. I'm always interested in learning from other builders.</p>
+            <a href="https://linkedin.com/in/anjaniraj" target="_blank">Connect on LinkedIn</a>
+            <a href="https://twitter.com/anjaniraj" target="_blank" style="margin-left: 1rem;">Follow on Twitter</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+            document.querySelector('.theme-toggle i').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.querySelector('.theme-toggle i').className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('reading-progress').style.width = scrolled + '%';
+        });
+
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=550,height=420');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=550,height=420');
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>

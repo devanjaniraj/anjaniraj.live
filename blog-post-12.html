@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master PowerShell automation for web developers. Learn scripts that save hours of manual work and streamline your development workflow.">
+    <meta name="keywords" content="PowerShell, automation, scripting, DevOps, developer tools, Windows automation">
+    <meta name="author" content="Anjani Raj">
+    <meta name="publish_date" content="2026-02-05">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="PowerShell for Web Developers: Automation Scripts That Save Hours">
+    <meta property="og:description" content="Master PowerShell automation for developers. Learn practical scripts for file management, deployments, and workflow automation.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="/assets/blog/post-12-og.jpg">
+    <meta property="og:url" content="https://anjaniraj.live/blog-post-12.html">
+    
+    <title>PowerShell for Web Developers: Automation Scripts That Save Hours</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Courier New', monospace;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0ea5e9 0%, #06b6d4 100%);
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            color: white;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
+        
+        .back-link:hover {
+            opacity: 0.8;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .article-header {
+            margin-bottom: 40px;
+        }
+        
+        .category-tag {
+            display: inline-block;
+            background: #0ea5e9;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        body.dark-mode .category-tag {
+            background: #0ea5e9;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .article-meta {
+            color: #999;
+        }
+        
+        .article-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .article-content h2 {
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            color: #0ea5e9;
+        }
+        
+        body.dark-mode .article-content h2 {
+            color: #22d3ee;
+        }
+        
+        .article-content h3 {
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            color: #333;
+        }
+        
+        body.dark-mode .article-content h3 {
+            color: #e0e0e0;
+        }
+        
+        .article-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 20px 0 20px 40px;
+        }
+        
+        .article-content li {
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body.dark-mode .code-block {
+            background: #2a3a3a;
+            border-color: #3f5f5f;
+            color: #e8f4f8;
+        }
+        
+        .highlight-box {
+            background: #ecf9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        
+        body.dark-mode .highlight-box {
+            background: #1a3a3a;
+            border-left-color: #22d3ee;
+        }
+        
+        .highlight-box strong {
+            color: #0ea5e9;
+        }
+        
+        body.dark-mode .highlight-box strong {
+            color: #22d3ee;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .cta-section h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            background: white;
+            color: #0ea5e9;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .share-section {
+            margin: 40px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        body.dark-mode .share-section {
+            background: #2a2a2a;
+        }
+        
+        .share-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s;
+        }
+        
+        .share-btn:hover {
+            opacity: 0.8;
+        }
+        
+        .twitter-btn {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        .linkedin-btn {
+            background: #0A66C2;
+            color: white;
+        }
+        
+        .copy-btn {
+            background: #0ea5e9;
+            color: white;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            padding: 40px 20px;
+            text-align: center;
+            color: #666;
+            margin-top: 60px;
+        }
+        
+        body.dark-mode footer {
+            background: #111;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .article-content h2 {
+                font-size: 1.4em;
+            }
+            
+            .article-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="reading-progress" id="readingProgress"></div>
+    
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">Anjani Raj</a>
+            <div class="header-controls">
+                <a href="index.html" class="back-link">← Back</a>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <article class="article-content">
+            <div class="article-header">
+                <span class="category-tag">DevOps</span>
+                <h1>PowerShell for Web Developers: Automation Scripts That Save Hours</h1>
+                <div class="article-meta">
+                    <span>📅 February 5, 2026</span>
+                    <span>⏱️ 10 min read</span>
+                    <span>✍️ By Anjani Raj</span>
+                </div>
+            </div>
+            
+            <h2>Introduction: Automation as a Developer Superpower</h2>
+            <p>Developers spend significant time on repetitive tasks: building projects, running tests, deploying code, managing files, syncing data. PowerShell offers a way to automate these tasks, freeing time for actual development. While many developers default to bash or shell scripts, PowerShell provides powerful automation capabilities that Windows developers often overlook.</p>
+            
+            <p>This article explores practical PowerShell scripts that solve real development problems and save hours of manual work.</p>
+            
+            <h2>PowerShell Fundamentals for Developers</h2>
+            
+            <h3>Variables and Objects</h3>
+            <p>PowerShell is object-oriented by design. Unlike bash which manipulates text, PowerShell manipulates objects:</p>
+            
+            <div class="code-block">
+# Variables
+$name = "John"
+$age = 30
+$numbers = 1..10
+
+# Objects
+$user = @{
+    Name = "John"
+    Age = 30
+    Email = "john@example.com"
+}
+
+# Array operations
+$users = @(
+    @{ Name = "John"; Email = "john@example.com" },
+    @{ Name = "Jane"; Email = "jane@example.com" }
+)
+
+$users | ForEach-Object { Write-Host "Name: $($_.Name)" }
+            </div>
+            
+            <h3>Cmdlets: PowerShell's Building Blocks</h3>
+            <p>Cmdlets are lightweight commands that perform specific functions. They follow a Verb-Noun naming convention:</p>
+            
+            <div class="code-block">
+# Get information
+Get-Process | Select-Object ProcessName, Id
+Get-ChildItem -Path "C:\Projects" -Recurse
+Get-Content "file.txt"
+
+# Change state
+New-Item -Path "C:\MyFolder" -ItemType Directory
+Remove-Item "C:\DeleteMe.txt"
+Copy-Item "source.txt" "destination.txt"
+
+# Format output
+Get-Process | Format-Table -Property Name, Id, WorkingSet
+Get-Process | Export-Csv -Path "processes.csv"
+            </div>
+            
+            <h2>Practical Script 1: Automated Project Setup</h2>
+            
+            <h3>Problem: Creating New Projects Takes Time</h3>
+            <p>Every time you start a new project, you create directories, initialize git, install dependencies, create .gitignore files. Automate this:</p>
+            
+            <div class="code-block">
+# new-project.ps1
+param(
+    [string]$ProjectName = $(throw "Project name required"),
+    [string]$Type = "web" # web, cli, library
+)
+
+$ProjectPath = "C:\Projects\$ProjectName"
+
+Write-Host "Creating project: $ProjectName" -ForegroundColor Green
+
+# Create directory structure
+New-Item -ItemType Directory -Path $ProjectPath
+New-Item -ItemType Directory -Path "$ProjectPath\src"
+New-Item -ItemType Directory -Path "$ProjectPath\tests"
+
+# Initialize git
+Set-Location $ProjectPath
+git init
+git config user.name "Your Name"
+git config user.email "your@email.com"
+
+# Create .gitignore
+$gitIgnore = @"
+node_modules/
+.env
+.env.local
+dist/
+build/
+*.log
+.DS_Store
+"@
+$gitIgnore | Out-File -FilePath ".gitignore"
+
+# Initialize Node project
+npm init -y
+
+# Install common dependencies based on type
+switch ($Type) {
+    "web" {
+        npm install express cors dotenv
+        npm install --save-dev nodemon
+    }
+    "cli" {
+        npm install commander chalk
+    }
+}
+
+# Create initial commit
+git add .
+git commit -m "Initial project setup"
+
+Write-Host "Project created at: $ProjectPath" -ForegroundColor Green
+            </div>
+            
+            <p>Usage: `./new-project.ps1 -ProjectName MyApp -Type web`</p>
+            
+            <h2>Practical Script 2: Build and Deploy Automation</h2>
+            
+            <h3>Problem: Manual Build and Deployment Steps</h3>
+            <p>Deploying involves: build, test, version bump, deploy. Automate the workflow:</p>
+            
+            <div class="code-block">
+# deploy.ps1
+param(
+    [string]$Environment = "staging",
+    [switch]$SkipTests
+)
+
+$ErrorActionPreference = "Stop"
+
+function Write-Status {
+    param([string]$Message)
+    Write-Host $Message -ForegroundColor Cyan
+}
+
+try {
+    Write-Status "Starting deployment to $Environment..."
+    
+    # 1. Run tests unless skipped
+    if (-not $SkipTests) {
+        Write-Status "Running tests..."
+        npm test
+        if ($LASTEXITCODE -ne 0) {
+            throw "Tests failed!"
+        }
+    }
+    
+    # 2. Build project
+    Write-Status "Building project..."
+    npm run build
+    if ($LASTEXITCODE -ne 0) {
+        throw "Build failed!"
+    }
+    
+    # 3. Version management
+    $version = (Get-Content package.json | ConvertFrom-Json).version
+    Write-Status "Current version: $version"
+    npm version patch --no-git-tag-version
+    
+    # 4. Create deployment package
+    Write-Status "Creating deployment package..."
+    $timestamp = Get-Date -Format "yyyy-MM-dd-HHmmss"
+    $packageName = "app-$timestamp.zip"
+    Compress-Archive -Path "dist\*", "package.json", "package-lock.json" -DestinationPath $packageName
+    
+    # 5. Deploy based on environment
+    Write-Status "Deploying to $Environment..."
+    
+    if ($Environment -eq "staging") {
+        Copy-Item $packageName "\\deploy-server\staging\$packageName"
+        $deployServer = "staging-server.example.com"
+    } elseif ($Environment -eq "production") {
+        Write-Host "Deploying to PRODUCTION - Type 'yes' to confirm: " -NoNewline
+        $confirm = Read-Host
+        if ($confirm -ne "yes") {
+            throw "Production deployment cancelled"
+        }
+        Copy-Item $packageName "\\deploy-server\production\$packageName"
+        $deployServer = "prod-server.example.com"
+    }
+    
+    # 6. Cleanup
+    Remove-Item $packageName
+    Write-Status "Deployment complete!" -ForegroundColor Green
+}
+catch {
+    Write-Host "Deployment failed: $_" -ForegroundColor Red
+    exit 1
+}
+            </div>
+            
+            <h2>Practical Script 3: Development Environment Setup</h2>
+            
+            <h3>Problem: New Developer? Setup Takes Hours</h3>
+            <p>Create an automated developer onboarding script:</p>
+            
+            <div class="code-block">
+# setup-dev-environment.ps1
+Write-Host "Setting up development environment..." -ForegroundColor Green
+
+# Check for administrative privileges
+$isAdmin = [bool]([System.Security.Principal.WindowsIdentity]::GetCurrent().Groups -match "S-1-5-32-544")
+if (-not $isAdmin) {
+    Write-Host "Error: Administrator privileges required" -ForegroundColor Red
+    exit 1
+}
+
+# 1. Install Chocolatey (Windows package manager)
+if (-not (Test-Path "$env:ProgramData\chocolatey")) {
+    Write-Host "Installing Chocolatey..." -ForegroundColor Yellow
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    iex ((New-Object System.Net.ServicePointManager).SecurityProtocol = 3072; iex(New-Object Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+}
+
+# 2. Install required tools
+$tools = @(
+    "nodejs",
+    "git",
+    "vscode",
+    "docker",
+    "postman",
+    "mongodb-compass"
+)
+
+foreach ($tool in $tools) {
+    Write-Host "Installing $tool..." -ForegroundColor Yellow
+    choco install $tool -y
+}
+
+# 3. Install npm global packages
+Write-Host "Installing npm global packages..." -ForegroundColor Yellow
+npm install -g @angular/cli @vue/cli create-react-app
+npm install -g typescript ts-node
+npm install -g eslint prettier
+
+# 4. Clone repository
+$repoPath = Read-Host "Enter repository URL"
+$projectPath = "$env:USERPROFILE\Projects\$(Split-Path -Leaf $repoPath).Replace('.git', '')"
+git clone $repoPath $projectPath
+
+# 5. Install project dependencies
+Set-Location $projectPath
+npm install
+
+# 6. Setup environment file
+if (Test-Path ".env.example") {
+    Copy-Item ".env.example" ".env.local"
+    Write-Host "Created .env.local from .env.example" -ForegroundColor Yellow
+    Write-Host "IMPORTANT: Update .env.local with your local settings"
+}
+
+Write-Host "Development environment setup complete!" -ForegroundColor Green
+            </div>
+            
+            <h2>Practical Script 4: Git Operations Automation</h2>
+            
+            <h3>Problem: Repetitive Git Workflows</h3>
+            <p>Automate common git workflows:</p>
+            
+            <div class="code-block">
+# git-sync.ps1 - Pull latest from main and update current branch
+Write-Host "Syncing git repositories..." -ForegroundColor Green
+
+$projectsPath = "$env:USERPROFILE\Projects"
+
+Get-ChildItem -Path $projectsPath -Directory | ForEach-Object {
+    $repoPath = $_.FullName
+    
+    if (Test-Path "$repoPath\.git") {
+        Write-Host "`nUpdating: $($_.Name)" -ForegroundColor Cyan
+        
+        Set-Location $repoPath
+        
+        # Get current branch
+        $currentBranch = git rev-parse --abbrev-ref HEAD
+        
+        # Fetch latest
+        git fetch origin
+        
+        # Pull latest from main
+        git checkout main 2>$null
+        git pull origin main
+        
+        # Return to original branch
+        git checkout $currentBranch
+        git pull origin $currentBranch
+        
+        Write-Host "✓ Updated" -ForegroundColor Green
+    }
+}
+
+Write-Host "`nAll repositories synced!" -ForegroundColor Green
+            </div>
+            
+            <h2>Practical Script 5: Log Analysis and Debugging</h2>
+            
+            <h3>Problem: Finding Errors in Logs Takes Time</h3>
+            <p>Quickly search and analyze logs:</p>
+            
+            <div class="code-block">
+# analyze-logs.ps1
+param(
+    [string]$LogPath = "logs\app.log",
+    [string]$ErrorLevel = "ERROR",
+    [int]$LastNHours = 24
+)
+
+if (-not (Test-Path $LogPath)) {
+    Write-Host "Log file not found: $LogPath" -ForegroundColor Red
+    exit 1
+}
+
+# Calculate time threshold
+$timeThreshold = (Get-Date).AddHours(-$LastNHours)
+
+# Read and analyze logs
+$logs = @()
+Get-Content $LogPath | ForEach-Object {
+    try {
+        # Assuming JSON formatted logs
+        $log = $_ | ConvertFrom-Json
+        if ($log.level -eq $ErrorLevel) {
+            $logTime = [datetime]$log.timestamp
+            if ($logTime -gt $timeThreshold) {
+                $logs += $log
+            }
+        }
+    }
+    catch {
+        # If not JSON, try text matching
+        if ($_ -match $ErrorLevel) {
+            $logs += $_
+        }
+    }
+}
+
+# Group errors by type and display
+$logs | Group-Object -Property message | ForEach-Object {
+    Write-Host "`nError: $($_.Name)" -ForegroundColor Red
+    Write-Host "Occurrences: $($_.Count)" -ForegroundColor Yellow
+    Write-Host "First occurrence:" -ForegroundColor Cyan
+    $_.Group[0] | Format-List
+}
+            </div>
+            
+            <div class="highlight-box">
+                <strong>Pro Tip:</strong> Store these scripts in a central location and add to your PATH. Create a `functions.ps1` file and source it from your PowerShell profile for instant access to custom commands.
+            </div>
+            
+            <h2>Best Practices for Development Automation</h2>
+            
+            <h3>Error Handling</h3>
+            <p>Always handle errors gracefully:</p>
+            
+            <div class="code-block">
+$ErrorActionPreference = "Stop"  # Stop on any error
+
+try {
+    # Your code here
+    npm run build
+    npm test
+}
+catch {
+    Write-Host "Error occurred: $_" -ForegroundColor Red
+    exit 1  # Fail the script
+}
+finally {
+    # Cleanup regardless of success/failure
+    Set-Location $originalLocation
+}
+            </div>
+            
+            <h3>Logging and Output</h3>
+            <p>Make scripts informative:</p>
+            
+            <div class="code-block">
+function Write-Log {
+    param(
+        [string]$Message,
+        [string]$Level = "INFO"
+    )
+    
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $colors = @{
+        "INFO" = "White"
+        "SUCCESS" = "Green"
+        "WARNING" = "Yellow"
+        "ERROR" = "Red"
+    }
+    
+    $color = $colors[$Level]
+    Write-Host "[$timestamp] [$Level] $Message" -ForegroundColor $color
+}
+            </div>
+            
+            <h2>Integrating with Your Workflow</h2>
+            
+            <h3>Create a Custom Profile</h3>
+            <p>PowerShell runs `$PROFILE` on startup. Customize it:</p>
+            
+            <div class="code-block">
+# Edit your profile
+$PROFILE  # Shows path
+
+# Add these to profile
+Set-Alias -Name proj -Value 'Set-Location "$env:USERPROFILE\Projects"'
+Set-Alias -Name deploy -Value 'C:\Scripts\deploy.ps1'
+
+# Function for quick git operations
+function gs { git status }
+function gca { git commit -am $args }
+function gp { git push }
+function gl { git log --oneline -5 }
+            </div>
+            
+            <h2>Conclusion: Automation Multiplies Productivity</h2>
+            
+            <p>PowerShell automation isn't just about saving time on individual tasks. It's about building muscle memory for efficient workflows. The more you automate, the faster you work, and the more time you have for actual development. Start with one script, then build from there. Over time, you'll have a powerful toolkit that supercharges your productivity.</p>
+            
+            <div class="cta-section">
+                <h3>Ready to Automate Your Workflows?</h3>
+                <p>Connect with me on LinkedIn to discuss DevOps automation and developer productivity tools.</p>
+                <div class="cta-buttons">
+                    <a href="https://linkedin.com/in/anjaniraj" class="cta-btn">Connect on LinkedIn</a>
+                    <a href="https://twitter.com/anjaniraj" class="cta-btn">Follow on Twitter</a>
+                </div>
+            </div>
+            
+            <div class="share-section">
+                <span style="font-weight: 600;">Share this article:</span>
+                <a href="https://twitter.com/intent/tweet?text=PowerShell%20for%20Web%20Developers:%20Automation%20Scripts&url=https://anjaniraj.live/blog-post-12.html" class="share-btn twitter-btn">🐦 Twitter</a>
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog-post-12.html" class="share-btn linkedin-btn">💼 LinkedIn</a>
+                <button onclick="copyToClipboard('https://anjaniraj.live/blog-post-12.html')" class="share-btn copy-btn">🔗 Copy Link</button>
+            </div>
+        </article>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Anjani Raj. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for innovation and knowledge sharing.</p>
+    </footer>
+    
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        
+        if (isDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDark);
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+        
+        // Reading progress
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / windowHeight) * 100;
+            document.getElementById('readingProgress').style.width = scrollPercent + '%';
+        });
+        
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
