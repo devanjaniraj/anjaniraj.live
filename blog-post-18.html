@@ -44,17 +44,6 @@
             --card-bg: rgba(255,255,255,.04);
             --card-border: rgba(255,255,255,.06);
         }
-        html[data-theme="light"] {
-            --bg: #ffffff;
-            --bg-secondary: #f5f5f5;
-            --text: #1a1a1a;
-            --text-secondary: #333333;
-            --muted: #666666;
-            --accent: #00a876;
-            --accent-dark: #059b7a;
-            --card-bg: rgba(0,0,0,.04);
-            --card-border: rgba(0,0,0,.1);
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -115,12 +104,6 @@
         }
         .nav-links { display: flex; align-items: center; }
         .nav-right { display: flex; align-items: center; gap: 1rem; }
-        .theme-toggle {
-            background: none; border: none;
-            color: var(--text); font-size: 1.5rem;
-            cursor: pointer; transition: transform 0.3s ease;
-        }
-        .theme-toggle:hover { transform: scale(1.1) rotate(20deg); }
         .hamburger {
             display: none; background: none; border: none;
             cursor: pointer; padding: 4px; z-index: 101;
@@ -232,9 +215,6 @@
             <a href="/#connect">Connect</a>
         </div>
         <div class="nav-right">
-            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
-                <i class="fas fa-moon"></i>
-            </button>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
@@ -356,26 +336,6 @@
     </footer>
 
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement;
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        htmlElement.setAttribute('data-theme', savedTheme);
-        updateThemeToggleIcon();
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeToggleIcon();
-        });
-
-        function updateThemeToggleIcon() {
-            const theme = htmlElement.getAttribute('data-theme');
-            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-        }
-
         // Reading Progress
         window.addEventListener('scroll', () => {
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
