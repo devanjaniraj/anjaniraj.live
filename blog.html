@@ -367,7 +367,7 @@
     <div class="container fade-in">
         <div class="page-header">
             <h1>Blog</h1>
-            <p>Thoughts on engineering, entrepreneurship, and building sustainable systems</p>
+            <p>Thoughts on technology, finance, geopolitics, philosophy, and building sustainable systems</p>
         </div>
 
         <div class="search-box">
@@ -376,6 +376,9 @@
 
         <div class="filter-section">
             <button class="filter-btn active" data-filter="all">All Articles</button>
+            <button class="filter-btn" data-filter="Technology">Technology</button>
+            <button class="filter-btn" data-filter="Finance">Finance</button>
+            <button class="filter-btn" data-filter="Geopolitics">Geopolitics</button>
             <button class="filter-btn" data-filter="Philosophy">Philosophy</button>
             <button class="filter-btn" data-filter="Career">Career</button>
             <button class="filter-btn" data-filter="Development">Development</button>
@@ -420,6 +423,78 @@
         // Blog Posts Data
         const blogPosts = [
             {
+                id: 16,
+                title: "The Rise of AI Agents: Autonomous Systems Are Reshaping Industries",
+                excerpt: "AI agents have moved from research labs into production environments across virtually every industry. What the autonomous AI revolution means for the future of work, and why the organizations that learn to work with agents will have a decisive advantage.",
+                date: "March 8, 2026",
+                readTime: "11 min",
+                category: "Technology",
+                url: "/blog-post-16.html"
+            },
+            {
+                id: 22,
+                title: "Stoicism in the Age of Information Overload: Ancient Wisdom for Modern Chaos",
+                excerpt: "Two thousand years ago, Marcus Aurelius wrote about controlling your mind amidst chaos. In a world of push notifications and doom-scrolling, Stoic philosophy offers a practical operating system for living with clarity and purpose.",
+                date: "March 7, 2026",
+                readTime: "10 min",
+                category: "Philosophy",
+                url: "/blog-post-22.html"
+            },
+            {
+                id: 18,
+                title: "Central Bank Digital Currencies: The Global Financial System's Next Chapter",
+                excerpt: "Over 130 countries are exploring CBDCs. From India's Digital Rupee to cross-border payment revolutions, digital currencies are reshaping how money works—and raising profound questions about privacy and sovereignty.",
+                date: "March 6, 2026",
+                readTime: "12 min",
+                category: "Finance",
+                url: "/blog-post-18.html"
+            },
+            {
+                id: 17,
+                title: "The Semiconductor Race: Why Chip Manufacturing Is the New Space Race",
+                excerpt: "Every smartphone, car, and satellite depends on semiconductors. The global race to manufacture advanced chips—costing $20 billion per factory—has become the most consequential technology competition since the Space Race.",
+                date: "March 5, 2026",
+                readTime: "10 min",
+                category: "Technology",
+                url: "/blog-post-17.html"
+            },
+            {
+                id: 20,
+                title: "The Multipolar World: How Shifting Alliances Are Reshaping Global Power",
+                excerpt: "The unipolar moment is over. From India's strategic autonomy to the Global South's growing voice, understand how the emergence of multiple power centers is redrawing the map of international relations.",
+                date: "March 4, 2026",
+                readTime: "13 min",
+                category: "Geopolitics",
+                url: "/blog-post-20.html"
+            },
+            {
+                id: 19,
+                title: "Global Markets in 2026: Navigating Uncertainty in an Interconnected Economy",
+                excerpt: "Divergent interest rates, rising emerging markets, AI-driven productivity gains, and the energy transition—a deep dive into the forces reshaping global markets and principles for navigating permanent uncertainty.",
+                date: "March 3, 2026",
+                readTime: "11 min",
+                category: "Finance",
+                url: "/blog-post-19.html"
+            },
+            {
+                id: 23,
+                title: "The Paradox of Progress: When More Technology Demands Deeper Thinking",
+                excerpt: "As AI automates more of our thinking, the ability to think deeply, question assumptions, and reason ethically becomes humanity's most valuable skill. Why philosophy is the ultimate technology.",
+                date: "March 2, 2026",
+                readTime: "11 min",
+                category: "Philosophy",
+                url: "/blog-post-23.html"
+            },
+            {
+                id: 21,
+                title: "Digital Sovereignty: The New Battleground of 21st Century Geopolitics",
+                excerpt: "Data, AI governance, and tech regulation have become frontlines of international power. From India's data protection framework to the global AI governance race, digital sovereignty is reshaping geopolitics.",
+                date: "March 1, 2026",
+                readTime: "12 min",
+                category: "Geopolitics",
+                url: "/blog-post-21.html"
+            },
+            {
                 id: 1,
                 title: "Building Without Frameworks: Why Simplicity Wins",
                 excerpt: "Exploring why building with pure HTML, CSS, and JavaScript sometimes beats using frameworks. A deep dive into simplicity, performance, and developer sanity.",
@@ -444,7 +519,7 @@
                 date: "October 8, 2025",
                 readTime: "10 min",
                 category: "Entrepreneurship",
-                url: "#"
+                url: "/blog-post-3.html"
             },
             {
                 id: 4,
@@ -453,7 +528,7 @@
                 date: "September 12, 2025",
                 readTime: "9 min",
                 category: "Development",
-                url: "#"
+                url: "/blog-post-4.html"
             },
             {
                 id: 5,
@@ -462,7 +537,7 @@
                 date: "August 5, 2025",
                 readTime: "7 min",
                 category: "Personal",
-                url: "#"
+                url: "/blog-post-5.html"
             }
         ];
 
