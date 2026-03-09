@@ -1,292 +1,235 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />        
-    <title>Systems for Sustainable Freedom: Creating Businesses That Run Themselves — Anjani Raj</title>                                
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />                                    
-    <meta name="description" content="Framework for building scalable business systems that operate independently. Learn how to create processes, delegation structures, and automation that enable sustainable freedom.">                        
-    <meta name="keywords" content="Business Systems, Scalability, Automation, Delegation, Sustainable Freedom, Entrepreneurship, Operations">                                  
-    <meta name="author" content="Anjani Raj">                               
-    <meta property="og:title" content="Systems for Sustainable Freedom">                       
-    <meta property="og:description" content="Framework for building scalable business systems that operate independently.">         
-    <meta property="og:type" content="article">                             
-    <meta name="twitter:card" content="summary_large_image">            
-    <link rel="preconnect" href="https://fonts.googleapis.com">             
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">                                 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">    
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">       
-    
-    <link rel="alternate" type="application/rss+xml" title="Anjani Raj Blog" href="/feed.xml">
-
+    <meta charset="UTF-8" />
+    <title>Systems for Sustainable Freedom: Creating Businesses That Run Themselves — Anjani Raj</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNLZP70T21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GNLZP70T21');
+    </script>
     <style>
         :root {
             --bg: #0b0d12;
             --bg-secondary: #1a1d26;
-            --text: #ffffff;        
-            --text-secondary: #e0e0e0;                                              
-            --muted: #cfcfcf;       
-            --accent: #6cf2c2;      
-            --accent-dark: #059b7a; 
-            --card-bg: rgba(255,255,255,.04);                                       
-            --card-border: rgba(255,255,255,.06);                               
+            --text: #ffffff;
+            --text-secondary: #e0e0e0;
+            --muted: #cfcfcf;
+            --accent: #6cf2c2;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(255,255,255,.04);
+            --card-border: rgba(255,255,255,.06);
         }
-
-        html[data-theme="light"] {  
+        html[data-theme="light"] {
             --bg: #ffffff;
             --bg-secondary: #f5f5f5;
-            --text: #1a1a1a;        
-            --text-secondary: #333333;                                              
-            --muted: #666666;       
-            --accent: #00a876;      
-            --accent-dark: #059b7a; 
-            --card-bg: rgba(0,0,0,.04);                                             
-            --card-border: rgba(0,0,0,.1);                                      
+            --text: #1a1a1a;
+            --text-secondary: #333333;
+            --muted: #666666;
+            --accent: #00a876;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(0,0,0,.04);
+            --card-border: rgba(0,0,0,.1);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif;                                       
-            background: var(--bg);  
-            color: var(--text);     
-            line-height: 1.8;       
-            transition: background 0.3s ease, color 0.3s ease;                  
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
-
+        .reading-progress {
+            position: fixed; top: 0; left: 0; height: 3px;
+            background: var(--accent);
+            z-index: 1000; width: 0%; transition: width 0.1s ease;
+        }
         nav {
             display: flex;
-            justify-content: space-between;                                         
-            align-items: center;    
-            padding: 1.5rem 2rem;   
-            background: var(--bg-secondary);                                        
-            border-bottom: 1px solid var(--card-border);                            
-            position: sticky;       
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(10px);
         }
-
         nav a {
-            color: var(--text);     
-            text-decoration: none;  
-            margin: 0 1rem;
-            font-size: 0.95rem;     
-            transition: color 0.3s ease;                                        
-        }
-
-        nav a:hover {
-            color: var(--accent);   
-        }
-
-        .back-link {
-            color: var(--accent);   
-            text-decoration: none;  
-            display: inline-flex;   
-            align-items: center;    
-            gap: 0.5rem;
-            margin-bottom: 2rem;    
-            transition: gap 0.3s ease;
-        }
-
-        .back-link:hover {
-            gap: 1rem;
-        }
-
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        .post-header {
-            margin-bottom: 3rem;
-        }
-
-        .post-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .post-meta {
-            display: flex;
-            gap: 1.5rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .category-tag {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .post-content {
-            font-size: 1.1rem;
-            line-height: 1.9;
-        }
-
-        .post-content h2 {
-            font-size: 1.8rem;
-            margin: 2.5rem 0 1rem 0;
-            color: var(--accent);
-        }
-
-        .post-content h3 {
-            font-size: 1.3rem;
-            margin: 1.8rem 0 0.8rem 0;
-        }
-
-        .post-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .post-content ul, .post-content ol {
-            margin: 1.5rem 0 1.5rem 2rem;
-        }
-
-        .post-content li {
-            margin-bottom: 0.8rem;
-        }
-
-        .post-content strong {
-            color: var(--accent);
-        }
-
-        code {
-            background: var(--card-bg);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            color: var(--accent);
-        }
-
-        .highlight-box {
-            background: var(--card-bg);
-            border-left: 4px solid var(--accent);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 4px;
-        }
-
-        .highlight-box strong {
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-section {
-            margin-top: 4rem;
-            padding: 2rem;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .cta-section a {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--accent);
-            color: var(--bg);
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .cta-section a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(108, 242, 194, 0.2);
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
             color: var(--text);
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
         }
-
-        .theme-toggle:hover {
-            color: var(--accent);
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
-
-        @media (max-width: 600px) {
-            .post-title {
-                font-size: 1.8rem;
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--accent); }
+        .nav-logo {
+            width: 40px; height: 40px;
+            border-radius: 50%; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .nav-logo::after { display: none; }
+        .nav-logo img {
+            width: 100%; height: 100%;
+            object-fit: cover; border-radius: 50%;
+        }
+        .nav-links { display: flex; align-items: center; }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
+        .theme-toggle {
+            background: none; border: none;
+            color: var(--text); font-size: 1.5rem;
+            cursor: pointer; transition: transform 0.3s ease;
+        }
+        .theme-toggle:hover { transform: scale(1.1) rotate(20deg); }
+        .hamburger {
+            display: none; background: none; border: none;
+            cursor: pointer; padding: 4px; z-index: 101;
+        }
+        .hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: var(--text); margin: 5px 0; transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .article-header { margin-bottom: 40px; }
+        .category-tag {
+            display: inline-block; background: var(--accent); color: var(--bg);
+            padding: 4px 12px; border-radius: 20px; font-size: 12px;
+            font-weight: 600; text-transform: uppercase; margin-bottom: 15px;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 20px; line-height: 1.2; }
+        h2 { font-size: 1.8em; margin: 40px 0 20px 0; color: var(--accent); }
+        h3 { font-size: 1.4em; margin: 30px 0 15px 0; color: var(--text); }
+        .article-meta {
+            display: flex; gap: 20px; color: var(--muted); font-size: 14px;
+            margin-bottom: 30px; flex-wrap: wrap;
+        }
+        .article-content { font-size: 1.1em; line-height: 1.8; }
+        .article-content h2 { font-size: 1.8em; margin: 40px 0 20px 0; color: var(--accent); }
+        .article-content h3 { font-size: 1.4em; margin: 30px 0 15px 0; color: var(--text); }
+        .article-content p { margin-bottom: 20px; text-align: justify; }
+        .article-content ul, .article-content ol { margin: 20px 0 20px 40px; }
+        .article-content li { margin-bottom: 10px; }
+        .highlight-box, .info-box, .key-insight, blockquote {
+            background: rgba(108,242,194,.1); border-left: 4px solid var(--accent);
+            padding: 20px; margin: 30px 0; border-radius: 4px;
+        }
+        .highlight-box strong, .info-box strong, .key-insight strong { color: var(--accent); }
+        .code-block, pre, code {
+            background: var(--bg-secondary); border: 1px solid var(--card-border);
+            border-radius: 4px; font-family: 'Fira Code', 'Consolas', monospace;
+        }
+        pre { padding: 20px; margin: 20px 0; overflow-x: auto; font-size: 0.9em; line-height: 1.5; }
+        code { padding: 2px 6px; font-size: 0.9em; }
+        pre code { padding: 0; border: none; background: none; }
+        .cta-section {
+            background: var(--accent); color: var(--bg);
+            padding: 40px; border-radius: 8px;
+            margin: 40px 0; text-align: center;
+        }
+        .cta-section h3 { color: var(--bg); margin-bottom: 15px; }
+        .cta-buttons { display: flex; gap: 15px; margin-top: 20px; justify-content: center; flex-wrap: wrap; }
+        .cta-btn {
+            background: var(--bg); color: var(--accent); padding: 12px 24px;
+            border-radius: 4px; text-decoration: none; font-weight: 600;
+            transition: transform 0.3s; border: none; cursor: pointer;
+        }
+        .cta-btn:hover { transform: translateY(-2px); }
+        .share-section {
+            margin: 40px 0; padding: 20px; background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            border-radius: 8px; display: flex; gap: 15px;
+            align-items: center; flex-wrap: wrap;
+        }
+        .share-btn {
+            padding: 10px 16px; border: none; border-radius: 4px;
+            cursor: pointer; font-weight: 600; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px; transition: opacity 0.3s;
+        }
+        .share-btn:hover { opacity: 0.8; }
+        .twitter-btn { background: #1DA1F2; color: white; }
+        .linkedin-btn { background: #0A66C2; color: white; }
+        .copy-btn { background: var(--accent); color: var(--bg); }
+        footer {
+            background: var(--bg-secondary); padding: 2rem;
+            text-align: center; color: var(--muted);
+            border-top: 1px solid var(--card-border); margin-top: 60px;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.4em; }
+            .article-content h2 { font-size: 1.4em; }
+            .article-meta { flex-direction: column; gap: 10px; }
+            .cta-buttons { flex-direction: column; }
+            nav { padding: 1rem; }
+            .hamburger { display: block; }
+            .nav-links {
+                display: none; position: fixed;
+                top: 0; left: 0; width: 100%; height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column; justify-content: center;
+                align-items: center; gap: 2rem; z-index: 99;
             }
-
-            .container {
-                padding: 2rem 1rem;
-            }
-
-            nav {
-                padding: 1rem;
-            }
-
-            nav a {
-                margin: 0 0.5rem;
-                font-size: 0.85rem;
-            }
+            .nav-links.active { display: flex; }
+            .nav-links a { font-size: 1.2rem; margin: 0; }
+            pre { font-size: 0.8em; padding: 12px; }
         }
     </style>
 </head>
 <body>
-    <div id="reading-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--accent); z-index: 1000; transition: width 0.1s ease;"></div>
-
-    <div style="position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 1rem; z-index: 100;">
-        <a href="#" onclick="shareOnTwitter(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" onclick="shareOnLinkedIn(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'">
-            <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="#" onclick="copyLink(); return false;" style="width: 48px; height: 48px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'; this.style.background='var(--accent)'; this.style.color='var(--bg)'" onmouseout="this.style.transform='scale(1)'; this.style.background='var(--card-bg)'; this.style.color='var(--accent)'" title="Copy link">
-            <i class="fas fa-link"></i>
-        </a>
-    </div>
-
+    <div class="reading-progress" id="readingProgress"></div>
+    
     <nav>
-        <a href="/">Anjani Raj</a>
-        <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <a href="/" class="nav-logo">
+            <img src="anjani logo.jpg" alt="Anjani Raj" />
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="/">Home</a>
             <a href="/blog.html">Blog</a>
-            <a href="/#contact">Contact</a>
-            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light mode">
+            <a href="/projects.html">Projects</a>
+            <a href="/#about">About</a>
+            <a href="/#connect">Connect</a>
+        </div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
                 <i class="fas fa-moon"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
-
+    
     <div class="container">
-        <a href="/blog.html" class="back-link">
-            <i class="fas fa-arrow-left"></i> Back to Blog
-        </a>
-
-        <div class="post-header">
-            <h1 class="post-title">Systems for Sustainable Freedom: Creating Businesses That Run Themselves</h1>
-            <div class="post-meta">
-                <span class="category-tag">Entrepreneurship</span>
-                <span><i class="far fa-calendar"></i> Feb 5, 2026</span>
-                <span><i class="far fa-clock"></i> 11 min read</span>
-                <span>By <strong>Anjani Raj</strong></span>
-            </div>
-        </div>
-
-        <article class="post-content">
+        <article class="article-content">
             <p>The dream of entrepreneurship isn't building a business. It's building a business that doesn't require your constant presence to thrive. It's about creating <strong>sustainable freedom.</strong></p>
 
             <p>Most founders get trapped in what I call the "founder trap"—your business is successful, but you've become the bottleneck. You're working 80-hour weeks. You can't take a vacation without everything falling apart. You're not building a business; you're creating a job where you happen to be the only employee.</p>
@@ -470,55 +413,65 @@
                 <li>✅ Remember: Building systems is an investment with compounding returns</li>
             </ul>
 
-            <p>Sustainable freedom isn't a destination. It's a direction. Start today by documenting one critical process. Then delegate it. Then automate it. Repeat.</p>
+            <p>Sustainable freedom isn't a destination. It's a direction. Start today by documenting one critical process. Then delegate it. Then automate it. Repeat.</p>
         </article>
-
-        <div class="cta-section">
-            <h3>Ready to build scalable systems?</h3>
-            <p>Let's talk about your specific bottlenecks and how to systematize them. I love discussing operational excellence.</p>
-            <a href="https://linkedin.com/in/anjaniraj" target="_blank">Connect on LinkedIn</a>
-            <a href="https://twitter.com/anjaniraj" target="_blank" style="margin-left: 1rem;">Follow on Twitter</a>
-        </div>
     </div>
+    
+    <footer>
+        <p>&copy; 2026 Anjani Raj. Built with code, coffee, and curiosity.</p>
+        <p style="font-size: 0.85rem; margin-top: 1rem;">
+            <a href="/">Home</a> &bull;
+            <a href="/blog.html">Blog</a> &bull;
+            <a href="/#connect">Contact</a>
+        </p>
+    </footer>
 
     <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const isDark = html.getAttribute('data-theme') === 'dark';
-            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            localStorage.setItem('theme', isDark ? 'light' : 'dark');
-            document.querySelector('.theme-toggle i').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
-        }
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeToggleIcon();
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            document.querySelector('.theme-toggle i').className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggleIcon();
         });
 
+        function updateThemeToggleIcon() {
+            const theme = htmlElement.getAttribute('data-theme');
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        // Reading Progress
         window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('reading-progress').style.width = scrolled + '%';
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            document.getElementById('readingProgress').style.width = (scrolled / windowHeight) * 100 + '%';
         });
 
-        function shareOnTwitter() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent(document.title);
-            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=550,height=420');
+        // Copy to Clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => { alert('Link copied to clipboard!'); });
         }
 
-        function shareOnLinkedIn() {
-            const url = encodeURIComponent(window.location.href);
-            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=550,height=420');
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                alert('Link copied to clipboard!');
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
             });
-        }
+        });
     </script>
 </body>
 </html>

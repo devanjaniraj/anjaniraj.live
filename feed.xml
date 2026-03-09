@@ -2,35 +2,143 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Anjani Raj - Blog</title>
-    <description>Thoughts on engineering, entrepreneurship, and building sustainable systems</description>
+    <description>Thoughts on technology, finance, geopolitics, philosophy, and building sustainable systems</description>
     <link>https://anjaniraj.live/blog.html</link>
     <atom:link href="https://anjaniraj.live/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Feb 2026 12:00:00 GMT</lastBuildDate>
-    <pubDate>Wed, 05 Feb 2026 12:00:00 GMT</pubDate>
+    <lastBuildDate>Mon, 09 Mar 2026 12:00:00 GMT</lastBuildDate>
+    <pubDate>Mon, 09 Mar 2026 12:00:00 GMT</pubDate>
     <ttl>1800</ttl>
     
     <item>
-      <title>5 Years of Engineering: Lessons Learned the Hard Way</title>
-      <description>A collection of hard-earned insights from 5+ years in software engineering. Real lessons from real failures and successes.</description>
-      <link>https://anjaniraj.live/blog-post-2.html</link>
-      <guid isPermaLink="true">https://anjaniraj.live/blog-post-2.html</guid>
-      <pubDate>Tue, 04 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Engineering</category>
-      <category>Career</category>
-      <author>Kanjanikumar52@gmail.com (Anjani Raj)</author>
+      <title>The Rise of AI Agents: Autonomous Systems Are Reshaping Industries</title>
+      <description>AI agents are no longer experimental—they're reshaping industries from software development to healthcare. What the autonomous AI revolution means for the future of work.</description>
+      <link>https://anjaniraj.live/blog-post-16.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-16.html</guid>
+      <pubDate>Sun, 08 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Technology</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
     </item>
-    
+
+    <item>
+      <title>Stoicism in the Age of Information Overload: Ancient Wisdom for Modern Chaos</title>
+      <description>Two thousand years ago, Marcus Aurelius wrote about controlling your mind amidst chaos. Stoic philosophy offers a practical operating system for living with clarity and purpose.</description>
+      <link>https://anjaniraj.live/blog-post-22.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-22.html</guid>
+      <pubDate>Sat, 07 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Philosophy</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>Central Bank Digital Currencies: The Global Financial System's Next Chapter</title>
+      <description>Over 130 countries are exploring CBDCs. Digital currencies are reshaping how money works—and raising profound questions about privacy and sovereignty.</description>
+      <link>https://anjaniraj.live/blog-post-18.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-18.html</guid>
+      <pubDate>Fri, 06 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Finance</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>The Semiconductor Race: Why Chip Manufacturing Is the New Space Race</title>
+      <description>The global race to manufacture advanced chips has become the most consequential technology competition since the Space Race.</description>
+      <link>https://anjaniraj.live/blog-post-17.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-17.html</guid>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Technology</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>The Multipolar World: How Shifting Alliances Are Reshaping Global Power</title>
+      <description>The unipolar moment is over. How the emergence of multiple power centers is redrawing the map of international relations.</description>
+      <link>https://anjaniraj.live/blog-post-20.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-20.html</guid>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Geopolitics</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>Global Markets in 2026: Navigating Uncertainty in an Interconnected Economy</title>
+      <description>A deep dive into the forces reshaping global markets and principles for navigating permanent uncertainty.</description>
+      <link>https://anjaniraj.live/blog-post-19.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-19.html</guid>
+      <pubDate>Tue, 03 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Finance</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>The Paradox of Progress: When More Technology Demands Deeper Thinking</title>
+      <description>As AI automates more of our thinking, the ability to think deeply becomes humanity's most valuable skill. Why philosophy is the ultimate technology.</description>
+      <link>https://anjaniraj.live/blog-post-23.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-23.html</guid>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Philosophy</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>Digital Sovereignty: The New Battleground of 21st Century Geopolitics</title>
+      <description>Data, AI governance, and tech regulation have become frontlines of international power. Digital sovereignty is reshaping geopolitics.</description>
+      <link>https://anjaniraj.live/blog-post-21.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-21.html</guid>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 GMT</pubDate>
+      <category>Geopolitics</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
     <item>
       <title>Building Without Frameworks: Why Simplicity Wins</title>
-      <description>A deep dive into why sometimes the best solution is not another framework, but pure HTML, CSS, and JavaScript. Exploring performance, maintainability, and developer happiness.</description>
+      <description>A deep dive into why sometimes the best solution is not another framework, but pure HTML, CSS, and JavaScript.</description>
       <link>https://anjaniraj.live/blog-post-1.html</link>
       <guid isPermaLink="true">https://anjaniraj.live/blog-post-1.html</guid>
-      <pubDate>Mon, 03 Feb 2026 00:00:00 GMT</pubDate>
-      <category>Web Development</category>
-      <category>Engineering</category>
-      <author>Kanjanikumar52@gmail.com (Anjani Raj)</author>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
+      <category>Philosophy</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
     </item>
-    
+
+    <item>
+      <title>5 Years of Engineering: Lessons Learned the Hard Way</title>
+      <description>Reflections on half a decade of building products, shipping code, and learning what actually matters in engineering.</description>
+      <link>https://anjaniraj.live/blog-post-2.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-2.html</guid>
+      <pubDate>Thu, 20 Nov 2025 00:00:00 GMT</pubDate>
+      <category>Career</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>The Entrepreneurial Engineer: Building Systems for Freedom</title>
+      <description>How technical skills and business thinking complement each other in building products people want.</description>
+      <link>https://anjaniraj.live/blog-post-3.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-3.html</guid>
+      <pubDate>Wed, 08 Oct 2025 00:00:00 GMT</pubDate>
+      <category>Entrepreneurship</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>Clean Code Isn't About Perfect Code—It's About Future You</title>
+      <description>Why code clarity matters more than cleverness, and practical principles for maintainable systems.</description>
+      <link>https://anjaniraj.live/blog-post-4.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-4.html</guid>
+      <pubDate>Fri, 12 Sep 2025 00:00:00 GMT</pubDate>
+      <category>Development</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
+    <item>
+      <title>One Life. No Rehearsals. How I Approach Decision Making</title>
+      <description>A personal exploration of decision-making frameworks, risk tolerance, and making choices when the stakes are high.</description>
+      <link>https://anjaniraj.live/blog-post-5.html</link>
+      <guid isPermaLink="true">https://anjaniraj.live/blog-post-5.html</guid>
+      <pubDate>Tue, 05 Aug 2025 00:00:00 GMT</pubDate>
+      <category>Personal</category>
+      <author>kanjanikumar52@gmail.com (Anjani Raj)</author>
+    </item>
+
   </channel>
 </rss>
