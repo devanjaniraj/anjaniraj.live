@@ -14,12 +14,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Anjani Raj — Engineer, Entrepreneur, Builder">
     <meta name="twitter:description" content="Building systems and businesses for sustainable freedom.">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+    <meta name="twitter:image" content="https://anjaniraj.live/hero.jpg">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://anjaniraj.live/">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
@@ -1139,6 +1141,26 @@
         img[loading="lazy"].loaded {
             opacity: 1;
         }
+
+        .skip-link {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            background: var(--accent);
+            color: #0b0d12;
+            padding: 0.5rem 1rem;
+            z-index: 10000;
+            font-weight: 600;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        *:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
 </style>
     <!-- PWA Manifest -->
     <link rel='manifest' href='/manifest.json'>
@@ -1146,6 +1168,7 @@
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'>
     <meta name='apple-mobile-web-app-title' content='Anjani Raj'>
+    <link rel='apple-touch-icon' href='/hero.jpg'>
     
     <!-- RSS Feed -->
     <link rel='alternate' type='application/rss+xml' title='Anjani Raj Blog' href='/feed.xml'>
@@ -1179,7 +1202,8 @@
     </script>
 </head>
 <body>
-    <nav>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <nav aria-label="Main navigation">
         <a href="/" class="nav-logo">
             <img src="anjani logo.jpg" alt="Anjani Raj" />
         </a>
@@ -1193,7 +1217,7 @@
             <a href="#connect">Connect</a>
         </div>
         <div class="nav-right">
-            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
                 <i class="fas fa-moon"></i>
             </button>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
@@ -1202,6 +1226,7 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <!-- Home Section -->
     <section id="home">
         <div class="container fade-in">
@@ -1430,7 +1455,7 @@
                 </div>
 
                 <div style="display: flex; align-items: center; justify-content: center;">
-                    <img src="https://anjaniraj.live/hero.jpg" alt="Anjani Raj" style="border-radius: 12px; width: 100%; height: auto; box-shadow: 0 15px 50px rgba(108,242,194,0.25); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05) rotate(2deg)'" onmouseout="this.style.transform='scale(1) rotate(0deg)'">
+                    <img src="https://anjaniraj.live/hero.jpg" alt="Anjani Raj" style="border-radius: 12px; width: 100%; height: auto; box-shadow: 0 15px 50px rgba(108,242,194,0.25); transition: transform 0.3s ease;" loading="lazy">
                 </div>
             </div>
         </div>
@@ -1445,7 +1470,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
                 <form id="contactForm">
                     <h3 style="margin-bottom: 1.5rem;">Contact Form</h3>
-                    <div id="contactMessage"></div>
+                    <div id="contactMessage" role="alert" aria-live="polite"></div>
                     
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -1473,7 +1498,7 @@
                 <div>
                     <h3 style="margin-bottom: 1.5rem;">Newsletter</h3>
                     <form id="newsletterForm">
-                        <div id="newsletterMessage"></div>
+                        <div id="newsletterMessage" role="alert" aria-live="polite"></div>
                         <div class="form-group">
                             <label for="newsletter-email">Email Address</label>
                             <input type="email" placeholder="Enter your email" id="newsletter-email" name="email" required>
@@ -1506,6 +1531,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>

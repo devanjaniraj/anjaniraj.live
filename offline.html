@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline — Anjani Raj</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0b0d12;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+        }
+        .offline-container { max-width: 500px; }
+        h1 { font-size: 2rem; margin-bottom: 1rem; color: #6cf2c2; }
+        p { font-size: 1.1rem; line-height: 1.6; color: #cfcfcf; margin-bottom: 1.5rem; }
+        .icon { font-size: 4rem; margin-bottom: 1.5rem; }
+        .retry-btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: #6cf2c2;
+            color: #0b0d12;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .retry-btn:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="icon">📡</div>
+        <h1>You're Offline</h1>
+        <p>It looks like you've lost your internet connection. Please check your network and try again.</p>
+        <button class="retry-btn" onclick="window.location.reload()">Try Again</button>
+    </div>
+</body>
+</html>

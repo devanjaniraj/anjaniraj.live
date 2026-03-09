@@ -9,10 +9,17 @@
     <meta name="author" content="Anjani Raj">
     <meta property="og:title" content="Blog — Anjani Raj">
     <meta property="og:description" content="Thoughts on engineering, entrepreneurship, and building sustainable systems.">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anjaniraj.live/blog.html">
+    <meta property="og:image" content="https://anjaniraj.live/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://anjaniraj.live/hero.jpg">
+    <link rel="canonical" href="https://anjaniraj.live/blog.html">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
@@ -423,9 +430,29 @@
             }
         }
     </style>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6cf2c2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="/hero.jpg">
+    <style>
+        .skip-link { position: absolute; top: -50px; left: 0; background: var(--accent); color: #0b0d12; padding: 0.5rem 1rem; z-index: 10000; font-weight: 600; transition: top 0.2s ease; }
+        .skip-link:focus { top: 0; }
+        *:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Blog — Anjani Raj",
+      "description": "Articles on engineering, entrepreneurship, and building systems for sustainable freedom.",
+      "url": "https://anjaniraj.live/blog.html",
+      "author": { "@type": "Person", "name": "Anjani Raj", "url": "https://anjaniraj.live" }
+    }
+    </script>
 </head>
 <body>
-    <nav>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <nav aria-label="Main navigation">
         <a href="/" class="nav-logo" style="width: 40px; height: 40px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
             <img src="anjani logo.jpg" alt="Anjani Raj" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
         </a>
@@ -437,7 +464,7 @@
             <a href="/#connect">Connect</a>
         </div>
         <div class="nav-right">
-            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark/light mode">
                 <i class="fas fa-moon"></i>
             </button>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
@@ -446,26 +473,29 @@
         </div>
     </nav>
 
+    <main id="main-content">
     <div class="container fade-in">
         <div class="page-header">
             <h1>Blog</h1>
+    </main>
             <p>Thoughts on technology, finance, geopolitics, philosophy, and building sustainable systems</p>
         </div>
 
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search articles..." />
+            <label for="searchInput" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Search articles</label>
+            <input type="text" id="searchInput" placeholder="Search articles..." aria-label="Search articles" />
         </div>
 
-        <div class="filter-section">
-            <button class="filter-btn active" data-filter="all">All Articles</button>
-            <button class="filter-btn" data-filter="Technology">Technology</button>
-            <button class="filter-btn" data-filter="Finance">Finance</button>
-            <button class="filter-btn" data-filter="Geopolitics">Geopolitics</button>
-            <button class="filter-btn" data-filter="Philosophy">Philosophy</button>
-            <button class="filter-btn" data-filter="Career">Career</button>
-            <button class="filter-btn" data-filter="Development">Development</button>
-            <button class="filter-btn" data-filter="Entrepreneurship">Entrepreneurship</button>
-            <button class="filter-btn" data-filter="Personal">Personal</button>
+        <div class="filter-section" role="group" aria-label="Filter articles by category">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true">All Articles</button>
+            <button class="filter-btn" data-filter="Technology" aria-pressed="false">Technology</button>
+            <button class="filter-btn" data-filter="Finance" aria-pressed="false">Finance</button>
+            <button class="filter-btn" data-filter="Geopolitics" aria-pressed="false">Geopolitics</button>
+            <button class="filter-btn" data-filter="Philosophy" aria-pressed="false">Philosophy</button>
+            <button class="filter-btn" data-filter="Career" aria-pressed="false">Career</button>
+            <button class="filter-btn" data-filter="Development" aria-pressed="false">Development</button>
+            <button class="filter-btn" data-filter="Entrepreneurship" aria-pressed="false">Entrepreneurship</button>
+            <button class="filter-btn" data-filter="Personal" aria-pressed="false">Personal</button>
         </div>
 
         <div class="blog-posts" id="blogPosts"></div>
@@ -766,8 +796,12 @@
         const filterButtons = document.querySelectorAll('.filter-btn');
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
                 button.classList.add('active');
+                button.setAttribute('aria-pressed', 'true');
 
                 const filter = button.dataset.filter;
                 if (filter === 'all') {

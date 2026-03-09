@@ -1,7 +1,8 @@
-const CACHE_NAME = 'anjaniraj-v2';
+const CACHE_NAME = 'anjaniraj-v3';
 const urlsToCache = [
   '/',
   '/index.html',
+  '/offline.html',
   '/manifest.json',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'
@@ -64,13 +65,7 @@ self.addEventListener('fetch', event => {
             if (cached) {
               return cached;
             }
-            return new Response('Offline - Please check your connection', {
-              status: 503,
-              statusText: 'Service Unavailable',
-              headers: new Headers({
-                'Content-Type': 'text/plain'
-              })
-            });
+            return caches.match('/offline.html');
           });
         })
     );
