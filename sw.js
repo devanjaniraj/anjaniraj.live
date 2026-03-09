@@ -1,4 +1,4 @@
-const CACHE_NAME = 'anjaniraj-v1';
+const CACHE_NAME = 'anjaniraj-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -44,37 +44,57 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  const isNavigationRequest = request.mode === 'navigate';
+
+  /* Use network-first for HTML/navigation so users always get the latest site version. */
+  if (isNavigationRequest) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(request, responseToCache);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(request).then(cached => {
+            if (cached) {
+              return cached;
+            }
+            return new Response('Offline - Please check your connection', {
+              status: 503,
+              statusText: 'Service Unavailable',
+              headers: new Headers({
+                'Content-Type': 'text/plain'
+              })
+            });
+          });
+        })
+    );
+    return;
+  }
+
+  /* Cache-first for static assets. */
   event.respondWith(
     caches.match(request).then(response => {
-      /* Return cached response if available */
       if (response) {
         return response;
       }
 
-      /* Otherwise, fetch from network and cache successful responses */
-      return fetch(request).then(response => {
-        /* Don't cache non-successful responses */
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-          return response;
+      return fetch(request).then(networkResponse => {
+        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+          return networkResponse;
         }
 
-        const responseToCache = response.clone();
+        const responseToCache = networkResponse.clone();
         caches.open(CACHE_NAME).then(cache => {
           cache.put(request, responseToCache);
         });
 
-        return response;
-      }).catch(() => {
-        /* Offline fallback: try to return cached response or a generic offline page */
-        return caches.match(request).catch(() => {
-          return new Response('Offline - Please check your connection', {
-            status: 503,
-            statusText: 'Service Unavailable',
-            headers: new Headers({
-              'Content-Type': 'text/plain'
-            })
-          });
-        });
+        return networkResponse;
       });
     })
   );
