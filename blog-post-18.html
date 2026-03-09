@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,92 +12,162 @@
     <meta property="og:description" content="Central Bank Digital Currencies are launching worldwide, reshaping how money works.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://anjaniraj.live/blog-post-18.html">
-    
     <title>Central Bank Digital Currencies: The Global Financial System's Next Chapter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%236cf2c2'>A</text></svg>">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GNLZP70T21"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GNLZP70T21');
+    </script>
     <style>
+        :root {
+            --bg: #0b0d12;
+            --bg-secondary: #1a1d26;
+            --text: #ffffff;
+            --text-secondary: #e0e0e0;
+            --muted: #cfcfcf;
+            --accent: #6cf2c2;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(255,255,255,.04);
+            --card-border: rgba(255,255,255,.06);
+        }
+        html[data-theme="light"] {
+            --bg: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --text: #1a1a1a;
+            --text-secondary: #333333;
+            --muted: #666666;
+            --accent: #00a876;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(0,0,0,.04);
+            --card-border: rgba(0,0,0,.1);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6; color: #333; background-color: #fff;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
-        body.dark-mode { background-color: #1a1a1a; color: #e0e0e0; }
         .reading-progress {
             position: fixed; top: 0; left: 0; height: 3px;
-            background: linear-gradient(90deg, #0891b2 0%, #0d9488 100%);
+            background: var(--accent);
             z-index: 1000; width: 0%; transition: width 0.1s ease;
         }
-        header {
-            background: linear-gradient(135deg, #0891b2 0%, #0d9488 100%);
-            color: white; padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            position: sticky; top: 0; z-index: 100;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
-        .header-content {
-            max-width: 800px; margin: 0 auto; padding: 0 20px;
-            display: flex; justify-content: space-between; align-items: center;
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        .logo { font-size: 24px; font-weight: bold; text-decoration: none; color: white; }
-        .header-controls { display: flex; gap: 20px; align-items: center; }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--accent); }
+        .nav-logo {
+            width: 40px; height: 40px;
+            border-radius: 50%; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .nav-logo::after { display: none; }
+        .nav-logo img {
+            width: 100%; height: 100%;
+            object-fit: cover; border-radius: 50%;
+        }
+        .nav-links { display: flex; align-items: center; }
+        .nav-right { display: flex; align-items: center; gap: 1rem; }
         .theme-toggle {
-            background: rgba(255,255,255,0.2); border: none; color: white;
-            padding: 8px 12px; border-radius: 4px; cursor: pointer;
-            font-size: 16px; transition: background 0.3s;
+            background: none; border: none;
+            color: var(--text); font-size: 1.5rem;
+            cursor: pointer; transition: transform 0.3s ease;
         }
-        .theme-toggle:hover { background: rgba(255,255,255,0.3); }
-        .back-link {
-            color: white; text-decoration: none; display: flex;
-            align-items: center; gap: 5px; transition: opacity 0.3s;
+        .theme-toggle:hover { transform: scale(1.1) rotate(20deg); }
+        .hamburger {
+            display: none; background: none; border: none;
+            cursor: pointer; padding: 4px; z-index: 101;
         }
-        .back-link:hover { opacity: 0.8; }
+        .hamburger span {
+            display: block; width: 24px; height: 2px;
+            background: var(--text); margin: 5px 0; transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
         .article-header { margin-bottom: 40px; }
         .category-tag {
-            display: inline-block; background: #0891b2; color: white;
+            display: inline-block; background: var(--accent); color: var(--bg);
             padding: 4px 12px; border-radius: 20px; font-size: 12px;
             font-weight: 600; text-transform: uppercase; margin-bottom: 15px;
         }
         h1 { font-size: 2.5em; margin-bottom: 20px; line-height: 1.2; }
         .article-meta {
-            display: flex; gap: 20px; color: #666; font-size: 14px;
+            display: flex; gap: 20px; color: var(--muted); font-size: 14px;
             margin-bottom: 30px; flex-wrap: wrap;
         }
-        body.dark-mode .article-meta { color: #999; }
         .article-content { font-size: 1.1em; line-height: 1.8; }
-        .article-content h2 { font-size: 1.8em; margin: 40px 0 20px 0; color: #0891b2; }
-        body.dark-mode .article-content h2 { color: #06b6d4; }
-        .article-content h3 { font-size: 1.4em; margin: 30px 0 15px 0; color: #333; }
-        body.dark-mode .article-content h3 { color: #e0e0e0; }
+        .article-content h2 { font-size: 1.8em; margin: 40px 0 20px 0; color: var(--accent); }
+        .article-content h3 { font-size: 1.4em; margin: 30px 0 15px 0; color: var(--text); }
         .article-content p { margin-bottom: 20px; text-align: justify; }
         .article-content ul, .article-content ol { margin: 20px 0 20px 40px; }
         .article-content li { margin-bottom: 10px; }
         .highlight-box {
-            background: #ccfbf1; border-left: 4px solid #0891b2;
+            background: rgba(108,242,194,.1); border-left: 4px solid var(--accent);
             padding: 20px; margin: 30px 0; border-radius: 4px;
         }
-        body.dark-mode .highlight-box { background: #1a3a3a; border-left-color: #06b6d4; }
-        .highlight-box strong { color: #0891b2; }
-        body.dark-mode .highlight-box strong { color: #06b6d4; }
+        .highlight-box strong { color: var(--accent); }
         .cta-section {
-            background: linear-gradient(135deg, #0891b2 0%, #0d9488 100%);
-            color: white; padding: 40px; border-radius: 8px;
+            background: var(--accent); color: var(--bg);
+            padding: 40px; border-radius: 8px;
             margin: 40px 0; text-align: center;
         }
-        .cta-section h3 { color: white; margin-bottom: 15px; }
+        .cta-section h3 { color: var(--bg); margin-bottom: 15px; }
         .cta-buttons { display: flex; gap: 15px; margin-top: 20px; justify-content: center; flex-wrap: wrap; }
         .cta-btn {
-            background: white; color: #0891b2; padding: 12px 24px;
+            background: var(--bg); color: var(--accent); padding: 12px 24px;
             border-radius: 4px; text-decoration: none; font-weight: 600;
             transition: transform 0.3s; border: none; cursor: pointer;
         }
         .cta-btn:hover { transform: translateY(-2px); }
         .share-section {
-            margin: 40px 0; padding: 20px; background: #f5f5f5;
+            margin: 40px 0; padding: 20px; background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
             border-radius: 8px; display: flex; gap: 15px;
             align-items: center; flex-wrap: wrap;
         }
-        body.dark-mode .share-section { background: #2a2a2a; }
         .share-btn {
             padding: 10px 16px; border: none; border-radius: 4px;
             cursor: pointer; font-weight: 600; text-decoration: none;
@@ -106,32 +176,56 @@
         .share-btn:hover { opacity: 0.8; }
         .twitter-btn { background: #1DA1F2; color: white; }
         .linkedin-btn { background: #0A66C2; color: white; }
-        .copy-btn { background: #0891b2; color: white; }
+        .copy-btn { background: var(--accent); color: var(--bg); }
         footer {
-            background: #f5f5f5; padding: 40px 20px; text-align: center;
-            color: #666; margin-top: 60px;
+            background: var(--bg-secondary); padding: 2rem;
+            text-align: center; color: var(--muted);
+            border-top: 1px solid var(--card-border); margin-top: 60px;
         }
-        body.dark-mode footer { background: #111; color: #999; }
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
         @media (max-width: 768px) {
             h1 { font-size: 1.8em; }
             .article-content h2 { font-size: 1.4em; }
             .article-meta { flex-direction: column; gap: 10px; }
             .cta-buttons { flex-direction: column; }
+            nav { padding: 1rem; }
+            .hamburger { display: block; }
+            .nav-links {
+                display: none; position: fixed;
+                top: 0; left: 0; width: 100%; height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column; justify-content: center;
+                align-items: center; gap: 2rem; z-index: 99;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { font-size: 1.2rem; margin: 0; }
         }
     </style>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
     
-    <header>
-        <div class="header-content">
-            <a href="index.html" class="logo">Anjani Raj</a>
-            <div class="header-controls">
-                <a href="blog.html" class="back-link">← Back to Blog</a>
-                <button class="theme-toggle" id="themeToggle">🌙</button>
-            </div>
+    <nav>
+        <a href="/" class="nav-logo">
+            <img src="anjani logo.jpg" alt="Anjani Raj" />
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/#about">About</a>
+            <a href="/#connect">Connect</a>
         </div>
-    </header>
+        <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
     
     <div class="container">
         <article class="article-content">
@@ -229,33 +323,65 @@
                 <a href="https://twitter.com/intent/tweet?text=Central%20Bank%20Digital%20Currencies&url=https://anjaniraj.live/blog-post-18.html" class="share-btn twitter-btn">🐦 Twitter</a>
                 <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://anjaniraj.live/blog-post-18.html" class="share-btn linkedin-btn">💼 LinkedIn</a>
                 <button onclick="copyToClipboard('https://anjaniraj.live/blog-post-18.html')" class="share-btn copy-btn">🔗 Copy Link</button>
-            </div>
+            </div>
         </article>
     </div>
     
     <footer>
-        <p>&copy; 2026 Anjani Raj. All rights reserved.</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">Built with passion for innovation and knowledge sharing.</p>
+        <p>&copy; 2026 Anjani Raj. Built with code, coffee, and curiosity.</p>
+        <p style="font-size: 0.85rem; margin-top: 1rem;">
+            <a href="/">Home</a> &bull;
+            <a href="/blog.html">Blog</a> &bull;
+            <a href="/#connect">Contact</a>
+        </p>
     </footer>
-    
+
     <script>
+        // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        if (isDarkMode) { document.body.classList.add('dark-mode'); themeToggle.textContent = '☀️'; }
+        const htmlElement = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', savedTheme);
+        updateThemeToggleIcon();
+
         themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDark);
-            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggleIcon();
         });
+
+        function updateThemeToggleIcon() {
+            const theme = htmlElement.getAttribute('data-theme');
+            themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        // Reading Progress
         window.addEventListener('scroll', () => {
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = window.scrollY;
             document.getElementById('readingProgress').style.width = (scrolled / windowHeight) * 100 + '%';
         });
+
+        // Copy to Clipboard
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => { alert('Link copied to clipboard!'); });
         }
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
