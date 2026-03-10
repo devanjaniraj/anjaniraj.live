@@ -7,30 +7,6 @@ function trackEvent(eventName, eventData = {}) {
     console.log(`Event tracked: ${eventName}`, eventData);
 }
 
-// Theme Toggle
-const themeToggle = document.getElementById('themeToggle');
-const htmlElement = document.documentElement;
-
-const savedTheme = localStorage.getItem('theme') || 'dark';
-htmlElement.setAttribute('data-theme', savedTheme);
-updateThemeToggleIcon();
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        htmlElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeToggleIcon();
-        trackEvent('theme_change', { theme: newTheme });
-    });
-}
-
-function updateThemeToggleIcon() {
-    if (!themeToggle) return;
-    const theme = htmlElement.getAttribute('data-theme');
-    themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-}
 
 // Contact Form Handling
 const contactForm = document.getElementById('contactForm');
