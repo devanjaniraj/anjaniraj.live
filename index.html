@@ -39,6 +39,7 @@
         :root {
             --bg: #0b0d12;
             --bg-secondary: #1a1d26;
+            --nav-bg: rgba(26, 29, 38, 0.92);
             --text: #ffffff;
             --text-secondary: #e0e0e0;
             --muted: #cfcfcf;
@@ -49,6 +50,19 @@
             --success: #10b981;
             --error: #ef4444;
             --github-blue: #1f6feb;
+        }
+
+        html[data-theme="light"] {
+            --bg: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --text: #1a1a2e;
+            --text-secondary: #333333;
+            --muted: #555555;
+            --accent: #00a876;
+            --accent-dark: #059b7a;
+            --card-bg: rgba(0, 0, 0, 0.04);
+            --card-border: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -75,13 +89,30 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 2rem;
-            background: var(--bg-secondary);
+            background: var(--nav-bg);
             border-bottom: 1px solid var(--card-border);
             position: sticky;
             top: 0;
             z-index: 100;
             backdrop-filter: blur(10px);
-            background: rgba(26, 29, 38, 0.9);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--card-border);
+            color: var(--text);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: scale(1.1);
         }
 
         nav a {
@@ -512,30 +543,35 @@
 
         .skill-category h4 {
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             font-size: 1.1rem;
         }
 
-        .skill-list {
+        .skill-bar-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-bar-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            justify-content: space-between;
+            font-size: 0.88rem;
+            margin-bottom: 0.35rem;
+            color: var(--text-secondary);
         }
 
-        .skill-tag {
-            background: rgba(108,242,194,0.1);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .skill-bar-track {
+            background: var(--card-border);
+            border-radius: 4px;
+            height: 7px;
+            overflow: hidden;
         }
 
-        .skill-tag:hover {
-            background: var(--accent);
-            color: var(--bg);
-            transform: translateY(-2px);
+        .skill-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+            width: 0;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .about-content {
@@ -1192,6 +1228,9 @@
             <a href="#connect">Connect</a>
         </div>
         <div class="nav-right">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-sun"></i>
+            </button>
             <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
@@ -1297,50 +1336,38 @@
             <div class="skills-container">
                 <div class="skill-category">
                     <h4><i class="fas fa-laptop-code"></i> Frontend</h4>
-                    <div class="skill-list">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">Responsive Design</span>
-                        <span class="skill-tag">Accessibility</span>
-                    </div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>HTML5 &amp; CSS3</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>JavaScript</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>React</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Responsive Design</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Accessibility</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
                 </div>
 
                 <div class="skill-category">
                     <h4><i class="fas fa-server"></i> Backend</h4>
-                    <div class="skill-list">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PowerShell</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Databases</span>
-                        <span class="skill-tag">Authentication</span>
-                    </div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Node.js</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Python</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>PowerShell</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>REST APIs</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Databases</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div></div>
                 </div>
 
                 <div class="skill-category">
-                    <h4><i class="fas fa-tools"></i> DevOps & Tools</h4>
-                    <div class="skill-list">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Automation</span>
-                        <span class="skill-tag">CI/CD</span>
-                        <span class="skill-tag">Testing</span>
-                    </div>
+                    <h4><i class="fas fa-tools"></i> DevOps &amp; Tools</h4>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Git &amp; GitHub</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Docker</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Automation</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>CI/CD</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Testing</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
                 </div>
 
                 <div class="skill-category">
                     <h4><i class="fas fa-lightbulb"></i> Business</h4>
-                    <div class="skill-list">
-                        <span class="skill-tag">Entrepreneurship</span>
-                        <span class="skill-tag">Product Design</span>
-                        <span class="skill-tag">Strategy</span>
-                        <span class="skill-tag">Leadership</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Communication</span>
-                    </div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Entrepreneurship</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Stock Trading</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Product Design</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Strategy &amp; Leadership</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-header"><span>Communication</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
                 </div>
             </div>
         </div>
@@ -1534,6 +1561,29 @@
             console.log(`Event tracked: ${eventName}`, eventData);
         }
 
+        // Theme Toggle
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlEl = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        htmlEl.setAttribute('data-theme', savedTheme);
+        updateThemeIcon();
+
+        themeToggleBtn.addEventListener('click', () => {
+            const current = htmlEl.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeIcon();
+            trackEvent('theme_change', { theme: next });
+        });
+
+        function updateThemeIcon() {
+            const theme = htmlEl.getAttribute('data-theme');
+            themeToggleBtn.innerHTML = theme === 'dark'
+                ? '<i class="fas fa-sun"></i>'
+                : '<i class="fas fa-moon"></i>';
+        }
+
         // Hamburger Menu
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
@@ -1690,6 +1740,19 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+
+        // Animate skill bars when they come into view
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.dataset.width + '%';
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        skillBars.forEach(bar => skillObserver.observe(bar));
     </script>
     <!-- Service Worker Registration -->
     <script>
