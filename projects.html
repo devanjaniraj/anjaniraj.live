@@ -36,11 +36,23 @@
 :root {
   --bg: #0b0d12;
   --bg-secondary: #1a1d26;
+  --nav-bg: rgba(26, 29, 38, 0.92);
   --text: #ffffff;
   --muted: #cfcfcf;
   --accent: #6cf2c2;
   --card-bg: rgba(255,255,255,.04);
   --card-border: rgba(255,255,255,.06);
+}
+
+html[data-theme="light"] {
+  --bg: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+  --text: #1a1a2e;
+  --muted: #555555;
+  --accent: #00a876;
+  --card-bg: rgba(0, 0, 0, 0.04);
+  --card-border: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -74,12 +86,30 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  background: var(--bg-secondary);
+  background: var(--nav-bg);
   border-bottom: 1px solid var(--card-border);
   position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.1);
 }
 
 nav a {
@@ -357,6 +387,9 @@ footer {
     <a href="/#connect">Connect</a>
   </div>
   <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <i class="fas fa-sun"></i>
+    </button>
     <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
     </button>
@@ -489,6 +522,28 @@ footer {
 </div>
 
 <script>
+// Theme Toggle
+const themeToggleBtn = document.getElementById('themeToggle');
+const htmlEl = document.documentElement;
+const savedTheme = localStorage.getItem('theme') || 'dark';
+htmlEl.setAttribute('data-theme', savedTheme);
+updateThemeIcon();
+
+themeToggleBtn.addEventListener('click', () => {
+  const current = htmlEl.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  htmlEl.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  updateThemeIcon();
+});
+
+function updateThemeIcon() {
+  const theme = htmlEl.getAttribute('data-theme');
+  themeToggleBtn.innerHTML = theme === 'dark'
+    ? '<i class="fas fa-sun"></i>'
+    : '<i class="fas fa-moon"></i>';
+}
+
 // Hamburger Menu
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('navLinks');
